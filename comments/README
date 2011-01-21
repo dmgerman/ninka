@@ -1,0 +1,9 @@
+In order to use Ninka you must install the comments extractor found in this directory.
+
+If Ninka does not find it in the executable path, it will use the
+first 400 lines from source code, and is likely to reduce the precision of Ninka.
+
+
+
+
+

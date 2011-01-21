@@ -1,0 +1,640 @@
+#
+#    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+#Format
+#  RuleName
+#  Version Number
+#  Number of variable strings
+#  Pattern
+#
+AllRights:0:1:All rights reserved:
+############################ 
+# GENERIC rules for GPL
+GPLGen:00:1:^([^,;]+) is <licensed> under the terms of the GPL,? <version>$:2
+GPLGen:01:1:^([^,;]+) is <LICENSED> under the GPL, <VERSION>:$
+GPLGen:10:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL; either <VERSION>$:
+GPLGen:14:1:^([^,;]+) is free software; you can distribute it and/or modify it under the terms of the GPL (<VERSION>) as published by the Free Software Foundation$:
+GPLGen:20:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL(,|;)? <version>$:
+GPLGen:22:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of <VERSION> of the GPL$:
+GPLGen:23:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL; <VERSION>:
+LesserGPLGen:24:0:^you can redistribute it and/or modify it under the terms of the Lesser GPL <VERSION>:
+LesserGPLGen:23:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL \(as published by the Free Software Foundation\) <VERSION>$:
+LesserGPLGenv3or:10:1:This program is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL; either <VERSION>, or (at your option) version 3
+AGPLGen:10:1:([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the Affero GPL, either <VERSION>
+GPLGen:24:1:^([^,;]+) is GPL <VERSION> as found in COPYING$:
+GPLGen:25:1:^([^,;]+) is distributed under the GPL <VERSION>$:
+LibraryGPLGen:26:1:^([^,;]+) is free software distributed under the terms of the Library GPL <VERSION>$
+GPLGen:40:3:^<licensed> under the GPL <version>$:3
+#GPLGen:45:3:^<licensed> under the GPL <version> only$:3
+GPLGen:46:0:^you can redistribute it and/or modify it under the terms of the GPL(,|;) either <VERSION>$:
+GPLGen:50:1:^([^,;]+) is <LICENSED> under the GPL <version>$:
+GPLGen:55:1:^([^,;]+) is <LICENSED> to anyone wishing to use, modify, copy, or redistribute it subject to the terms of the GPL <VERSION>$:
+GPLGen:60:1:^([^,;]+) may be distributed under the terms of the GPL <version>$:
+GPLGen:70:1:^([^,;]+) is subject to the terms of the GPL <version>$:
+GPLGen:72:0:^Licensed under the GPL <version>$:
+GPLGen:74:1:^([^,;]+) is provided under the provisions of the GPL$:
+GPLGen:73:0:^This program is under the GNU GPL$:
+GPLGen:75:2:^([^,;]+) is <LICENSED> under the GPL <VERSION> license \(no other versions\)$:
+GPLGen:76:1:^([^,;]+) can be distributed under the terms of the GPL <VERSION>$:
+GPLGen:77:1:^The contents of this ([^,;]+) are subject to the terms of the GPL; either <VERSION>$:
+GPLGen:80:1:^([^,;]+) provides this source code under the GPL <VERSION> License$:
+GPLGen:81:1:^<LICENSED> under the GPL <VERSION>, see file ([^,;]+) in this ([^,;]+) for details$
+GPLGenVer2:90:0:^released under GNU GPL v2 or later license$
+#
+GPLGenError:26:1:^You may use this ([^,;]+) under the GNU public license if you so wish$:
+GPLGenError:20:0:^this software may be distributed under the terms of the GNU Public License \(<quotes>GPL<quotes>\)$
+#
+GhostscriptGPL:10:0:^Refer to the GNU Ghostscript General Public License for full details$
+#
+isFreeSoftware:10:0:^([^,;]+) is free software$
+#
+# +
+#
+#GPLGen:14:3:^This ([^,;]+) is (licensed|released|made available) under the terms of the GNU General Public License version (2|3), or \(at your option\) any later versions?(\.)?:2
+#GPLGen+:20:1:This ([^,;]+) is made available under the GNU GPL version (2.0|2|3) or greater:1
+#GPLGen+:30:1:(Alternatively, )?this software may be distributed and/or modified under the terms of the GNU General Public License as published by the Free Software Foundation; either version ([123]) of the License, or \(at your option\) any later version:
+#GPLGen+:40:2:^This ([^,;]+) is free software; you (can|may) redistribute it and/or modify it under the terms (and conditions )?of the GNU General Public License as published by the Free Software Foundation(,|;) either version ([23])( of the License)?, or \(at your option\) any later version\.?$:3
+##################################
+GPLnoVersion:00:0:<LICENSED> under the GPL$:
+GPLnoVersion:01:1:^([^,;]+) is <LICENSED> under the GPL$:
+GPLnoVersion:07:1:^([^,;]+) can be used and distributed according to the terms of the GPL$:
+GPLnoVersion:08:1:^([^,;]+) can be redistributed or modified under the terms of the GPL$:
+GPLnoVersion:11:1:^([^,;]+) can be distributed under the terms of the GPL$:
+GPLnoVersion:09:1:^([^,;]+) is distributed under the terms of the GPL$:
+GPLnoVersion:10:1:^([^,;]+) is subject to the terms GPL$:
+GPLnoVersion:19:1:^([^,;]+) is subject to the terms of the GPL$:
+GPLnoVersion:20:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of GPL$:
+GPLnoVersion:30:0:^This is free software, placed under the terms of the GPL$:
+GPLnoVersion:40:1:^([^,;]+) may be used and distributed according to the terms of the GPL$:
+GPLnoVersion:50:0:^Distributed under the terms of the GPL$:
+GPLnoVersion:70:1:^([^,;]+) is (released|licensed) under the GPL$:
+GPLnoVersion:80:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL$
+GPLnoVersion:81:1:^([^,;]+) have put this under the GPL$
+GPLnoVersion:82:1:^([^,;]+) can be freely redistributed under the terms of the GPL$
+GPLnoVersion:83:0:^Thus, the terms of the GPL cover the whole combination$
+GPLnoVersion:84:0:^You can redistribute it and/or modify it only in compliance with the GPL$
+GPLnoVersion:85:0:^Released under GPL.*$
+
+LesserGPLnoVersion:85:0:^<LICENSED> under the LGPL license$
+LesserGPLnoVersion:10:0:^Released under LGPL.*$
+LesserGPLnoVersion:20:0:^This code is LGPL$
+#Perl
+SameAsPerl:10:0:^([^,;]+) is free software; you can redistribute it and/or modify it under the same terms as Perl itself$
+ArtisticLicensev1:10:0:^You may redistribute only under the terms of the Artistic License, as specified in the README file that comes with the distribution$
+ArtisticLicensev1:10:0:^You may reuse parts of this distribution only within the terms of that same Artistic License:
+###############################
+GPLcopy:10:2:^You should have received a copy of the (Lesser |Library )?GPL with ([^,;]+); if not, write (to )?the Free Software Foundation(.+) USA$:
+GPLcopy:12:2:^You should have received a copy of the (Lesser |Library )?GPL with ([^,;]+); if not, see the file COPYING, or write to the Free Software Foundation(.+) USA$:
+GPLcopy:53:1:^You should have received a copy of the (Lesser |Library )?GPL with ([^,;]+)$:
+GPLcopy:54:2:^You should have received a copy of the GPL with ([^,;]+); see the file COPYING.?$:
+LibraryGPLcopy:55:1:^You should have received a copy of the Library GPL with ([^,;]+); see the file COPYING.LIB$:
+GPLcopy:20:0:^You should have received a copy of the (Lesser |Library )?GPL with this program; if not, write to<colon>$:
+GPLwrite:21:2:^(If not, write to )?the Free Software Foundation(.+) USA$:
+GPLcopy:30:0:The GPL <VERSION> license is available at http<colon>//opensource.org/licenses/gpl\-license.php$:
+LesserGPLcopy:12:1:^You should have received a copy of the Lesser GPL <VERSION> along with ([^,;]+)$
+#############################
+GPLsee:57:0:^Please see the GPL for more details$:
+GPLsee:71:0:^GPL <VERSION>, can be found in COPYING$:
+GPLsee:72:0:^See the GPL <VERSION> for more details \(a copy is included in the LICENSE file that accompanied this code\)$
+GPLseeDetails:10:0:^See the GPL for more details$:
+#
+AGPLsee:10:0:See the Affero GPL for more details$
+#
+AGPLreceived:10:0:^You should have received a copy of the Affero GPL with this program$
+GNUurl:10:0:^If not, see <http://www.gnu.org/licenses/>$
+#
+#
+################################
+# Special cases GPL
+#
+GPLv2orv3:10:0:^This file may be used under the terms of the GNU General Public License versions 2\.0 or 3\.0 as published by the Free Software Foundation and appearing in the files LICENSE\.GPL2 and LICENSE\.GPL3 included in the packaging of this file$
+LGPLv2_1orv3:10:0:^([^,;]+) is free software; you can redistribute it and\/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2\.1 or 3 of the License$
+LGPLv2orv3:10:0:^([^,;]+) is free software; you can redistribute it and\/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) version 3$
+###XXXGPLCopy:50:2:^You should have received a copy of the GPL along with (.*); see the file (.*); see the file (.*)$:
+###XXXGPLCopy:60:2:^You should have received a copy of the GPL along with (.*); see the file (.*)$:
+###XXXGPLCopy:70:0:^The full GPL is included in this distribution in the file called (<quotes>)?(COPYING|LICENSE)(<quotes>)?:
+###XXXGPLCopy:80:1:^You should have received a copy of the GPL along with this ([^,;]+)$:
+###XXXGPLCopyVar:52:3:^You should have received a copy of the GNU ([^,;]+)?General Public License along with this (library|program); if not, see the file COPYING, or write to the Free Software Foundation ([^,;]+) USA:
+###XXXGPLCopyVarNoTo:24:2:^You should have received a copy of the GNU General Public License along with this (program|software); if not, write (to )?the Free Software Foundation([^,;]+) USA\.?:
+XXXGPLEntertainingNoWarranty:52:1:^This program is distributed in the hope that it will( be)? entertaining, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILTY or FITNESS FOR A PARTICULAR PURPOSE:
+###XXXGPLNoVersion:70:0:^This program is made available under the GNU GPL:
+###XXXGPLReceivedCopy:70:0:^You should have received a copy of the GPL along with this program$:
+###XXXGPLcopypart2:24:1:^If not, write to (the )?Free Software Foundation([^,;]+) USA\.?:
+###XXXGPLifNotURL:70:0:^If not, see <http<colon>//www.gnu.org/licenses/>:
+###XXXGPLnoVersion:52:0:^This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation:
+###XXXGPLv2+01:70:0:This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
+###XXXGPLv2+05:70:0:This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2(,|;) or \(at your option\) any later version:
+###XXXGPLv2+06:70:0:This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
+###XXXGPLv2+:07:0:this software may be distributed under the terms of the GNU General Public License (<quotes>GPL<quotes>) version 2 as published by the Free Software Foundation:
+###XXXGPLv2+:08:2: is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2( of the License)?, or \(at your option\) any later version:
+###XXXGPLv2+:50:1:This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as publitation, and that the name of ([^,;]+) not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission:
+###XXXGPLv2:09:0:Subject to the GNU Public License, v\.2:
+###XXXGPLv2:10:0:Licensed under the terms of the GNU GPL License version 2:
+###XXXGPLv2:12:0: is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License version 2 as published by the Free Software Foundation, incorporated herein by reference:
+###XXXGPLv2:14:0: is free software; you can redistribute it and/or modify it under the terms of version 2 of the GNU General Public License as published by the Free Software Foundation:
+###XXXGPLv2:15:0: is free software; you may redistribute and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; Version 2:
+###XXXGPLv2:16:0: is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License(,)? version 2( only)?, as published by the Free Software Foundation:
+###XXXGPLv2:17:0:This file may be distributed and/or modified under the terms of the GNU General Public License version 2 as published by the Free Software Foundation:
+####XXXGPLv2only:52:1:This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License \(version 2 only\) as published by the Free Software Foundation:
+###XXXGPLv2var2:17:1:(This program is free software; )?you can distribute it and/or modify it under the terms of the GNU General Public License \(Version 2\) as published by the Free Software Foundation:
+###XXXGPLv2var:17:0:made available under the terms of the GNU General Public License version 2:
+###XXXGPLv3+:18:0:you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation(,|;) either version 3 of the License, or \(at your option\) any later version:
+###XXXGPLv3+:19:0:you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 3, or \(at your option\) any later version:
+###XXXGPLv3:20:0:you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License:
+###XXXGPLv3:21:0:you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License version 3 only, as published by the Free Software Foundation:
+###
+############ These ones need to be fixed
+GPLv2orLGPLv2.1:17:0:The contents of this file may be used under the terms of either the GNU General Public License Version 2 or later \(the <quotes>GPL<quotes>\), or the GNU Lesser General Public License Version 2\.1 or later \(the <quotes>LGPL<quotes>\), in which case the provisions of the GPL or the LGPL are applicable instead of those above:
+GPLv2orLGPLv2.1:18:0:the contents of this file may be used under the terms of either of the GNU General Public License Version 2 or later \(the <quotes>GPL<quotes>\), or the GNU Lesser General Public License Version 2\.1 or later \(the <quotes>LGPL<quotes>\), in which case the provisions of the GPL or the LGPL are applicable instead of those above:
+##############################################
+########### GPL and BSD
+############
+GPLorOpenBSD:52:0:^You can choose to be licensed under the terms of the GPL <VERSION>, available from the file COPYING in the main directory of this source tree, or the OpenIB\.org BSD license below$:
+GPLofBSDtype:42:0:^You can choose to be <LICENSED> under the terms of the GPL <VERSION>, available from the file COPYING in the main directory of this source tree, or the BSD-type license below<colon>$:
+GPLorOpenBSDtype:52:0:^([^,;]+) distributed under a dual license of GPL <VERSION> and OpenIB BSD$:
+GPLorOpenBSDType:01:0:You can choose to be <LICENSED> under the terms of the GPL <VERSION>, available from the file COPYING in the main directory of this source tree, or the OpenIB\.org BSD license below<colon>$:
+GPLorBSDtype:0:0:^you can use it either under the terms of the GPL, or the BSD license, at your option$:
+GPLdual:0:0:provided that this notice is retained in full, this software can be distributed under the terms of the GPL <VERSION>, in which case the provisions of the GPL apply INSTEAD OF those given above
+##############################################
+############### Dual licensed
+################
+dualLIcensed:01:0:^libfdt is dual licensed<colon>$:
+dualLicensed:02:0:^Licensee has the right to choose one of the above licenses$
+#####################
+### GPL Warranty
+FSFwarranty:52:1:^([^,;]+) is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE:
+XXXLGPLCopyVarNoTo:24:2:You should have received a copy of the GNU (Lesser|Library) General Public License along with this (program|software); if not, write (to )?the Free Software Foundation([^,;]+) USA\.?:
+XXXLGPLCopyVarNoTo:24:2:You should have received a copy of the GNU (Lesser|Library) General Public License along with this (program|software|library); if not, write (to )?the Free Software Foundation([^,;]+) USA\.?:
+XXXLGPLv2+:22:1:This (program|library) is free software; you can redistribute it and/or modify it under the terms of the GNU Library General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
+XXXLGPLv2+MISTAKE:24:1: is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
+XXXLGPLv2+MISTAKE:24:1: is free software; you can redistribute it and/or modify it under the terms of the Lesser GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
+XXXLGPLv2.1+01:70:2:This( program| library)? is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2\.1( of the License)?, or \(at your option\) any later version:
+XXXLGPLv2.1+02:70:1: is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2\.1( of the License)?, or \(at your option\) any later version:
+XXXLGPLv2.1+03:70:0:This program is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2\.1 of the License, or \(at your option\) any later version:
+XXXLGPLv2.104:70:1:(.*) software; you can redistribute it and/or modify it under the terms of the version 2\.1 of the GNU Lesser General Public License as published by the Free Software Foundation:
+XXXLGPLv2.1oo:70:0:The Contents of this file are made available subject to the terms of GNU Lesser General Public License Version 2\.1:
+XXXLGPLv2:23:0: is free software; you can redistribute it and/or modify it under the terms of the GNU Library General Public License version 2, as published by the Free Software Foundation:
+XXXLGPLv2:24:0: is free software; you can redistribute it and/or modify it under the terms of the GNU Library General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
+XXXLGPLv2MISTAKE:24:1: is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License version 2,? as published by the Free Software Foundation:
+XXXLGPLv2MISTAKE:24:1: is free software; you can redistribute it and/or modify it under the terms of version 2 of the GNU Lesser General Public License as published by the Free Software Foundation:
+XXXLGPLv2_1:24:0:This is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; version 2\.1 of the License:
+XXXLGPLv2_1:24:1:This (library|program)? is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License version 2\.1,? as published by the Free Software Foundation:
+XXXLGPLv3+:17:0:you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or \(at your option\) any later version:
+XXXLGPLv3seeDetails:70:0:See the GNU Lesser General Public License version 3 for more details:
+XXXLeGPLseeDetails:24:0:See the GNU Lesser General Public License for more details:
+XXXLiGPLseeDetails:24:0:See the GNU Library General Public License for more details:
+########################### 
+# BSDs
+BSDlike:10:0:^This file and program are licensed under a BSD style license$
+BSDpreLike:70:0:Redistribution and use in source and binary forms are permitted provided that the above copyright notice and this paragraph are duplicated in all such forms and that any documentation, advertising materials, and other materials related to such distribution and use acknowledge that the software was developed by:
+BSDpre:70:0:Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+BSDpreSoftAndDoc:70:1:Redistribution of this software and documentation and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
+BSDcondSource:70:3:Redistributions? of source code must retain the (above )?copyright notice, this list of conditions(,)? and the following disclaimer(, without modification)?:
+BSDcondSourceOrDoc:70:3:Redistributions of source code or documentation must retain the (above )?copyright notice, this list of conditions(,)? and the following disclaimer(, without modification)?:
+BSDcondSourceFirstLines:70:3:Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer as the first lines of this file unmodified:
+BSDcondBinary:70:2:Redistributions in binary form must reproduce the above copyright notice(\(s\))?, this list of conditions(,)? and the following disclaimer(s)? in the documentation and/or other materials provided with the distribution:
+BSDcondBinaryVar1:70:0:Redistributions in binary form must reproduce at minimum a disclaimer similar to the <quotes>NO WARRANTY<quotes> disclaimer below \(<quotes>Disclaimer<quotes>\) and any redistribution must be conditioned upon including a substantially similar Disclaimer requirement for further binary redistribution:
+BSDcondAdvPart1:10:0:All advertising materials mentioning features or use of this software must display the following acknowledge?ment:
+BSDcondAdvPart1:20:0:All use of this software and associated advertising materials must display the following acknowledgment:
+BSDcondAdvPart1:30:0:The end-user documentation included with the redistribution, if any, must include the following acknowledgment:
+BSDcondAdvPart1:40:0:All advertising materials mentioning features or use of this software must display the acknowledgement as bellow:
+BSDcondAdvPart2:70:6:(<quotes>)?This product includes (.*)?software (developed|written) (at|by|for) (.+)(<quotes>)?:
+OpenSSLendorse:70:1:The ([^;]+) must not be used to endorse or promote products derived from this software without prior written permission:
+OpenSSLwritCond:70:1:For written permission, please contact ([^,;]+):
+DovecotwriteCod:10:1:For permission or any other legal details, please contact(.+)$
+BSDcondEndorse:70:3:Neither the name(s)? of ([^;]+) may be used to endorse or promote products derived from this software without (specific )?prior written permission:
+BSDcondEndorse:71:1:The ([^;]+) may not be used to endorse or promote products derived from this software without specific prior written permission:
+BSDcondEndorseVariant:70:0:The name of the author may not be used to endorse or promote products derived from this software without specific prior written permission$:
+BSDcondEndorseVariant:71:0:^The name of (.+) may not be used to endorse or promote products derived from this software without specific (prior )?written permission$:
+BSDasIs:10:4:THIS SOFTWARE IS PROVIDED BY (.+)<quotes>AS IS<quotes> AND ANY EXPRESS(ED)? OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANT(A|I)BILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
+BSDasIs:20:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes> AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS:
+BSDasIs:30:2:THIS SOFTWARE IS BEING PROVIDED BY (.+) <quotes>AS IS<quotes>, AND TO THE MAXIMUM EXTENT PERMITTED BY LAW, ([^,;]+) MAKES NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, REGARDING THIS SOFTWARE, INCLUDING WITHOUT LIMITATION, ANY AND ALL IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT:
+BSDasIsSoftAndDoc:70:4:THIS SOFTWARE AND DOCUMENTATION IS PROVIDED BY (.+)<quotes>AS IS<quotes> AND ANY EXPRESS(ED)? OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANT(A|I)BILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
+BSDasIs:70:3:THIS SOFTWARE IS PROVIDED (<quotes>)?AS IS(<quotes>)? AND ANY EXPRESS(ED)? OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
+BSDasIs:80:0:This software is provided <quotes>AS IS<quotes> and without any express or implied warranties, including, without limitation, the implied warranties of merchantability and fitness for a particular purpose$:
+BSDWarr:70:2:IN NO EVENT SHALL (.+) BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES \(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF (MIND, )?USE, DATA,( LIFE)? OR PROFITS; OR BUSINESS INTERRUPTION\) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT \(INCLUDING NEGLIGENCE OR OTHERWISE\) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE:
+BSDWarr:71:2:IN NO EVENT SHALL (.+) BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF (MIND,)?USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE:
+BSDZlibAck:70:0:If you use this software in a product, an acknowledgment in the product documentation would be appreciated but is not required:
+BSDZlibAltered:70:0:Altered source versions must be plainly marked as such, and must not be misrepresented as being the original software:
+###########################
+OpenSSLName:70:3:Products derived from this software may not be called (.+) nor may (.+) appear in their name(s)?,? without prior written permission of the (.+)$:
+OpenSSLAckPart1:70:1:Redistributions of any form whatsoever must retain the following acknowledgment:
+OpenSSLAckPart2:70:1:<quotes>This product includes software developed by ([^,;]+)<quotes>:
+SleepyCatObtain:70:1:Redistributions in any form must be accompanied by information on how to obtain complete source code for the ([^,;]+):
+SleepyCatSourceIncluded:70:0:The source code must either be included in the distribution or be available for no more than the cost of distribution plus a nominal fee, and must be freely redistributable under reasonable conditions:
+SleepyCatSourceComplete:70:0:For an executable file, complete source code means the source code for all modules it contains:
+SleepyCatDoesNotInclude:70:0:It does not include source code for modules or files that typically accompany the major components of the operating system on which the executable file runs:
+SleepyCatAsIs:70:1:THIS SOFTWARE IS PROVIDED BY (.+) <quotes>AS IS<quotes> AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT, ARE DISCLAIMED:
+boostPermission:70:0:Permission is hereby granted, free of charge, to any person or organization obtaining a copy of the software and accompanying documentation covered by this license \(the "Software"\) to use, reproduce, display, distribute, execute, and transmit the Software, and to prepare derivative works of the Software, and to permit third-parties to whom the Software is furnished to do so, all subject to the following:
+boostPreserve:70:0:The copyright notices in the Software and this entire statement, including the above license grant, this restriction and the following disclaimer, must be included in all copies of the Software, in whole or in part, and all derivative works of the Software, unless such copies or derivative works are solely in the form of machine-executable object code generated by a source language processor:
+boostAsIs:70:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE AND NON-INFRINGEMENT:
+boostWarr:70:0:IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE:
+boostRefv1:70:0:Distributed under the Boost Software License, Version 1\.0:
+boostRefv1:70:0:Use, modification and distribution (is|are) subject to the Boost Software License, Version 1\.0:
+boostSee:70:1:See accompanying file LICENSE_1_0\.txt or (copy at )?http<colon>//www\.boost\.org/LICENSE_1_0\.txt:
+intelBSDexport1:70:0:EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPORT LAWS OF YOUR JURISDICTION\.
+intelBSDexport2:70:0:It is licensee<quotes>s responsibility to comply with any export regulations applicable in licensee<quotes>s jurisdiction:
+intelBSDexport3:70:0:Under CURRENT \(May 2000\) U.S. export regulations this software is eligible for export from the U\.S\. and can be downloaded by or otherwise exported or reexported worldwide EXCEPT to U\.S\. embargoed destinations which include Cuba, Iraq, Libya, North Korea, Iran, Syria, Sudan, Afghanistan and any other country to which the U\.S\. has embargoed goods and services:
+FreeSoftware:70:0:This program is free software(<COLON>|\.):
+SSLCopy:70:1:Copyright remains ([^,;]+), and as such any Copyright notices in the code are not to be removed:
+SSLeayAttrib:70:2:If this package is used in a product, ([^,;]+) should be given attribution as the author of the parts of the ([^,;]+) used:
+SSLeayAdType:70:0:This can be in the form of a textual message at program startup or in documentation \(online or textual\) provided with the package:
+SSLeayCrypto:70:0:The word <quotes>cryptographic<quotes> can be left out if the rouines from the library being used are not cryptographic related :-\)\.
+SSLeayWindows:70:0:If you include any Windows specific code \(or a derivative thereof\) from the apps directory \(application code\) you must include an acknowledgement: <quotes>This product includes software written by Tim Hudson \(tjh@cryptsoft\.com\)<quotes>
+SSLeayCantChangeLic:70:0:The license and distribution terms for any publically available version or derivative of this code cannot be changed\. :
+#########################
+#######
+ApacheLic1_1:10:0:^The Apache Software License, Version 1\.1$
+ApacheLicWherePart1:52:0:You may obtain a copy of the License at:
+ApacheLicWherePart2v2:52:0:http<colon>//www\.apache\.org/licenses/LICENSE\-2\.0:
+ApachePre:52:0:Licensed to the Apache Software Foundation \(ASF\) under one or more contributor license agreements:
+ApacheSee:52:0:See the NOTICE file distributed with this work for additional information regarding copyright ownership:
+ApachesAsIs:52:0:Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <quotes>AS IS<quotes> BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied:
+ApachesPermLim:52:0:See the License for the specific language governing permissions and limitations under the License:
+Apachev2:52:0:Licensed under the Apache License, Version 2.0 \(the <quotes>License<quotes>\); You may not use this file except in compliance with the License:
+Apachev2:52:0:The ASF licenses this file to You under the Apache License, Version 2\.0 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+AsIsVariant2:52:1:This software is provided by ([^,;]+)<quotes>as is<quotes>:
+AsIsVariant:52:0:It is provided <quotes>AS IS<quotes> and no warranty of any kind including statutory or aspects relating to merchantability or fitness for any purpose is provided:
+BSDCondSourceVariant2:52:0:Redistributions of source code must retain the above copyright notice unmodified, this list of conditions, and the following disclaimer:
+BSDCondSourceVariant:52:1:Redistributions of source code must retain the above copyright notice, this list of conditions(,)? and the following disclaimer, without modification, immediately at the beginning of the file:
+BSDcondSource:52:0:Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer in this position and unchanged:
+BSDintentionOo:70:0:The Contents of this file are made available subject to the terms of the BSD license:
+BeerWareLicPart1:10:0:^THE BEER\-WARE LICENSE$
+BeerWareVer42LicPart1:52:0:<quotes>THE BEER\-WARE LICENSE<quotes> \(Revision 42\):
+BeerWareVer42LicPart2:52:1:([^,;]+) wrote this file:
+BeerWareVer42LicPart3:52:0:As long as you retain this notice you can do whatever you want with this stuff:
+BeerWareVer42LicPart4:52:0:If we meet some day, and you think this stuff is worth it, you can buy me a beer in return:
+CDDLorGPLv2:52:0:The contents of this file are subject to the terms of either the GNU General Public License Version 2 only \(<quotes>GPL<quotes>\) or the Common Development and Distribution License\(<quotes>CDDL<quotes>\) \(collectively, the <quotes>License<quotes>\):
+CDDLorGPLv2IfApplicable:52:0:If applicable, add the following below the License Header, with the fields enclosed by brackets \[\] replaced by your own identifying information:
+CDDLorGPLv2IfYouAdd:52:0:However, if you add GPL Version 2 code and therefore, elected the GPL Version 2 license, then the option applies only if the new code is made subject to such option by the copyright holder:
+CDDLorGPLv2doNotAlter:52:0:DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS HEADER:
+CDDLorGPLv2ifYouWish:52:0:If you wish your version of this file to be governed by only the CDDL or only the GPL Version 2, indicate your decision by adding <quotes>\[Contributor\] elects to include this software in this distribution under the \[CDDL or GPL Version 2\] license\.<quotes> If you (do not|don<quotes>t) indicate a single choice of license, a recipient has the option to distribute your version of this file under either the CDDL, the GPL Version 2 or to extend the choice of license to its licensees as provided above:
+CDDLorGPLv2include:52:0:When distributing the software, include this License Header Notice in each file and include the License file at nbbuild/licenses/CDDL\-GPL\-2\-CP:
+CDDLorGPLv2where:52:0:You can obtain a copy of the License at http<colon>//www.netbeans.org/cddl\-gplv2\.html or nbbuild/licenses/CDDL\-GPL\-2\-CP:
+CDDLic:52:0:The contents of this file are subject to the terms of the Common Development and Distribution License \(the <quotes>License<quotes>\):
+CDDLic:53:0:The contents of this file are subject to the terms of the Common Development and Distribution License \(the License\):
+CDDLicV1Only:52:0:^The contents of this file are subject to the terms of the Common Development and Distribution License, Version 1\.0 only \(the <quotes>License<quotes>\):
+CDDLicWhere:10:0:^You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE or http<colon>//www.opensolaris.org/os/licensing$
+CDDLicIncludeFile:10:0:^When distributing Covered Code, include this CDDL HEADER in each file and include the License file at usr/src/OPENSOLARIS.LICENSE$
+X11CMUAsIs:52:0: ALLOWS FREE USE OF THIS SOFTWARE IN ITS <quotes>AS IS<quotes> CONDITION:
+X11CMULiability:52:0: DISCLAIMS ANY LIABILITY OF ANY KIND FOR ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE:
+X11CMUredistribute:10:1:any improvements or extensions that they make and grant (.+) the rights to redistribute these changes$:
+X11CMUlicPerm:10:1:^Permission to use, copy, modify and distribute this software and its documentation is hereby granted, provided that both the copyright notice and this permission notice appear in all copies of the software, derivative works or modified versions, and any portions thereof, and that both notices appear in supporting documentation, and that credit is given to (.+) in all documents and publicity pertaining to direct or indirect use of this code or its derivatives$
+X11CMUlicReturn:10:1:^(.+) encourages users of this software to return any improvements or extensions that they make, and to grant Carnegie Mellon the rights to redistribute these changes without encumbrance$
+X11CMUlicLiability:10:1:^(.+) DISCLAIMS ANY LIABILITY OF ANY KIND FOR ANY DAMAGES WHATSOEVER RESULTING DIRECTLY OR INDIRECTLY FROM THE USE OF THIS SOFTWARE OR OF ANY DERIVATIVE WORK$
+X11CMUlicIntention:10:0:^The CMU software License Agreement specifies the terms and conditions for use and redistribution$
+CPLv0.5:10:0:This program and the accompanying materials are made available under the terms of the Common Public License v0\.5 which accompanies this distribution, and is available at http<colon>//www\.eclipse\.org/legal/cpl\-v05\.html:
+CPLv1:52:0:This program and the accompanying materials are made available under the terms of the Common Public License v1\.0 which accompanies this distribution, and is available at http<colon>//www\.eclipse\.org/legal/cpl\-v10\.html:
+EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution and is available at http<colon>//www\.eclipse\.org/legal/epl\-v10\.html:
+EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution, and is available at http<colon>//www\.eclipse\.org/legal/epl\-v10\.html:
+EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution, and is available at http<colon>//eclipse\.org/legal/epl\-v10\.html:
+CecillEn1:52:0:CeCILL License \(ENGLISH VERSION\):
+CecillEn2:52:0:This software is a computer program whose purpose is to enhance Human-Computer Interfaces written in Java with the Swing framework, providing them a set of functions related to component docking:
+CecillEn3:52:0:This software is governed by the CeCILL license under French law and abiding by the rules of distribution of free software:
+CecillEn4:52:0:You can use, modify and/ or redistribute the software under the terms of the CeCILL license as circulated by CEA, CNRS and INRIA at the following URL <quotes>http<colon>//www\.cecill\.info<quotes>:
+CecillEn5:52:0:As a counterpart to the access to the source code and rights to copy, modify and redistribute granted by the license, users are provided only with a limited warranty and the software<quotes>s author, the holder of the economic rights, and the successive licensors have only limited liability:
+CecillEn6:52:0:In this respect, the user<quotes>s attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software, that may mean that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge:
+CecillEn7:52:0:Users are therefore encouraged to load and test the software<quotes>s suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured and, more generally, to use and operate it in the same conditions as regards security:
+CecillEn8:52:0:The fact that you are presently reading this means that you have had knowledge of the CeCILL license and that you accept its terms:
+CecillFrenchEnglishHeaders:52:0:French and English license headers are provided at the begining of the source files of this software application:
+CecillIntro:52:0:This software is distributed under the CeCILL license, a GNU GPL-compatible license adapted to french law:
+
+CondBinaryBSDVariantAIC700:52:1:Redistributions in binary form must reproduce at minimum a disclaimer substantially similar to the <quotes>NO WARRANTY<quotes> disclaimer below \(<QUOTES>Disclaimer<QUOTES>\) and any redistribution must be conditioned upon including a substantially similar Disclaimer requirement for further binary redistribution:
+DoWhatTheFuckYouWantv2:52:0:You can redistribute it and/or modify it under the terms of the Do What The Fuck You Want To Public License, Version 2, as published by :
+DontSayYouWroteItLicPart1:52:0:You can do anything you want with this software, just don<quotes>t say you wrote it, and don<quotes>t remove this notice:
+DontSayYouWroteItLicPart3:52:0:The author supplies this software to be publicly redistributed on the understanding that the author is not responsible for the correct functioning of this software in any circumstances and is not liable for any damages caused by this software:
+DualLicenseIntention2:52:0:When using or redistributing this file, you may do so under either license:
+DualLicenseIntention:52:0:This software is available to you under a choice of one of two licenses:
+LiabilityBSDVariantAIC700:52:0:IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR CONTRIBUTORS BE LIABLE FOR SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES \(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION\) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT \(INCLUDING NEGLIGENCE OR OTHERWISE\) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES:
+LiabilityPatents:52:0:ALL LIABILITY, INCLUDING LIABILITY FOR INFRINGEMENT OF ANY PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS, RELATING TO USE OF THIS SOFTWARE IS DISCLAIMED:
+
+MITandGPLasis:52:0:THIS SOFTWARE IS BEING PROVIDED <quotes>AS IS<quotes>, WITHOUT ANY EXPRESS OR IMPLIED WARRANTY:
+MITandGPLgpl:52:0:You can use this code under the GNU public license if you so wish:
+MITandGPLper:52:0:Permission to use, copy, and modify this software with or without fee is hereby granted, provided that this entire notice is included in all copies of any software which is or includes a copy or modification of this software:
+MITandGPLplease:52:0:Please contribute changes back to the authors under this freer than GPL license so that we may further the use of strong encryption without limitations to all:
+MITandGPLwar:52:1:IN PARTICULAR, (.+) MAKES ANY REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE MERCHANTABILITY OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR PURPOSE:
+MITasis:52:1:It is provided <quotes>as is<quotes> without express or implied warranty( of any kind)?:
+MITmodermPerm:52:0:Permission is hereby granted, without written agreement and without license or royalty fees, to use, copy, modify, and distribute this software and its documentation for any purpose, provided that the above copyright notice and the following two paragraphs appear in all copies of this software:
+MITmodermWarr:52:0:THE COPYRIGHT HOLDER SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE:
+MITmodernLiable:52:0:IN NO EVENT SHALL THE COPYRIGHT HOLDER BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF THE COPYRIGHT HOLDER HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE:
+MITnorep:52:1:([^,;]+) makes? no representations about the suitability of this software for any purpose$:
+MITnorep:10:0:^No representations are made about the suitability of this software for any purpose$:
+MITperm:52:1:^Permission to use, copy, modify, distribute, and sell this software and its documentation for any purpose is hereby granted without fee, provided that the above copyright notice appears? in all copies and that both that copyright notice and this permission notice appear in supporting documentation, and that the name of ([^,;]+) not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission$:
+MITpermAndOr:12:0:^Permission to use, copy, modify, and/or distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies:
+MITpermNoSell:22:0:^Permission to use, copy, modify and distribute this software and its documentation is hereby granted, provided that both the copyright notice and this permission notice appear in all copies of the software, derivative works or modified versions, and any portions thereof, and that both notices appear in supporting documentation:
+MITpermNoSell:32:0:^Permission to use, copy, modify(,)? and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that both the copyright notice and this permission notice appear in all copies of the software, derivative works or modified versions, and any portions thereof, and that both notices appear in supporting documentation:
+MITpermNoSell:42:0:^Permission to use, copy, modify(,)? and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appears in all copies and that both that copyright notice and this permission notice appear in supporting documentation, and that the name of The University of Michigan not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission:
+MITpermNoSell:43:0:^Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appears? in all copies and that both th(e|at) copyright notice and this permission notice appear in supporting documentation, and that the name of ([^;]+) not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission:
+MITpermNoSell:44:0:^Permission to use, copy, modify, and distribute this software for any purpose without fee is hereby granted, provided that this entire notice is included in all copies of any software which is or includes a copy or modification of this software and in all copies of the supporting documentation for such software:
+MITpermNoSell:45:1:^Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that both the above copyright notice and this permission notice appear in all copies, that both the above copyright notice and this permission notice appear in all supporting documentation, and that the name of ([^,;]+) not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission:
+MITpermNoSellNoDistr:52:0:Permission to use, copy, and modify this software with or without fee is hereby granted, provided that this entire notice is included in all source code copies of any software which is or includes a copy or modification of this software:
+MITpermNoSellNoDoc:52:0:Permission to use, copy, modify, and distribute this software for any purpose with or without fee is hereby granted, provided that the above copyright notice and this permission notice appear in all copies:
+MITpermWithoutEndor:52:0:Permission to use, copy, modify, distribute, and sell this software and its documentation for any purpose is hereby granted without fee, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation:
+MITstyleCairoWarranty:52:0:^([^;]+) DISCLAIMS? ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL ([^;]+) BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE:
+MPL1_1_GPL2_LGPL2_1intention:52:0:^MPL 1\.1/GPL 2\.0/LGPL 2\.1$:
+MPL1_1_GPL2_intention:10:0:^MPL 1\.1/GPL 2\.0$:
+CPL1_GPL2_LGPL2_1intention:52:0:^CPL 1\.0/GPL 2\.0/LGPL 2\.1$:
+MPL1_1andLGPLv2_1:52:0:This library is free software; you can redistribute it and/or modify it either under the terms of the GNU Lesser General Public License version 2\.1 as published by the Free Software Foundation \(the <quotes>LGPL<quotes>\) or, at your option, under the terms of the Mozilla Public License Version 1\.1 \(the <quotes>MPL<quotes>\):
+MPLGPL2orLGPLv2_1:52:0:Alternatively, the contents of this file can be used under the terms of either of the GNU General Public License Version 2 or later \(the <quotes>GPL<quotes>\), or the GNU Lesser General Public License Version 2\.1 or later \(the <quotes>LGPL<quotes>\), in which case the provisions of the GPL or the LGPL are applicable instead of those above:
+MPL_LGPLsee:52:0:See the LGPL or the MPL for the specific language governing rights and limitations:
+MPLandGPLnoDelete:52:0:If you do not delete the provisions above, a recipient can use your version of this file under either the MPL or the GPL:
+MPLandGPLv2:52:0:Alternatively, the contents of this file can be used under the terms of the GNU General Public License version 2 \(the <quotes>GPL<quotes>\), in which case the provisions of the GPL are applicable instead of the above:
+MPLcopy:52:0:You may obtain a copy of the License at http<color>//www.mozilla.org/MPL/:
+MPLoptionIfNotDelete2lics:52:0:If you do not alter this notice, a recipient can use your version of this file under either the MPL or the LGPL:
+MPLoptionIfNotDelete3lics:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the MPL, the GPL or the LGPL:
+CPLoptionIfNotDelete3lics:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the CPL, the GPL or the LGPL:
+MPLoptionNOTGPL:52:0:If you wish to allow use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the MPL, indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL:
+MPLorNPLandGPLandLPGLonlyGPLorLGPL:52:2:If you wish to allow (the )?use of your version of this file only under the terms of either the GPL or the LGPL, and not to allow others to use your version of this file under the terms of the (MPL|NPL), indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL or the LGPL:
+MPLorNPLandGPLonlyGPL:52:2:If you wish to allow (the )?use of your version of this file only under the terms of the GPL and not to allow others to use your version of this file under the (MPL|NPL), indicate your decision by deleting the provisions above and replace them with the notice and other provisions required by the GPL:
+MPLsee:52:0:See the License for the specific language governing rights and limitations under the License:
+## MPL and NPL
+MPLv1_1:10:0:The contents of this file are subject to the Mozilla Public License Version 1\.1 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+MPLv1_0:10:0:The contents of this file are subject to the Mozilla Public License Version 1\.0 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+NPLv1_1:52:0:The contents of this file are subject to the Netscape Public License Version 1\.1 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+NPLv1_0:52:0:The contents of this file are subject to the Netscape Public License Version 1\.0 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+MPLwarranty:52:0:Software distributed under the License is distributed on an <quotes>AS IS<quotes> basis, WITHOUT WARRANTY OF ANY KIND, either express or implied:
+MPLwarrantyVar:52:0:This software is distributed on an <quotes>AS IS<quotes> basis, WITHOUT WARRANTY OF ANY KIND, either express or implied:
+MaintainRightsOthers:52:0:All intellectual property rights of others is maintained with the respective owners:
+MitmodernAsIs:52:0:THE SOFTWARE PROVIDED HEREUNDER IS ON AN <quotes>AS IS<quotes> BASIS, AND THE COPYRIGHT HOLDER HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS:
+NPLandGPLandLGPLnoDelete:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the NPL, the GPL or the LGPL:
+NPLv1_1:52:0:The contents of this file are subject to the Netscape Public License Version 1\.1 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+NPLwhere:52:0:You may obtain a copy of the License at http<colon>//www\.mozilla\.org/NPL/:
+NoEndorsement:52:1:([^,;]+) name may not be used to endorse or promote products derived from this software without specific prior written permission$:
+NoEndorsement:31:0:^the copyright holder<quotes>s name is not used to endorse products built using this software without specific written permission$:
+NoWarranty:52:0:^DISCLAIMS ALL EXPRESS OR IMPLIED WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE:
+NoWarranty:52:0:^This software is distributed WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE:
+NoWarranty:53:0:^This program is distributed without any warranty or implied warranty of merchantability or fitness for a particular purpose:
+NoWarranty:56:0:^NO WARRANTY$:
+OpenBSDTitle:52:0:OpenIB BSD License:
+###########
+#
+# See file
+#
+#########
+SeeFile:01:1:^For the licensing terms see the file ([^,;]+)$:
+SeeFile:02:1:^See the ([^,;]+) file for license information$:
+SeeFile:03:1:^For licensing information, see the file ([^,;]+) in this directory$:
+SeeFile:04:1:^See the ([^,;]+) file distributed with this software for more info$:
+SeeFile:05:1:^See the ([^,;]+) file included in the main directory of this source distribution for the license terms and conditions$:
+SeeFile:06:1:^For details see ([^,;]+)$:
+SeeFile:07:1:^See the ([^,;]+) for redistribution information$:
+SeeFile:08:1:^For the full content of this license, see the ([^,;]+) file at the top level of this source tree$
+SeeFile:09:1:^([^,;]+) is licensed to you under the terms described in the ([^,;]+) file included in this distribution$
+SeeFile:22:1:^If not, see ([^,;]+)$:
+SeeFile:23:2:^See the ([^,;]+) file included with ([^,;]+) for full licensing terms$
+SeeFile:25:1:^For license information, see the ([^,;]+) file in the top level directory of the ([^,;]+) distribution$
+SeeFile:26:2:^See ([^,;]+) notice in ([^,;]+) directory$
+SeeFile:27:1:^See the file ([^,;]+) included with this distribution for more information$
+SeeFile:28:1:^See ([^,;]+) for copyright notice$
+SeeFile:45:1:^See the file ([^ ]+) for details$:
+SeeFile:45:1:^See the file ([^ ]+) for more details$:
+SeeFile:46:1:^See the file ([^ ]+) in the main directory of this archive for more details$:
+SeeFile:47:1:^See the ([^ ]+) file in the ([^ ]+) directory$:
+SeeFile:48:1:^See the file ([^ ]+) in the ([^ ]+) directory$:
+SeeFile:49:1:^For conditions of distribution and use, see the accompanying ([^,;]+) file$:
+SeeFile:52:1:^See the file ([^,;]+) in this directory for licensing information$:
+SeeFile:53:1:^For licencing details see ([^,;]+)$:
+SeeFile:54:1:^Please refer to the ([^,;]+) file distributed with this source distribution$
+SeeFile:55:1:^Please see the ([^,;]+) file and individual file headers for details
+SeeFile:56:1:^See ([^;,]+) for details$:
+SeeFile:57:1:^See ([^;,]+) for more details$:
+SeeFile:70:1:^See the file ([^ ]+)$:
+SeeFile:71:1:^See the file ([^;,]+) for information on usage and redistribution of this file, and for a DISCLAIMER OF ALL WARRANTIES$
+SeeFile:72:1:^See ([^;,]+) file for terms of the license$
+SeeFile:73:1:^Please see the file ([^;,]+) which should be distributed with this software for terms of use$
+SeeFile:74:1:^See ([^;,]+) for license details$
+SeeFile:75:1:^See ([^;,]+) for details on licencing$
+SeeFile:59:1:^For licensing details see ([^,;]+)$:
+SeeFile:60:1:^See ([^,;]+) for license$:
+###########
+SimpleAsIs:10:0:^THIS MATERIAL IS PROVIDED AS IS, WITH ABSOLUTELY NO WARRANTY EXPRESSED OR IMPLIED$:
+SImpleAsIs:30:0:^Neither ([^,;]+) admit liability nor provide warranty for any of this software$:
+SimpleAsIs:40:0:This program is licensed <quotes>as is<quotes> without any warranty of any kind, whether express or implied$:
+SimplaAsIs:41:0:^This software is distributed AS\-IS$
+SimpleAsIsInfo:52:0:The information in this file is provided <quotes>AS IS<quotes> without warranty$:
+SimpleLicWarranty:10:0:This software is provided <quotes>as is<quotes>:
+
+SimpleNoWarranty:52:0:This software is provided without any warranty, express or implied:
+SimpleOnlyKeepCopyright:52:0:^Permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies$:
+Test:52:0:diffusée:
+
+SimpleRetain:10:0:^Permission is hereby granted to use or copy this program for any purpose, provided the above notices are retained on all copies$
+SimpleRetainAndChanges:10:0:^Permission to modify the code and to distribute modified code is granted, provided the above notices are retained, and a notice that the code was modified is included with the above copyright notice$
+############################################################################################
+ValidityPart1:52:0:If a provision of this License is or becomes illegal, invalid or unenforceable in any jurisdiction, that shall not affect:
+ValidityPart2:52:0:the validity or enforceability in other jurisdictions of that or any other provision of this License:
+ValidityPart3:52:0:the validity or enforceability in that jurisdiction of any other provision of this License; or:
+WarrantyBSDVariant2:52:0:NO WARRANTY THE PROGRAM IS PROVIDED ON AN <quotes>AS IS<quotes> BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED INCLUDING, WITHOUT LIMITATION, ANY WARRANTIES OR CONDITIONS OF TITLE, NON-INFRINGEMENT, MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE:
+WarrantyBSDVariantAIC700:52:0:NO WARRANTY THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS <quotes>AS IS<quotes> AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
+WarrantyHope:52:2:This program is distributed in the hope( that)? it (would|will) be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE:
+WarrantySupplied:52:0:This software is supplied as is without expressed or implied warranties of any kind:
+###
+## X11 rules should be after their other X11's
+##
+X11adv:52:2:Except as contained in this notice, the name of the ([^,;]+) shall not be used in advertising or otherwise to promote the sale, use or other dealings in this Software without prior written authorization from ([^,;]+):
+X11asIs:52:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes>, WITHOUT WARRANTY OF ANY KIND,? EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON\-?INFRINGEMENT:
+X11asIsLike:52:0:THIS SOFTWARE IS PROVIDED <quotes>AS IS<quotes> AND WITHOUT ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE:
+X11asIsLike:53:1:^THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes> AND (.+) DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS$
+X11asIsNoNonInfrig:52:0:THIS SOFTWARE IS PROVIDED <quotes>AS-IS<quotes> AND WITHOUT WARRANTY OF ANY KIND, EXPRESS, IMPLIED OR OTHERWISE, INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE:
+X11asLiable:52:1:IN NO EVENT SHALL ([^,;]+) BE LIABLE FOR ANY CLAIM, OR ANY SPECIAL INDIRECT OR CONSEQUENTIAL DAMAGES, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE:
+X11asLiable:52:2:IN NO EVENT SHALL ([^,;]+) BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS (IN|WITH) THE SOFTWARE:
+X11asLiableLcms:52:1:IN NO EVENT SHALL ([^,;]+) BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT OR CONSEQUENTIAL DAMAGES OF ANY KIND, OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER OR NOT ADVISED OF THE POSSIBILITY OF DAMAGE, AND ON ANY THEORY OF LIABILITY, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE:
+X11notice:52:0:The above copyright notice and this permission notice (\(including the next paragraph\) )?shall be included in all copies or substantial portions of the Software:
+X11per:52:0:Permission is hereby granted, free of charge, to any person obtaining a copy of this (software and associated documentation files|source file) \(the <quotes>Software<quotes>\), to deal (in|with) the Software without restriction, including without limitation (on )?the rights to use, copy, modify, merge, publish, distribute,( distribute with modifications,)? sub ?license, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+X11perLike:52:0:Permission is hereby granted to use, copy, modify, sell, and otherwise distribute this software and its documentation for any purpose and without fee, provided that this copyright, permission, and disclaimer notice is reproduced in all copies of this software and in supporting documentation:
+X11subjectVariant:52:1:Subject to the following obligations and disclaimer of warranty, use and redistribution of this software, in source or object code forms, with or without modifications are expressly permitted by ([^;]+); provided, however, that:
+ZLibLic:42:0:^For conditions of distribution and use, see copyright notice in zlib\.h$:
+ZLibLic:52:0:^See zlib\.h for conditions of distribution and use$:
+publicDomain:01:0:^The original authors have disclaimed all copyright interest in this code and thus put it in the public domain$:
+publicDomain:02:0:^The original author has disclaimed all copyright interest in this code and thus put it in the public domain$:
+publicDomain:03:0:^Public Domain$:
+publicDomain:04:1:This ([^ ]+) is in the public domain:
+publicDomain:05:0:^This code is hereby placed in the public domain$:
+publicDomain:06:0:^This code is placed in the public domain$:
+publicDomain:07:1:^This ([^ ]+) lives in the public domain$:
+publicDomain:08:0:^This implementation placed in the public domain$:
+publicDomain:09:0:^(.+) released to the public domain, as explained at http<colon>//creativecommons.org/licenses/publicdomain$
+publicDomain:10:0:^This code is explicitly placed into the public domain$
+publicDomain:11:0:^The author disclaims copyright to this source code$
+publicDomain:12:0:^The author of this program disclaims copyright$
+publicDomain:52:1:This ([^ ]+)is public domain software:
+publicDomain:53:1:and placed in the public domain:
+
+qtCommercialuse:52:0:Commercial Usage Licensees holding valid Qt Commercial licenses may use this file in accordance with the Qt Commercial License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Nokia:
+qtGPLv2or3:52:0:GNU General Public License Usage Alternatively, this file may be used under the terms of the GNU General Public License versions 2\.0 or 3\.0 as published by the Free Software Foundation and appearing in the file LICENSE\.GPL included in the packaging of this file:
+qtGPLwhere:52:0:http<colon>//www\.fsf\.org/licensing/licenses/info/GPLv2\.html and http<colon>//www\.gnu\.org/copyleft/gpl\.html:
+qtNokiaExtra:52:0:In addition, as a special exception, Nokia gives you certain additional rights:
+qtReviewGPL:52:0:Please review the following information to ensure GNU General Public Licensing requirements will be met:
+#------------------------------------
+QTv1:10:0:^This file is distributed under the terms of the Q Public License version 1\.0$
+simpleLic1part1:52:0:Redistribution and use in source and binary forms are freely permitted provided that the above copyright notice and this paragraph and the following disclaimer are duplicated in all such forms:
+simpleLic2:52:0:As long as the above copyright statement and this notice remain unchanged, you can do what ever you want with this file:
+simpleNoWarranty2:52:0:No warranty, expressed or implied, is included with this software:
+simpleNoWarranty2:52:0:THERE IS ABSOLUTELY NO WARRANTY FOR THIS SOFTWARE:
+simpleNoWarranty:52:0:This includes without limitation any warranty or condition with respect to merchantability or fitness for any particular purpose, or against the infringements of intellectual property rights of others:
+simpelNoWarranty:53:0:^([^,;]+) is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY of any kind$
+simpleNoWarranty:54:1:^([^,;]+) is provided AS IS with NO WARRANTY OF ANY KIND, INCLUDING THE WARRANTY OF DESIGN, MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE$
+simpleNoWarranty:55:1:^Absolutely no warranty of function or purpose is made by the author (.+)$
+simpleAsIs:10:1:^This ([^,;]+) is provided <quotes>as-is<quotes>, without any express or implied warranty$
+sunRCPnoSupport:52:0:Sun RPC is provided with no support and without any obligation on the part of Sun Microsystems, Inc\. to assist in its use, correction, modification or enhancement:
+sunRCPnoWarranty:52:0:SUN RPC IS PROVIDED AS IS WITH NO WARRANTIES OF ANY KIND INCLUDING THE WARRANTIES OF DESIGN, MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE, OR ARISING FROM A COURSE OF DEALING, USAGE OR TRADE PRACTICE:
+sunRPCLic1:52:0:Sun RPC is a product of Sun Microsystems, Inc\. and is provided for unrestricted use provided that this legend is included on all tape media and as a part of the software program in whole or part:
+sunRPCLic2:10:0:^Users may copy or modify Sun RPC without charge, but are not authorized to license or distribute it to anyone else except as part of a product or program developed by the user$
+sunIndustrialLicense1.2:10:0:The Contents of this file are made available subject to the terms of the Sun Industry Standards Source License Version 1\.2
+##
+noAdvert:10:0:^not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission$
+exportNoLia:10:0:^It is the responsibility of any person or organization contemplating export to obtain such a license before exporting$
+exportLicRequired:10:0:^Export of this software from the United States of America may require a specific license from the United States Government$
+exportMITper:10:0:^WITHIN THAT CONSTRAINT, permission to use, copy, modify, and distribute this software and its documentation for any purpose and without fee is hereby granted, provided that the above copyright notice appear in all copies and that both that copyright notice and this permission notice appear in supporting documentation, and that the name of (.+) not be used in advertising or publicity pertaining to distribution of the software without specific, written prior permission$
+exportMITmodify:10:0:^Furthermore if you modify this software you must label your software as modified software and not distribute it in such a fashion that it might be confused with the original (.+) software$
+
+conditionsPre:10:0:^The free distribution and use of this software in both source and binary form is allowed \(with or without changes\) provided that<colon>$
+conditionsPre:11:0:^distributions of this source code include the above copyright notice, this list of conditions and the following disclaimer$
+conditionsPre:12:0:^distributions in binary form include the above copyright notice, this list of conditions and the following disclaimer in the documentation and\/or other associated materials$
+licenseBlockEnd:10:0:^END LICENSE BLOCK$:
+licenseBlockBegin:10:0:^BEGIN LICENSE BLOCK<colon>$:
+licenseBlockBegin:20:0:^BEGIN LICENSE BLOCK Version<colon>$:
+useOnlyInCompliance:10:0:^You may not use this file except in compliance with the License$:
+listContributors:10:0:^See the copyright.txt file in the distribution for a full listing of individual contributors$:
+listContributors:11:0:^See the copyright.txt in the distribution for a full listing of individual contributors$:x
+doNotAlterRemoveCopyright:10:0:^DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER$:
+doNotRemove:10:0:^This notice may not be removed or altered from any source distribution$
+originNotMisrepresented:10:0:^The origin of this ([^,;]+) must not be misrepresented; you must not claim that you wrote the original software$
+QTNokiaContact:10:0:^If you are unsure which license is appropriate for your use, please contact the sales department at qt\-sales@nokia\.com$:
+#The name of the University, the ATLAS group, or the names of its contributors may not be used to endorse or promote products derived from this software without specific written permission
+MX4JLicense1.0:10:0:^This software is distributed under the terms of the MX4J License version 1.0$
+SeeMX4JLicense:10:0:^See the terms of the MX4J License in the documentation provided with this software$
+### This is a generic license
+PatternLicense:10:1:^This software is covered by the ([^ ]+)$
+PatternLicense:20:1:^under the terms of the <quotes>([^<]+)<quotes> a copy of which is available from (.+)$
+######################################################################
+### Intel ACPI License
+##############
+IntelPart02:10:0:^This is your license from Intel Corp\. under its intellectual property rights$
+IntelPart03:10:0:^You may have additional license terms from the party that provided you this software, covering your right to use that party<quotes>s intellectual property rights$
+IntelPart04:10:0:^Intel grants, free of charge, to any person \(<quotes>Licensee<quotes>\) obtaining a copy of the source code appearing in this file \(<quotes>Covered Code<quotes>\) an irrevocable, perpetual, worldwide license under Intel<quotes>s copyrights in the base code distributed originally by Intel \(<quotes>Original Intel Code<quotes>\) to copy, make derivatives, distribute, use and display any portion of the Covered Code in any form, with the right to sublicense such rights; and$
+IntelPart05:10:0:^Intel grants Licensee a non-exclusive and non-transferable patent license \(with the right to sublicense\), under only those claims of Intel patents that are infringed by the Original Intel Code, to make, use, sell, offer to sell, and import the Covered Code and derivative works thereof solely to the minimum extent necessary to exercise the above copyright license, and in no event shall the patent license extend to any additions to or modifications of the Original Intel Code$
+IntelPart06:10:0:^No other license or right is granted directly or by implication, estoppel or otherwise$
+IntelPart07:10:0:^The above copyright and patent license is granted only if the following conditions are met<colon>$
+IntelPart08:10:0:^Conditions$
+IntelPart09:10:0:^Redistribution of Source with Rights to Further Distribute Source$
+IntelPart10:10:0:^Redistribution of source code of any substantial portion of the Covered Code or modification with rights to further distribute source must include the above Copyright Notice, the above License, this list of Conditions, and the following Disclaimer and Export Compliance provision$
+IntelPart11:10:0:^In addition, Licensee must cause all Covered Code to which Licensee contributes to contain a file documenting the changes Licensee made to create that Covered Code and the date of any change$
+IntelPart12:10:0:^Licensee must include in that file the documentation of any changes made by any predecessor Licensee$
+IntelPart13:10:0:^Licensee must include a prominent statement that the modification is derived, directly or indirectly, from Original Intel Code$
+IntelPart14:10:0:^Redistribution of Source with no Rights to Further Distribute Source$
+IntelPart15:10:0:^Redistribution of source code of any substantial portion of the Covered Code or modification without rights to further distribute source must include the following Disclaimer and Export Compliance provision in the documentation and/or other materials provided with distribution$
+IntelPart16:10:0:^In addition, Licensee may not authorize further sublicense of source of any portion of the Covered Code, and must include terms to the effect that the license from Licensee to its licensee is limited to the intellectual property embodied in the software Licensee provides to its licensee, and not to intellectual property embodied in modifications its licensee may make$
+IntelPart17:10:0:^Redistribution of Executable$
+IntelPart18:10:0:^Redistribution in executable form of any substantial portion of the Covered Code or modification must reproduce the above Copyright Notice, and the following Disclaimer and Export Compliance provision in the documentation and/or other materials provided with the distribution$
+IntelPart19:10:0:^Neither the name Intel nor any other trademark owned or controlled by Intel shall be used in advertising or otherwise to promote the sale, use or other dealings in products derived from or relating to the Covered Code without prior written authorization from Intel$
+IntelPart20:10:0:^Disclaimer and Export Compliance$
+IntelPart21:10:0:^INTEL MAKES NO WARRANTY OF ANY KIND REGARDING ANY SOFTWARE PROVIDED HERE$
+IntelPart22:10:0:^ANY SOFTWARE ORIGINATING FROM INTEL OR DERIVED FROM INTEL SOFTWARE IS PROVIDED <quotes>AS IS,<quotes> AND INTEL WILL NOT PROVIDE ANY SUPPORT, ASSISTANCE, INSTALLATION, TRAINING OR OTHER SERVICES$
+IntelPart23:10:0:^INTEL SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTIES OF MERCHANTABILITY, NONINFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE$
+IntelPart24:10:0:^IN NO EVENT SHALL INTEL HAVE ANY LIABILITY TO LICENSEE, ITS LICENSEES OR ANY OTHER THIRD PARTY, FOR ANY LOST PROFITS, LOST DATA, LOSS OF USE OR COSTS OF PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES, OR FOR ANY INDIRECT, SPECIAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF THIS AGREEMENT, UNDER ANY CAUSE OF ACTION OR THEORY OF LIABILITY, AND IRRESPECTIVE OF WHETHER INTEL HAS ADVANCE NOTICE OF THE POSSIBILITY OF SUCH DAMAGES$
+IntelPart25:10:0:^THESE LIMITATIONS SHALL APPLY NOTWITHSTANDING THE FAILURE OF THE ESSENTIAL PURPOSE OF ANY LIMITED REMEDY$
+IntelPart26:10:0:^Licensee shall not export, either directly or indirectly, any of this software or system incorporating such software without first obtaining any required license or other approval from the U. S. Department of Commerce or any other agency or department of the United States Government$
+IntelPart27:10:0:^In the event Licensee exports any such software from the United States or re-exports any such software from a foreign destination, Licensee shall ensure that the distribution and export/re-export of the software is in compliance with all laws, regulations, orders, or other restrictions of the U.S. Export Administration Regulations$
+IntelPart28:10:0:^Licensee agrees that neither it nor any of its subsidiaries will export/re-export any technical data, process, software, or service, directly or indirectly, to any country for which the United States government or any agency thereof requires an export license, other governmental approval, or letter of assurance, without first obtaining such license, approval or letter$
+IncludesSoftwareBy:10:1:^This product includes software (.+)$
+#########################
+# Broadcomm X11 style
+X11broadcomPre:10:0:^This software is furnished under license and may be used and copied only in accordance with the following terms and conditions$
+X11broadcomCond:10:0:^Subject to these conditions, you may download, copy, install, use, modify and distribute modified or unmodified copies of this software in source and/or binary form$
+X11broadcomSource:10:0:^Any source code used, modified or distributed must reproduce and retain this copyright notice and list of conditions as they appear in the source file$
+X11broadcomNoTrademark:10:1:^No right is granted to use any trade name, trademark, or logo of (.+)$
+X11broadcomNoEndorsement:10:2:^The (.+) may not be used to endorse or promote products derived from this software without the prior written permission of (.+)$
+X11broadcomAsIs:10:1:^THIS SOFTWARE IS PROVIDED <quotes>AS-IS<quotes> AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING BUT NOT LIMITED TO, ANY IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT ARE DISCLAIMED$
+X11broadcomLiable:10:1:^IN NO EVENT SHALL BROADCOM BE LIABLE FOR ANY DAMAGES WHATSOEVER, AND IN PARTICULAR, (.+) SHALL NOT BE LIABLE FOR DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES \(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION\) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT \(INCLUDING NEGLIGENCE OR OTHERWISE\), EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE$
+#####
+NoLicenseChangeAllowed:10:0:The license and distribution terms for any publically available version or derivative of this code cannot be changed
+###
+LibGCJLic:10:0:^This software is copyrighted work licensed under the terms of the Libgcj License$
+LibGCJSee:10:0:^Please consult the file <quotes>LIBGCJ_LICENSE<quotes> for details$
+SunSimpleLic:10:0:^Permission to use, copy, modify, and distribute this software is freely granted, provided that this notice is preserved$
+simpleLic:10:0:^You may copy, distribute, and use this software as long as this copyright statement is not removed$
+SimpleLic:20:0:^This program is freely distributable without licensing fees and is provided without guarantee or warrantee expressed or implied$
+W3CLic:10:0:^This work is distributed under the W3C\(r\) Software License \[1\] in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE$
+GPLv1orArtistic:10:0:^You may distribute under the terms of either the GNU General Public License or the Artistic License, as specified in the README file$
+EmacsLicense:10:0:^Everyone is granted permission to copy, modify and redistribute GNU Emacs, but only under the conditions described in the GNU Emacs General Public License$
+SameTermsAs:10:1:^This program is free software; you can redistribute it and/or modify it under the same terms as ([^,;]+) itself$
+#UseSubjectToTerm:10:0::^Use is subject to license terms$
+# This rule might should be at the end
+Compliance:52:0:You may not use this file except in compliance with the License:
+IBMv1:10:0:^This software has been released under the terms of the IBM Public License:
+FreeType:10:0:^This file is part of the FreeType project, and may only be used, modified, and distributed under the terms of the FreeType project license, LICENSE.TXT$
+FreeType:11:0:^This file may only be used, modified, and distributed under the terms of the FreeType project license, LICENSE.TXT$
+###
+Postfix:10:0:^LICENSE \.ad \.fi The Secure Mailer license must be distributed with this software$
+
+
+###
+subversion:10:0:^The terms are also available at http<colon>//subversion\.tigris\.org/license-1\.html$
+subversionError:20:0:^The terms are also available at http<colon>//subversion\.tigris\.org/license\.html$
+subversionPlus:10:0:^If newer versions of this license are posted there, you may use a newer version instead, at your option$
+subversionHistory:10:0:^For exact contribution history, see the revision history and logs, available at http<colon>//subversion\.tigris\.org/$
+##
+svnkitPlus:10:0:^The terms are also available at http<colon>//svnkit.com/license.html If newer versions of this license are posted there, you may use a newer version instead, at your option$
+svnkit:10:0:^The terms are also available at http<colon>//svnkit.com/license.html$
+sequenceLic:10:0:^This software is licensed as described in the file SEQUENCE\-LICENSE, which you should have received as part of this distribution$
+
+SeeFileSVN:76:0:^This software is licensed as described in the file COPYING, which you should have received as part of this distribution$
+tmatePlus:10:0:^The terms are also available at http<colon>//svnkit\.com/license\.html If newer versions of this license are posted there, you may use a newer version instead, at your option$
+
+## wxException
+wxLinkExceptionPart1:10:0:^As a special exception, the copyright holders of this library give permission for additional uses of the text contained in this release of the library as licensed under the wxWindows Library License, applying either version 3 of the License, or \(at your option\) any later version of the License as published by the copyright holders of version 3 of the License document$
+wxLinkExceptionPart2:10:0:^The exception is that you may use, copy, link, modify and distribute under the user<quotes>s own terms, binary object code versions of works based on the Library$
+wxLinkExceptionPart3:10:0:^If you copy code from files distributed under the terms of the GPL or the Library GPL into a copy of this library, as this license permits, the exception does not apply to the code that you add in this way$
+wxLinkExceptionPart4:10:0:^To avoid misleading anyone as to the status of such modified files, you must delete this exception notice from such code and/or adjust the licensing conditions notice accordingly$
+wxLinkExceptionPart5:10:0:^If you write modifications of your own for this library, it is your choice whether to permit this exception to apply to your modifications$
+wxLinkExceptionPart6:10:0:^If you do not wish that, you must delete the exception notice from such code and/or adjust the licensing conditions notice accordingly$
+
+autoConfException:10:0:^As a special exception to the GPL, if you distribute this file as part of a program that contains a configuration script generated by Autoconf, you can include it under the same distribution terms that you use for the rest of that program$
+autoConfException:20:0:^As a special exception to the GPL, this file can be distributed as part of a program that contains a configuration script generated by Autoconf, under the same distribution terms as the rest of that program$
+BisonException:10:0:^As a special exception, when this file is copied by Bison into a Bison output file, you may use that output file without restriction:
+LinkException:52:0:^As a special exception, the copyright holders of this library give you permission to link this library with independent modules to produce an executable, regardless of the license terms of these independent modules, and to copy and distribute the resulting executable under terms of your choice, provided that you also meet, for each linked independent module, the terms and conditions of the license of that module:
+LinkTemplateMacroException:10:0:^As a special exception, if other files instantiate templates or use macros or inline functions from this file, or you compile this file and link it with other works to produce a work based on this file, this file does not by itself cause the resulting work to be covered by the GNU General Public License$
+BisonException:20:0:As a special exception, you may create a larger work that contains part or all of the Bison parser skeleton and distribute that work under terms of your choice, so long as that work isn<quotes>t itself a parser generator using the skeleton or a modified version thereof as a parser skeleton:
+ExceptionGPL:52:0:As a special exception to the (GNU General Public License|GPL):
+ExceptionLeGPL:52:0:As a special exception to the GNU Lesser General Public License,:
+LinkExceptionOpenSSL:52:1:As a special exception to the GPL terms, (.*) grants permission to link the code of this program with any version of the OpenSSL library which is distributed under a license identical to that listed in the included Copying\.OpenSSL file, and distribute linked combinations including the two:
+ClassPathException:53:0:^([^,;]+) designates this particular file as subject to the <quotes>Classpath<quotes> exception as provided by ([^,;]+) in the GPL <VERSION> section of the License file that accompanied this code:
+ClassPathException:54:0:^([^,;]+) designates this particular file as subject to the <quotes>Classpath<quotes> exception as provided by ([^,;]+) in the LICENSE file that accompanied this code:
+qtExceptionNotice:52:0:These rights are described in the Nokia Qt GPL Exception version 1.3, included in the file GPL_EXCEPTION.txt in this package:
+
+# these should be the last one
+
+Exception:52:0:As a special exception,:
+### Ghosscript license
+artifex:10:0:^Refer to licensing information at http<colon>//www.artifex.com or contact Artifex Software.*$
+
+X11FestivalPerm:10:0:^Permission is hereby granted, free of charge, to use and distribute this software and its documentation without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and[/ ]or sell copies of this work, and to permit persons to whom this work is furnished to do so, subject to the following conditions<colon>$
+X11FestivalNotice:10:0:^The code must retain the above copyright notice, this list of conditions and the following disclaimer$
+X11FestivalNoEndorse:10:0:^The authors<quotes> names are not used to endorse or promote products derived from this software without specific prior written permission$
+
+##dovecot:
+dovecotSeeCopying:10:0:Dovecot ([^;]*)authors, see the included COPYING file$
+
+###php
+phpLic3.01:10:0:^This source file is subject to version 3\.01 of the PHP license, that is bundled with this package in the file LICENSE, and is available through the world-wide-web at the following url<colon>$
+zendv2:10:0:^This source file is subject to version 2.00 of the Zend license, that is bundled with this package in the file LICENSE, and is available through the world-wide-web at the following url<colon>$
+### postgresql
+psql:10:0:^Permission to use, copy, modify, and distribute this software and its documentation for any purpose, without fee, and without a written agreement is hereby granted, provided that the above copyright notice and this paragraph and the following two paragraphs appear in all copies$
+psqlLiab:10:2:^IN NO EVENT SHALL (.+) BE LIABLE TO ANY PARTY FOR DIRECT, INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES, INCLUDING LOST PROFITS, ARISING OUT OF THE USE OF THIS SOFTWARE AND ITS DOCUMENTATION, EVEN IF (.+) HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGE$
+psqlWarr:10:1:^THE (.+) SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE$
+psqlWarr2:10:1:^THE SOFTWARE PROVIDED HEREUNDER IS ON AN <quotes>AS IS<quotes> BASIS, AND (.+) HAS NO OBLIGATIONS TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS$
+postgresqlRef:10:0:^This code is released under the terms of the PostgreSQL License$
