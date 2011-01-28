@@ -8,4 +8,28 @@
 	GPLVer2+KDE (a variant of the GPLv2+ where the KDE has a say in
 	terms of which license it can be replaced with in the future).
 
+2010-11-19  dmg  <dmg@uvic.ca>
+
+	* ninka.pl: Uncommented a line that I left commented by mistake.
+
+2010-11-10  dmg  <dmg@uvic.ca>
+
+	* Released pre-release version 1.0-pre2
+	
+	* Added path to the files in the tar file.
+	
+	* README: Fixed errors (patch by Armijn Hemel)
+ 
+	* extComments/extComments.pl (Determine_Comments_Extractor): Added
+	the option to not use the comments extractor.
+
+	* Now that Paul has given us permission, remove patching process.
+
+	* Cleanup files
+
+2010-08-07  dmg  <dmg@uvic.ca>
+
+	* Prepared the release to the public.
+	
+
 

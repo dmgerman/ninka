@@ -190,7 +190,7 @@ sub Normalize_GPL
     if ($line =~ s/GPL ?[v\-]([123\.0]+)/GPL <VERSION>/i) {
         $version = $1;
     }
-    if ($line =~ s/v\.?([123\.0]+)/<VERSION>/i) {
+    if ($line =~ s/v\.?([123\.0]+)( *[0-9]+)/<VERSION>$2/i) {
         $version = $1;
     }
 
