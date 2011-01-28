@@ -1,0 +1,11 @@
+2011-01-28    <dmg@uvic.ca>
+
+	* senttok/senttok.pl (Normalize_GPL): Fixed a bug in the parsing
+	of version strings. "v." is considered a version iff followed by a
+	number.
+
+	* matcher/rules.dict, licensesentence.dict: added a new license
+	GPLVer2+KDE (a variant of the GPLv2+ where the KDE has a say in
+	terms of which license it can be replaced with in the future).
+
+
