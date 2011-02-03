@@ -224,7 +224,7 @@ CPLv0.5:CPLv0.5
 
 
 #-------
-sunRPC:sunRPCLic1,sunRPCLic2sunRCPnoWarranty,sunRCPnoSupport
+sunRPC:sunRPCLic1,sunRPCLic2,sunRCPnoWarranty,sunRCPnoSupport
 
 #-------------
 # This is created by senttok

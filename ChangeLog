@@ -1,3 +1,10 @@
+2011-02-03    <dmg@uvic.ca>
+
+	* matcher/rules.dict: Fixed a bug in the sunRPM license. It wasn't detected.
+
+	* filter/criticalword.dict: strenghten some rules to avoid some 
+	false positives in good sentences.
+
 2011-01-28    <dmg@uvic.ca>
 
 	* senttok/senttok.pl (Normalize_GPL): Fixed a bug in the parsing

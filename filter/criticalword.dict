@@ -8,7 +8,7 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
@@ -100,7 +100,9 @@ use this software
 restriction
 all rights
 royalty
-see the
+, see the revision
+, see the included
+see the copyright.txt
 for details
 all intellectual property rights
 sale
@@ -125,3 +127,4 @@ to permit this exception
 suitability
 computer program whose purpose
 disclaims copyright
+software is covered
