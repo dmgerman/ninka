@@ -88,7 +88,7 @@ sub Determine_Comments_Extractor
 #            return "$path/hashComments.pl -p ';' '$f'";;
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
             my $comm = `which comments`;
-            if ($comm eq "") {
+            if ($comm ne "") {
                 return "comments -c1 '$f' 2> /dev/null";
             } else {
                 return "cat '$f' | head -400  > '${f}.comments'";

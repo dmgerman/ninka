@@ -1,5 +1,8 @@
 2011-02-03    <dmg@uvic.ca>
 
+	* extComments/extComments.pl (Determine_Comments_Extractor): Fixed
+	a bug introduced in the comments extractor.
+
 	* matcher/rules.dict: Fixed a bug in the sunRPM license. It wasn't detected.
 
 	* filter/criticalword.dict: strenghten some rules to avoid some 
