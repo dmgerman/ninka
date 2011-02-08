@@ -292,7 +292,7 @@ kerberos:exportLicRequired,exportNoLia,exportMITper,exportMITmodify,MITnorep,MIT
 postgresql:psql,psqlLiab,psqlWarr,psqlWarr2
 postgresqlRef:postgresqlRef
 # gplv2+ with kde option
-GPLVer2+KDE+:GPLGenKDE\+Ver2,FSFwarranty,GPLseeDetailsVer0,GPLcopyVer0,GNUurl
+GPLVer2or3KDE+:GPLGenKDEor3\+Ver2,FSFwarranty,GPLseeDetailsVer0,GPLcopyVer0,GNUurl
 
 
 

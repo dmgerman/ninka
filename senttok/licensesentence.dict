@@ -53,7 +53,7 @@ GPLGen:77:1:^The contents of this ([^,;]+) are subject to the terms of the GPL; 
 GPLGen:80:1:^([^,;]+) provides this source code under the GPL <VERSION> License$:
 GPLGen:81:1:^<LICENSED> under the GPL <VERSION>, see file ([^,;]+) in this ([^,;]+) for details$
 GPLGenVer2:90:0:^released under GNU GPL v2 or later license$
-GPLGenKDE+:10:1:^This program is free software; you can redistribute it and/or modify it under the terms of the GPL; either <VERSION>, or \(at your option\) version 3 or any later version accepted by the membership of KDE e\.V\. \(or its successor approved by the membership of KDE e\.V\.\), which shall act as a proxy defined in Section 14 of version 3 of the license$:
+GPLGenKDEor3+:10:1:^This program is free software; you can redistribute it and/or modify it under the terms of the GPL; either <VERSION>, or \(at your option\) version 3 or any later version accepted by the membership of KDE e\.V\. \(or its successor approved by the membership of KDE e\.V\.\), which shall act as a proxy defined in Section 14 of version 3 of the license$:
 #
 GPLGenError:26:1:^You may use this ([^,;]+) under the GNU public license if you so wish$:
 GPLGenError:20:0:^this software may be distributed under the terms of the GNU Public License \(<quotes>GPL<quotes>\)$

@@ -1,3 +1,9 @@
+2011-02-08    <dmg@uvic.ca>
+
+	* senttok/licensesentence.dict: Renamed the GPLVer2+KDE to
+	GPLVer2or3KDE+, which I believe is more appropriate (license GPL
+	v2, v3 or any further version approved by the KDE e.v.
+
 2011-02-03    <dmg@uvic.ca>
 
 	* extComments/extComments.pl (Determine_Comments_Extractor): Fixed
