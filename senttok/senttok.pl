@@ -20,7 +20,6 @@ use strict;
 
 my $TOO_LONG = 70;
 
-
 # where are we running the splitter from?
 my $path = $0;
 $path =~ s/[^\/]+$//;
@@ -46,8 +45,10 @@ while ($line = <LICENSESENTENCEFILE>){
 #}
 close LICENSESENTENCEFILE;
 while ($line = <>){
+    my $saveLine;
     my $originalLine;
     chomp $line;
+    $originalLine = $line;
 
     if ($line =~ s/^Alternatively,? ?//) {
         print "Altern\n";
@@ -67,7 +68,7 @@ while ($line = <>){
     my $gpl = 0;
     my ($gplLater, $gplVersion);
 
-    $originalLine = $line;
+    $saveLine = $line;
 
 #        print "Original
 #   [$line]
@@ -95,7 +96,7 @@ while ($line = <>){
       again:
 #       print "Testing 
 #   lin[$line]
-#   ori[$originalLine]
+#   ori[$saveLine]
 #   re [$regexp]
 #   lpg[$LGPL]
 #\n";
@@ -119,7 +120,7 @@ while ($line = <>){
             }
             if ($gpl) {
                 $gpl = 0;
-                $line = $originalLine;
+                $line = $saveLine;
                 goto again;
             }
             next;## dmg
@@ -145,15 +146,14 @@ while ($line = <>){
             length($after) >$TOO_LONG) {
             $matchname .= "-TOOLONG";
         }
-
-        my $parmstrings=join(",",$matchname, $subRule, $before, $after, @parm);
-        print $parmstrings,"\n";
+        my $parmstrings=join(";",$matchname, $subRule, $before, $after, @parm);
+        print $parmstrings,":$originalLine\n";
 
         
     }else{
         #UNKNOWN, sentence
         chomp $line;
-        print $matchname,",",0, ",", $mostsimilarname,",",$distance,",",$line,",<------------>[$originalLine][$lineAsGPL]\n";
+        print $matchname,";",0, ";", $mostsimilarname,";",$distance,";",$saveLine,":$originalLine\n";
     } 
     
 }

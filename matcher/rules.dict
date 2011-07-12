@@ -69,6 +69,15 @@ CDDLv1orGPLv2:CDDLorGPLv2,CDDLorGPLv2compliance,CDDLorGPLv2where,ApachesPermLim,
 # this one should go before the BSD ones
 intelBSDLicense:BSDpre,BSDcondSource,BSDcondBinary,BSDcondEndorseRULE,BSDasIs,BSDWarr,intelBSDexport1,intelBSDexport2,intelBSDexport3
 
+# this rule should be before BSDs
+spdxSleepyCat:SleepyCatNameExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarrExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
+
+
+spdxBSD4:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondAdvPart1Extrict,BSDcondAdvPart2Extrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
+spdxBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
+spdxBSD2:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDasIsExtrict,BSDWarrExtrict
+#,SleepyCatObtain,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete
+#,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,SleepyCatAsIs,BSDWarrExtrict
 
 
 BSD4:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,BSDcondEndorseRULE,BSDasIs,BSDWarr
@@ -115,6 +124,8 @@ Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,Op
 Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 
 SleepyCat:BSDpre,BSDcondSource,BSDcondBinary,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarr
+
+
 boost:boostPermission,boostPreserve,boostAsIs,boostWarr
 boostV1:boostRefv1
 SSLeay:SSLCopy,SSLeayAttrib,SSLeayAdType,BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,SSLeayCrypto,SSLeayWindows,BSDasIs,BSDWarr,SSLeayCantChangeLic

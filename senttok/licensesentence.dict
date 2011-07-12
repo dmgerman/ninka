@@ -30,6 +30,7 @@ GPLGen:14:1:^([^,;]+) is free software; you can distribute it and/or modify it u
 GPLGen:20:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL(,|;)? <version>$:
 GPLGen:22:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of <VERSION> of the GPL$:
 GPLGen:23:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL; <VERSION>:
+GPLGen:24:1:^([^,;]+) is <LICENSED> under the terms of the GPL <VERSION>, and can be copied, distributed, and modified under those terms:
 LesserGPLGen:24:0:^you can redistribute it and/or modify it under the terms of the Lesser GPL <VERSION>:
 LesserGPLGen:23:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL \(as published by the Free Software Foundation\) <VERSION>$:
 LesserGPLGenv3or:10:1:This program is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL; either <VERSION>, or (at your option) version 3
@@ -199,6 +200,17 @@ XXXLeGPLseeDetails:24:0:See the GNU Lesser General Public License for more detai
 XXXLiGPLseeDetails:24:0:See the GNU Library General Public License for more details:
 ########################### 
 # BSDs
+# first extrict rules
+BSDcondSourceExtrict:10:0:Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer:
+BSDcondBinaryExtrict:10:0:Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution:
+BSDcondAdvPart1Extrict:10:0:All advertising materials mentioning features or use of this software must display the following acknowledgement:
+BSDcondAdvPart2Extrict:10:1:This product includes software developed by (.+):
+BSDcondEndorseExtrict:10:1:Neither the name of the ([^;]+) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission:
+BSDasIsExtrict:10:4:THIS SOFTWARE IS PROVIDED BY (.+)<quotes>AS IS<quotes> AND ANY EXPRESS(ED)? OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
+BSDWarrExtrict:10:2:IN NO EVENT SHALL (.+) BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES \(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION\) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT \(INCLUDING NEGLIGENCE OR OTHERWISE\) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE:
+
+
+###
 BSDlike:10:0:^This file and program are licensed under a BSD style license$
 BSDpreLike:70:0:Redistribution and use in source and binary forms are permitted provided that the above copyright notice and this paragraph are duplicated in all such forms and that any documentation, advertising materials, and other materials related to such distribution and use acknowledge that the software was developed by:
 BSDpre:70:0:Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
@@ -234,6 +246,7 @@ BSDZlibAltered:70:0:Altered source versions must be plainly marked as such, and 
 OpenSSLName:70:3:Products derived from this software may not be called (.+) nor may (.+) appear in their name(s)?,? without prior written permission of the (.+)$:
 OpenSSLAckPart1:70:1:Redistributions of any form whatsoever must retain the following acknowledgment:
 OpenSSLAckPart2:70:1:<quotes>This product includes software developed by ([^,;]+)<quotes>:
+SleepyCatNameExtrict:10:0:<quotes>The Sleepycat License Copyright \(c\) 1990\-1999 Sleepycat Software:
 SleepyCatObtain:70:1:Redistributions in any form must be accompanied by information on how to obtain complete source code for the ([^,;]+):
 SleepyCatSourceIncluded:70:0:The source code must either be included in the distribution or be available for no more than the cost of distribution plus a nominal fee, and must be freely redistributable under reasonable conditions:
 SleepyCatSourceComplete:70:0:For an executable file, complete source code means the source code for all modules it contains:
