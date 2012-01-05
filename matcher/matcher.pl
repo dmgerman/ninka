@@ -29,6 +29,7 @@
 #
 
 use strict;
+my $debug = 0;
 
 my %NonCriticalRules ;
 
@@ -144,6 +145,7 @@ my $senttok= "," . join(",",@licSentNames) . ",";
 my @result=();
 my $countMatches = 0;
 
+print "[$senttok]\n" if $debug;
 Match_License();
 
 # do we have to check again?

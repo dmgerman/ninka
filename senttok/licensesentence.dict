@@ -205,10 +205,16 @@ BSDcondSourceExtrict:10:0:Redistributions of source code must retain the above c
 BSDcondBinaryExtrict:10:0:Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution:
 BSDcondAdvPart1Extrict:10:0:All advertising materials mentioning features or use of this software must display the following acknowledgement:
 BSDcondAdvPart2Extrict:10:1:This product includes software developed by (.+):
-BSDcondEndorseExtrict:10:1:Neither the name of the ([^;]+) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission:
+BSDcondEndorseExtrict:10:2:Neither the names? of ([^;]+) nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission:
 BSDasIsExtrict:10:4:THIS SOFTWARE IS PROVIDED BY (.+)<quotes>AS IS<quotes> AND ANY EXPRESS(ED)? OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
 BSDWarrExtrict:10:2:IN NO EVENT SHALL (.+) BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES \(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION\) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT \(INCLUDING NEGLIGENCE OR OTHERWISE\) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE:
 
+MITname:10:0:MIT License
+Copyright:10:1:Copyright \(c\)(.+)
+MITpermissionExtrict:10:0:Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files \(the <quotes>Software <quotes>\), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions<colon>:
+X11noticeExtrict:10:0:The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
+X11asIsExtrict:10:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT:
+X11asLiableExtrict:10:0:IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE
 
 ###
 BSDlike:10:0:^This file and program are licensed under a BSD style license$
@@ -367,6 +373,10 @@ MPL_LGPLsee:52:0:See the LGPL or the MPL for the specific language governing rig
 MPLandGPLnoDelete:52:0:If you do not delete the provisions above, a recipient can use your version of this file under either the MPL or the GPL:
 MPLandGPLv2:52:0:Alternatively, the contents of this file can be used under the terms of the GNU General Public License version 2 \(the <quotes>GPL<quotes>\), in which case the provisions of the GPL are applicable instead of the above:
 MPLcopy:52:0:You may obtain a copy of the License at http<color>//www.mozilla.org/MPL/:
+MPLv2part1:10:0:This Source Code Form is subject to the terms of the Mozilla Public License, v:
+# rather than trying to fight the splitter, then just just do as it wants
+MPLv2part1a:10:0:^2.0$:
+MPLv2part2:10:0:If a copy of the MPL was not distributed with this file, You can obtain one at http<colon>//mozilla.org/MPL/2.0/:
 MPLoptionIfNotDelete2lics:52:0:If you do not alter this notice, a recipient can use your version of this file under either the MPL or the LGPL:
 MPLoptionIfNotDelete3lics:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the MPL, the GPL or the LGPL:
 CPLoptionIfNotDelete3lics:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the CPL, the GPL or the LGPL:
@@ -470,8 +480,8 @@ X11notice:52:0:The above copyright notice and this permission notice (\(includin
 X11per:52:0:Permission is hereby granted, free of charge, to any person obtaining a copy of this (software and associated documentation files|source file) \(the <quotes>Software<quotes>\), to deal (in|with) the Software without restriction, including without limitation (on )?the rights to use, copy, modify, merge, publish, distribute,( distribute with modifications,)? sub ?license, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 X11perLike:52:0:Permission is hereby granted to use, copy, modify, sell, and otherwise distribute this software and its documentation for any purpose and without fee, provided that this copyright, permission, and disclaimer notice is reproduced in all copies of this software and in supporting documentation:
 X11subjectVariant:52:1:Subject to the following obligations and disclaimer of warranty, use and redistribution of this software, in source or object code forms, with or without modifications are expressly permitted by ([^;]+); provided, however, that:
-ZLibLic:42:0:^For conditions of distribution and use, see copyright notice in zlib\.h$:
-ZLibLic:52:0:^See zlib\.h for conditions of distribution and use$:
+ZLibRef:42:0:^For conditions of distribution and use, see copyright notice in zlib\.h$:
+ZLibRef:52:0:^See zlib\.h for conditions of distribution and use$:
 publicDomain:01:0:^The original authors have disclaimed all copyright interest in this code and thus put it in the public domain$:
 publicDomain:02:0:^The original author has disclaimed all copyright interest in this code and thus put it in the public domain$:
 publicDomain:03:0:^Public Domain$:

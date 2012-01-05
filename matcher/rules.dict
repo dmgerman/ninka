@@ -15,6 +15,12 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 ########## This ones are deprecated, I think
+#some rules that supersets should be done first
+GPL2orBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorse,Altern,GPLGenVer2,BSDasIsExtrict,BSDWarrExtrict
+
+
+
+
 GPLv2:GPLv2
 GPLv2+:GPLv2\+
 GPLv3+:GPLv3\+
@@ -30,6 +36,9 @@ GPLv1+:GPLv1\+
 LGPLv2orv3:LGPLv2orv3
 ###############
 
+#### some weird dual license rules
+
+################
 LGPLv2_1orv3:LGPLv2_1orv3
 
 GPLnoVersion:GPLnoVersionVer0
@@ -64,6 +73,9 @@ LGPLv2MISTAKE:LGPLv2MISTAKE
 
 GPLv1orArtistic:GPLv1orArtistic
 
+
+
+
 CDDLv1orGPLv2:CDDLorGPLv2,CDDLorGPLv2compliance,CDDLorGPLv2where,ApachesPermLim,CDDLorGPLv2include
 
 # this one should go before the BSD ones
@@ -72,10 +84,14 @@ intelBSDLicense:BSDpre,BSDcondSource,BSDcondBinary,BSDcondEndorseRULE,BSDasIs,BS
 # this rule should be before BSDs
 spdxSleepyCat:SleepyCatNameExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarrExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
 
-
 spdxBSD4:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondAdvPart1Extrict,BSDcondAdvPart2Extrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
 spdxBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
 spdxBSD2:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDasIsExtrict,BSDWarrExtrict
+
+spdxMIT:MITname,Copyright,MITpermissionExtrict,X11noticeExtrict,X11asIsExtrict,X11asLiableExtrict
+
+
+
 #,SleepyCatObtain,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete
 #,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,SleepyCatAsIs,BSDWarrExtrict
 
@@ -107,8 +123,6 @@ BSD2SoftAndDoc:BSDpreSoftAndDoc,BSDcondSourceOrDoc,BSDcondBinary,BSDasIsSoftAndD
 BSDCairoStyleWarr:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 BSDdovecotStyle:BSDpre,BSDcondSource,BSDcondBinary,OpenSSLendorse,DovecotwriteCod,OpenSSLAckPart1,BSDcondAdvPart2,MITstyleCairoWarranty
 
-#some rules are too short that they just match almost anything
-#BSDAsIsWarrantyOnly:BSDasIs,BSDWarr
 
 
 ZLIB:BSDpre,BSDcondSource,originNotMisrepresented,BSDZlibAck,BSDZlibAltered,BSDcondEndorseRULE,BSDasIs,BSDWarr
@@ -151,6 +165,10 @@ MPLv1_1:MPLv1_1
 NPLv1_1:NPLv1_1
 MPLv1_0:MPLv1_0
 NPLv1_0:NPLv1_0
+
+# version 2.0
+MPLv2:MPLv2part1,MPLv2part1a,MPLv2part2
+
 #----------------------------------------------------------------------
 MITold:MITperm,MITnorep,MITasis
 MIToldwithoutSell:MITperNoSell,MITnorep,MITasis
@@ -171,7 +189,11 @@ MITX11BSDvar:MITpermAndOr,BSDasIs,BSDWarr
 MITCMU:MITpermNoSellVer3,CMUAsIs,CMULiability
 MITCMUvar2:MITpermNoSell,X11CMULiability,X11CMUredistribute
 MITCMUvar3:X11CMUlicPerm,X11CMUAsIs,X11CMUlicLiability
+
+# the next two have to be in order
+MITX11:X11notice,X11asIs,X11asLiable
 MITX11noNotice:X11asIs,X11asLiable
+
 MITX11simple:X11per,X11notice,X11asIs
 MITX11NoSellNoDocDocBSDvar:MITpermNoSellNoDoc,X11asIsLike,BSDWarr
 #
@@ -304,6 +326,5 @@ postgresql:psql,psqlLiab,psqlWarr,psqlWarr2
 postgresqlRef:postgresqlRef
 # gplv2+ with kde option
 GPLVer2or3KDE+:GPLGenKDEor3\+Ver2,FSFwarranty,GPLseeDetailsVer0,GPLcopyVer0,GNUurl
-
 
 
