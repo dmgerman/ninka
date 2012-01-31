@@ -125,6 +125,9 @@ $text =~ s/\n(?!\n)/\t/g;
 $text =~ s/\n\n+/\n/g;
 $text .= "\n";
 
+# this gets us in big trouble... licenses that have numeric abbreviations
+$text =~ s/v\.\s+2\.0/v<dot> 2<dot>0/g;
+
 while ($text =~ /^([^\n]*)\n/gsm ) {
     my $curr = $1;
 #    print "<<$curr\n<<\n";

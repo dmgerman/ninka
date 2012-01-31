@@ -373,7 +373,7 @@ MPL_LGPLsee:52:0:See the LGPL or the MPL for the specific language governing rig
 MPLandGPLnoDelete:52:0:If you do not delete the provisions above, a recipient can use your version of this file under either the MPL or the GPL:
 MPLandGPLv2:52:0:Alternatively, the contents of this file can be used under the terms of the GNU General Public License version 2 \(the <quotes>GPL<quotes>\), in which case the provisions of the GPL are applicable instead of the above:
 MPLcopy:52:0:You may obtain a copy of the License at http<color>//www.mozilla.org/MPL/:
-MPLv2part1:10:0:This Source Code Form is subject to the terms of the Mozilla Public License, v:
+MPLv2part1:10:0:^This Source Code Form is subject to the terms of the Mozilla Public License, v<dot> 2<dot>$0:
 # rather than trying to fight the splitter, then just just do as it wants
 MPLv2part1a:10:0:^2.0$:
 MPLv2part2:10:0:If a copy of the MPL was not distributed with this file, You can obtain one at http<colon>//mozilla.org/MPL/2.0/:
