@@ -238,7 +238,7 @@ MX4J:MX4JLicense1,SeeMX4JLicense
 BeerWareVer42:BeerWareVer42LicPart1,BeerWareVer42LicPart2,BeerWareVer42LicPart3,BeerWareVer42LicPart4
 
 # intel acpi license
-InterACPILic:IntelPart02,IntelPart03,IntelPart04,IntelPart05,IntelPart06,IntelPart07,IntelPart08,IntelPart09,IntelPart10,IntelPart11,IntelPart12,IntelPart13,IntelPart14,IntelPart15,IntelPart16,IntelPart17,IntelPart18,IntelPart19,IntelPart20,IntelPart21,IntelPart22,IntelPart23,IntelPart24,IntelPart25,IntelPart26,IntelPart27,IntelPart28
+IntelACPILic:IntelPart02,IntelPart03,IntelPart04,IntelPart05,IntelPart06,IntelPart07,IntelPart08,IntelPart09,IntelPart10,IntelPart11,IntelPart12,IntelPart13,IntelPart14,IntelPart15,IntelPart16,IntelPart17,IntelPart18,IntelPart19,IntelPart20,IntelPart21,IntelPart22,IntelPart23,IntelPart24,IntelPart25,IntelPart26,IntelPart27,IntelPart28
 
 ############################
 ## X11 CMU variant
