@@ -88,7 +88,8 @@ spdxBSD4:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondAdvPart1Extrict
 spdxBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
 spdxBSD2:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDasIsExtrict,BSDWarrExtrict
 
-spdxMIT:MITname,Copyright,MITpermissionExtrict,X11noticeExtrict,X11asIsExtrict,X11asLiableExtrict
+# do not include copyright in the rule
+spdxMIT:MITpermissionExtrict,X11noticeExtrict,X11asIsExtrict,X11asLiableExtrict
 
 
 
