@@ -1,0 +1,148 @@
+.TH comments 1
+.SH NAME
+comments - comments is an open source, C/C++ de-commentor. It will
+remove all comments  and output them to a different file.
+
+.SH SYNOPSIS
+comments <options> [file1] <options> <file2> <etc>
+       -r            Don't remove CR/LF
+       -c            Only remove comments
+       -o            Output to stdout code and stderr comments
+       -n            Append newline to source
+       -x            Null out options
+       -d            Keep spaces in preprocessor entries
+       -l            Do no mangling
+       -m            Place markers where code or comments are
+       -t            Print summary in tab delimited form
+       -C            Print summary in comma delimited form
+       -v            Print version
+.SH DESCRIPTION
+.B Comments
+is a programming utility used to strip all comments and/or formatting from C/C++ code. It has a variety of command line
+options that make it a powerful utility.
+.SH NOTES
+.B Options
+
+Enabling options in comments is simple and straightforward. Here is an
+example of how to just remove the comments from a source:
+
+.B ~# comments -c foo.cpp
+
+More advanced features are like the ability to change the options on each
+file, here is an example of how to remove the comments from one source,   
+output to stdout, but remove everything from the second source.
+
+.B ~# comments -co foo.cpp -x bar.cpp
+
+The '-x' option makes comments remove all options. Here is an example similar
+to the one above, but it instead leaves the CR/LF's in the second source.
+
+.B ~# comments -co foo.cpp -xr bar.cpp
+
+As you can see, the '-x' option was used first to remove all current
+options, and then the '-r' option was appended to make comments keep the
+CR/LF's.
+
+If you don't specify any options to a file, it will use the previous files
+options.
+
+.B ~# comments -co foo.cpp bar.cpp
+
+That command will use the '-co' options for both foo.cpp and bar.cpp
+
+.SH OPTIONS
+
+.TP
+.B     -r            Don't remove CR/LF
+
+With this option enabled, and no others, it will remove everything but line feeds.
+
+.TP
+.B     -c            Only remove comments
+
+With this option enabled, and no others, it will remove only comments from the source.
+
+.TP
+.B     -o            Output to stdout
+
+This option specifies the output to be printed to STDOUT. This is used primarily if you wish to redirect the data.
+
+.TP
+.B     -n            Append newline to source
+
+This option will make comments append a newline to the end of the source file. This is used by some people using C source code because some C compilers complan about not having a newline at the end of the source.
+
+.TP
+.B     -x            Null out options
+
+This option NULLs out all previous options so that other may be specified.
+
+.TP
+.B     -d            Keep spaces in preprocessor entries
+
+This option makes comments not do any reformatting of preprocessor entries.
+
+.TP
+.B     -l            Do no mangling
+
+This option tells comments not to comments the input at all. This option was only included for completeness.
+
+.TP
+.B     -m            Place markers in output
+
+This option tells comments to place CODE and /****/ where code or
+comments are supposed to be in their corresponding outputs
+
+.TP
+.B     -t            Print summary in tab delimited form
+.TP
+.B     -C            Print summary in comma delimited form
+
+This option makes comments print the summary information in tabular form for easier input into other programs.
+
+Example output:
+
+root@biz:~/comments# comments -t dformat.h
+.RS
+1       dformat.h       dformat.h.commentsd       1147    565     50.7411
+
+Explanation of each column:
+.RS
+.RE
+1: The number of the file in order (1, 2, 3, etc).
+.RS
+.RE
+2: Name of the input file.
+.RS
+.RE
+3: Name of the output file.
+.RS
+.RE
+4: Original size of the input (bytes).
+.RS
+.RE
+5: Output size (bytes).
+.RS
+.RE
+6: Percentage of reduction calculated by (100(output_bytes/input_bytes))
+.RS
+.RE
+
+.I NOTE:
+If the '-o' option (output to stdout) option is given with '-t', the third column will be NULL.
+.RS
+.RE
+root@biz:~/comments# comments -to main.cpp >output_file
+.RS
+.RE
+1       main.cpp                844     368     56.3981
+.RE
+
+.TP
+.B     -v            Print version
+
+This option causes comments to print the version info and exit immediately.
+
+.SH BUGS
+None known. Email bug reports to
+.B biz@biz0r.biz
