@@ -31,7 +31,7 @@ dformat::dformat(int a, char** av)
   io.regionsCount = 0;
   io.doneOutput = 0;
 
-  if(!load_arguments("-x")) cerr << "Programmer goofed, you should not see this. Error clearing out arguments." << endl;
+  if(!load_arguments((char *)"-x")) cerr << "Programmer goofed, you should not see this. Error clearing out arguments." << endl;
   test_args=true; // Lets make sure the arg syntax is good first
   while(next()) ;
 
@@ -43,7 +43,7 @@ dformat::dformat(int a, char** av)
   io.done(test_args);
   test_args=false;
   // Clear out the settings
-  if(!load_arguments("-x")) cerr << "Programmer goofed, you should not see this. Error clearing out arguments." << endl;
+  if(!load_arguments((char *)"-x")) cerr << "Programmer goofed, you should not see this. Error clearing out arguments." << endl;
 };
 
 dformat::~dformat() {};
@@ -182,7 +182,7 @@ bool dformat::load_arguments(char* str)
   if(strlen(str)==0)
     return false;
 
-  for(int x=1; x<(signed)strlen(str); x++)
+  for(unsigned int x=1; x<strlen(str); x++)
   {
     switch(str[x])
     {
@@ -522,11 +522,11 @@ bool dformat::format()
             if(flag_history[0].in_hex) // get out of hex if we are in one
               flag_history[0].in_hex=false;
           }
-          else if((!is_whitespace(io.last_written[(LAST_WRITTEN_LENGTH-1)]) && (is_letter(io.last_written[(LAST_WRITTEN_LENGTH-1)])
-                  || io.last_written[(LAST_WRITTEN_LENGTH-1)]=='_') || is_number(io.last_written[(LAST_WRITTEN_LENGTH-1)]))
+          else if(((!is_whitespace(io.last_written[(LAST_WRITTEN_LENGTH-1)]) && (is_letter(io.last_written[(LAST_WRITTEN_LENGTH-1)])
+                  || io.last_written[(LAST_WRITTEN_LENGTH-1)]=='_')) || is_number(io.last_written[(LAST_WRITTEN_LENGTH-1)]))
                   &&
-                  (!is_whitespace(io.buf[1]) && (is_letter(io.buf[1])
-                                                 || io.buf[1]=='_') || is_number(io.buf[1])) ) 
+                  (!is_whitespace(io.buf[1]) && ((is_letter(io.buf[1])
+                                                 || io.buf[1]=='_') || is_number(io.buf[1]))) ) 
             io.out();  
           else if(!strncmp((io.buf+1),"...",3) || !strncmp((io.last_written+(LAST_WRITTEN_LENGTH-3)),"...",3))
             io.out(); // need space before (and after) these if already there

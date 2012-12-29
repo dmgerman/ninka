@@ -17,20 +17,20 @@
 #include "main.h"
 
 #define NUM_PREPROCESSOR_STR 14
-char *preprocessors[]={"define",
-                       "include",
-                       "undef",
-                       "pragma",
-                       "if",
-                       "error",
-                       "warning",
-                       "else",
-                       "elseif",
-                       "elif",
-                       "endif",
-                       "ifdef",
-                       "ifndef",
-                       "ifdefine"};
+char *preprocessors[]={(char *)"define",
+                       (char *)"include",
+                       (char *)"undef",
+                       (char *)"pragma",
+                       (char *)"if",
+                       (char *)"error",
+                       (char *)"warning",
+                       (char *)"else",
+                       (char *)"elseif",
+                       (char *)"elif",
+                       (char *)"endif",
+                       (char *)"ifdef",
+                       (char *)"ifndef",
+                       (char *)"ifdefine"};
 
 bool is_letter(char ch)
 {
