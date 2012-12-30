@@ -1,9 +1,16 @@
-In order to use Ninka you must install the comments extractor found in this directory.
+In order to use Ninka you must install the comments extractor found
+in this directory.
 
 If Ninka does not find it in the executable path, it will use the
-first 400 lines from source code, and is likely to reduce the precision of Ninka.
+first 400 lines from source code, and is likely to reduce the precision
+of Ninka.
 
+Code and Comments separator version 1.1 written by Daniel M. German
+(dmg@uvic.ca) based on Mangle v3.0.7 by Jon Newman <mangle@biz0r.biz>
+http://biz0r.biz. Unfortunately the original URL does not exist any
+more.
 
-
+This program is distributed under the GNU General Public License
+Version 2 or (at your option) any later version.
 
 
