@@ -179,7 +179,7 @@ sub Clean_Sentence
     # check for trailing bullets of different types
 
     s/^o //;
-    s/^\s*[0-9]+\s*[\-\)]//;
+    s/^\s*[0-9]{1-2}+\s*[\-\)]//;
     s/^[ \t]+//;
     s/[ \t]+$//;
     # remove a trailing -

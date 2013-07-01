@@ -25,6 +25,7 @@ AllRights:0:1:All rights reserved:
 # GENERIC rules for GPL
 GPLGen:00:1:^([^,;]+) is <licensed> under the terms of the GPL,? <version>$:2
 GPLGen:01:1:^([^,;]+) is <LICENSED> under the GPL, <VERSION>:$
+GPLGen:02:0:^<LICENSED> under the GPL <VERSION>, see file LICENSE in this source tree$:
 GPLGen:10:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL; either <VERSION>$:
 GPLGen:14:1:^([^,;]+) is free software; you can distribute it and/or modify it under the terms of the GPL (<VERSION>) as published by the Free Software Foundation$:
 GPLGen:20:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL(,|;)? <version>$:
@@ -494,6 +495,7 @@ publicDomain:09:0:^(.+) released to the public domain, as explained at http<colo
 publicDomain:10:0:^This code is explicitly placed into the public domain$
 publicDomain:11:0:^The author disclaims copyright to this source code$
 publicDomain:12:0:^The author of this program disclaims copyright$
+publicDomain:13:0:^This file has been put into the public domain$
 publicDomain:52:1:This ([^ ]+)is public domain software:
 publicDomain:53:1:and placed in the public domain:
 
@@ -662,3 +664,4 @@ psqlLiab:10:2:^IN NO EVENT SHALL (.+) BE LIABLE TO ANY PARTY FOR DIRECT, INDIREC
 psqlWarr:10:1:^THE (.+) SPECIFICALLY DISCLAIMS ANY WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE$
 psqlWarr2:10:1:^THE SOFTWARE PROVIDED HEREUNDER IS ON AN <quotes>AS IS<quotes> BASIS, AND (.+) HAS NO OBLIGATIONS TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS$
 postgresqlRef:10:0:^This code is released under the terms of the PostgreSQL License$
+FSFUnlimited:10:0:^This configure script is free software; the Free Software Foundation gives unlimited permission to copy, distribute and modify it$

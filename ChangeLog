@@ -1,3 +1,7 @@
+2013-07-01  dmg  <dmg@uvic.ca>
+
+	* senttok/licensesentence.dict (publicDomain): Added another public domain.
+
 2011-02-08    <dmg@uvic.ca>
 
 	* senttok/licensesentence.dict: Renamed the GPLVer2+KDE to
