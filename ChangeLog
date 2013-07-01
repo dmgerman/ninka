@@ -1,5 +1,9 @@
 2013-07-01  dmg  <dmg@uvic.ca>
 
+	* filter/criticalword.dict: tighten some definitions to avoid
+	false positives without hurting precision. In particular, removed
+	"subject" as a "legal" term.
+
 	* senttok/licensesentence.dict (publicDomain): Added another public domain.
 
 2011-02-08    <dmg@uvic.ca>
