@@ -156,6 +156,8 @@ CDDLv1orGPLv2:CDDLorGPLv2ifYouWish,CDDLorGPLv2IfYouAdd
 #----------------------------------------------------------------------
 MPL-MIT-dual:MPL-MIT-dual1,MPL-MIT-dual2
 #MPL1_1_GPL2_LGPL2:MPL1_1_GPL2_LGPL2_1intention,MPLv1_1,ApacheLicWherePart1,MPLwarranty,MPLsee,AllRights,MPLGPL2orLGPLv2_1,MPLorNPLandGPLandLPGLonlyGPLorLGPL,MPLoptionIfNotDelete3lics
+orGPLv2+orGPLv2.1+:Altern,GPLv2orLGPLv2\.1Ver2\+,MPLoptionNOTGPLVer0,MPLoptionIfNotDelete3licsVer0
+
 MPLGPL2orLGPLv2_1:MPLGPL2orLGPLv2_1
 MPL1_1andLGPLv2_1:MPL1_1andLGPLv2_1
 #,MPLoptionIfNotDelete2lics,GPLcopypart2,MPLv1_1,ApacheLicWherePart1,MPLwarrantyVar,MPL_LGPLsee

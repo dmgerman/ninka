@@ -162,6 +162,7 @@ XXXGPLEntertainingNoWarranty:52:1:^This program is distributed in the hope that 
 ############ These ones need to be fixed
 GPLv2orLGPLv2.1:17:0:The contents of this file may be used under the terms of either the GNU General Public License Version 2 or later \(the <quotes>GPL<quotes>\), or the GNU Lesser General Public License Version 2\.1 or later \(the <quotes>LGPL<quotes>\), in which case the provisions of the GPL or the LGPL are applicable instead of those above:
 GPLv2orLGPLv2.1:18:0:the contents of this file may be used under the terms of either of the GNU General Public License Version 2 or later \(the <quotes>GPL<quotes>\), or the GNU Lesser General Public License Version 2\.1 or later \(the <quotes>LGPL<quotes>\), in which case the provisions of the GPL or the LGPL are applicable instead of those above:
+GPLv2orLGPLv2.1:18:0:the contents of this file can be used under the terms of either of the GPL <VERSION> \(the <quotes>GPL<quotes>\), or the Lesser GPL Version 2.1 \(the <quotes>LGPL<quotes>\), in which case the provisions of the GPL or the LGPL are applicable instead of those above:
 ##############################################
 ########### GPL and BSD
 ############
@@ -531,8 +532,8 @@ conditionsPre:10:0:^The free distribution and use of this software in both sourc
 conditionsPre:11:0:^distributions of this source code include the above copyright notice, this list of conditions and the following disclaimer$
 conditionsPre:12:0:^distributions in binary form include the above copyright notice, this list of conditions and the following disclaimer in the documentation and\/or other associated materials$
 licenseBlockEnd:10:0:^END LICENSE BLOCK$:
-licenseBlockBegin:10:0:^BEGIN LICENSE BLOCK<colon>$:
-licenseBlockBegin:20:0:^BEGIN LICENSE BLOCK Version<colon>$:
+licenseBlockBegin:10:0:BEGIN LICENSE BLOCK<colon>$:
+licenseBlockBegin:20:0:BEGIN LICENSE BLOCK Version<colon>$:
 useOnlyInCompliance:10:0:^You may not use this file except in compliance with the License$:
 listContributors:10:0:^See the copyright.txt file in the distribution for a full listing of individual contributors$:
 listContributors:11:0:^See the copyright.txt in the distribution for a full listing of individual contributors$:x

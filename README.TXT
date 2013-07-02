@@ -174,3 +174,41 @@ intermediary files, and writes to the stdout the licenses found.
 
 ------
 
+How to read the output:
+
+Assume, for example, this output:
+
+eq.c;MITX11noNotice;1;2;2;6;0;Copyright,-1,-1,DualLicenseIntention,GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary
+
+
+So Ninka detects all the sentences, including the MIT variant, it
+finds the GPL bsd intention. But the license is not really BSD.
+
+The disclaimers are not what you expect. Now, in all fairness, maybe
+this is another lience.
+
+
+Let me translate the output for you:
+
+file: eq.c;
+License(s) found: MITX11noNotice
+
+
+;1;2;2;6;0;
+Found 1 license
+Composed of 2 lines (tokens)
+2 tokens were ignored
+6 tokens were not mached: Copyright,-1,-1,DualLicenseIntention,GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary (-1 indicates where a match happened)
+0 tokens were unknown
+
+
+Another example:
+
+nsAccessibilityUtils.cpp;MPLv1_1;1;1;3;7;2;UNKNOWN,MPL1_1_GPL2_LGPL2_1intentionVer0,1,-1,-1,MPLsee,Copyright,-1,Altern,UNKNOWN,MPLoptionNOTGPLVer0,MPLoptionIfNotDelete3licsVer0,licenseBlockEnd
+
+License matched:MPLv1_1;
+One license: 1;
+Composed of one token: 1;
+3 token were ignored 3;
+7 tokens were matched but not recognized as a license: UNKNOWN,MPL1_1_GPL2_LGPL2_1intentionVer0,1,-1,-1,MPLsee,Copyright,-1,Altern,UNKNOWN,MPLoptionNOTGPLVer0,MPLoptionIfNotDelete3licsVer0,licenseBlockEnd
+2 of those tokens were unknown
