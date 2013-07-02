@@ -1,5 +1,7 @@
 2013-07-02  dmg  <dmg@uvic.ca>
 
+	* matcher/matcher.pl: added fields to ignore in MPLv1.1
+
 	* the mozilla trilicense was not properly identified in the GPLv2+ or LGPLv2.1+
 
 	* matcher/matcher.pl: Added GPL2orOpenIB to the rules. Allowed

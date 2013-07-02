@@ -91,6 +91,8 @@ $NonCriticalRules{"tmate+"} = ['SeeFileSVN'];
 
 $NonCriticalRules{"openSSLvar2"} = ['BSDcondAdvPart2'];
 
+$NonCriticalRules{"MPLv1_1"} = ['licenseBlockBegin','MPLsee','Copyright','licenseBlockEnd','ApacheLicWherePart1','MPLwarranty'];
+
 # initialize
 
 my $path = $0;
