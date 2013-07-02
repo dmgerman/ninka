@@ -1,5 +1,9 @@
 2013-07-02  dmg  <dmg@uvic.ca>
 
+	* matcher/rules.dict: Added CDDLorGPLv2, CPLv1orGPLv2+orLGPLv2, QtorGPLv2orv3
+
+	* senttok/licensesentence.dict: the boost license sometimes contains just the URL refernece, fixed several regressions.
+
 	* matcher/rules.dict: Renamed the openSSLvar2 to Apachev1.0
 
 	* matcher/matcher.pl: added fields to ignore in MPLv1.1

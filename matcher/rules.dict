@@ -43,12 +43,15 @@ LGPLv2_1orv3:LGPLv2_1orv3
 
 GPLnoVersion:GPLnoVersionVer0
 GPLnoVersion:GPLnoVersion
+LesserGPLnoVersion:LesserGPLnoVersionVer0
 LesserGPLnoVersion:LesserGPLnoVersion
+LibraryGPLnoVersion:LibraryGPLnoVersionVer0
 
 LesserGPLnoVersion:LesserGPLnoVersionVer0
 GPLv1:GPLGenVer1
 GPLv1+:GPLGenVer1\+
 GPLv2:GPLGenVer2
+GPLv2:GPLGenVer2.0
 GPLv2+:GPLGenVer2\+
 GPLv2+:GPLGenVer2.0\+
 GPLv3:GPLGenVer3
@@ -66,12 +69,11 @@ LesserGPLv2+:LesserGPLGenVer2\.0\+|LesserGPLGenVer2\+
 LesserGPLv2:LesserGPLGenVer2.0|LesserGPLGenVer2
 GPLv2orv3:GPLv2orv3
 
-GPLv2orLGPLv2.1:GPLv2orLGPLv2\.1
 
 LGPLv2+MISTAKE:LGPLv2\+MISTAKE
 LGPLv2MISTAKE:LGPLv2MISTAKE
 
-GPLv1orArtistic:GPLv1orArtistic
+GPLv1orArtistic:GPLv1orArtisticVer0
 
 GPL2orOpenIB: GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary,X11asIs,X11asLiable
 
@@ -126,7 +128,7 @@ BSDdovecotStyle:BSDpre,BSDcondSource,BSDcondBinary,OpenSSLendorse,DovecotwriteCo
 
 
 ZLIB:BSDpre,BSDcondSource,originNotMisrepresented,BSDZlibAck,BSDZlibAltered,BSDcondEndorseRULE,BSDasIs,BSDWarr
-ZLIBref:ZLibLic
+ZLIBref:ZLibRef
 
 openSSL:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
 openSSLvar1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,SSLeayWindows,BSDcondAdvPart2,BSDasIs,BSDWarr,NoLicenseChangeAllowed
@@ -143,7 +145,10 @@ SleepyCat:BSDpre,BSDcondSource,BSDcondBinary,SleepyCatObtain,SleepyCatSourceIncl
 
 boost:boostPermission,boostPreserve,boostAsIs,boostWarr
 boostV1:boostRefv1
+boostV1Ref:boostSeev1
 SSLeay:SSLCopy,SSLeayAttrib,SSLeayAdType,BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,SSLeayCrypto,SSLeayWindows,BSDasIs,BSDWarr,SSLeayCantChangeLic
+QtorGPLv2orv3:qtCommercialuse,qtGPLv2or3Ver0
+# I don't think this next will ever match, but it does not matter any more
 GPLv2orv3qtException:qtCommercialuse,qtGPLv2or3,qtReviewGPL,qtGPLwhere,qtNokiaExtra,qtExceptionNotice
 Cecill:CecillEn1,CecillEn2,CecillEn3,CecillEn4,CecillEn5,CecillEn6,CecillEn7,CecillEn8
 
@@ -153,13 +158,14 @@ SimpleOnlyKeepCopyright:SimpleOnlyKeepCopyright
 QTv1:QTv1
 
 CDDLv1orGPLv2:CDDLorGPLv2ifYouWish,CDDLorGPLv2IfYouAdd
+CDDLorGPLv2:CDDLorGPLVer2
 #----------------------------------------------------------------------
 MPL-MIT-dual:MPL-MIT-dual1,MPL-MIT-dual2
 #MPL1_1_GPL2_LGPL2:MPL1_1_GPL2_LGPL2_1intention,MPLv1_1,ApacheLicWherePart1,MPLwarranty,MPLsee,AllRights,MPLGPL2orLGPLv2_1,MPLorNPLandGPLandLPGLonlyGPLorLGPL,MPLoptionIfNotDelete3lics
-orGPLv2+orGPLv2.1+:Altern,GPLv2orLGPLv2\.1Ver2\+,MPLoptionNOTGPLVer0,MPLoptionIfNotDelete3licsVer0
+orGPLv2+orLGPLv2.1+:Altern,GPLv2orLGPLv2\.1Ver2\+,MPLoptionNOTGPLVer0,MPLoptionIfNotDelete3licsVer0
 
 MPLGPL2orLGPLv2_1:MPLGPL2orLGPLv2_1
-MPL1_1andLGPLv2_1:MPL1_1andLGPLv2_1
+MPL1_1andLGPLv2_1:MPL1_1andLGPLVer2.1
 #,MPLoptionIfNotDelete2lics,GPLcopypart2,MPLv1_1,ApacheLicWherePart1,MPLwarrantyVar,MPL_LGPLsee
 #MPLsee:MPLsee
 MPL_LGPLsee:MPL_LGPLsee
@@ -220,6 +226,7 @@ publicDomain:publicDomain
 
 BisonException:BisonException
 ClassPathException:ClassPathException
+ClassPathExceptionGPLv2:ClassPathExceptionVer2
 Exception:Exception
 LinkException:LinkException
 LinkExceptionBison:LinkExceptionBison
@@ -228,6 +235,8 @@ LinkExceptionLeGPL:LinkExceptionLeGPL
 LinkExceptionOpenSSL:LinkExceptionOpenSSL
 WxException:wxLinkExceptionPart1,wxLinkExceptionPart2,wxLinkExceptionPart3Ver0,wxLinkExceptionPart4,wxLinkExceptionPart5,wxLinkExceptionPart6
 autoConfException:autoConfExceptionVer0
+qtWindowsException1.3:qtExceptionNoticeVer1.3
+qtExceptionWindows:qtExceptionWindows
 
 #
 DoWhatTheFuckYouWantv2:DoWhatTheFuckYouWantv2
@@ -253,6 +262,7 @@ simpleLic2:simpleLic2
 simpleLic:simpleLic
 
 #-------
+CPLv1orGPLv2+orLGPLv2+:CPL1_GPL2_LGPL2_1intentionVer0,CPLv1,ApacheLicWherePart1,MPLwarranty,MPLsee,Copyright,Altern,GPLv2orLGPLv2\.1Ver2\+,CPLoptionNOTGPLVer0,CPLoptionIfNotDelete3licsVer0
 CPLv1:CPLv1
 CPLv0.5:CPLv0.5
 
@@ -330,5 +340,8 @@ postgresqlRef:postgresqlRef
 # gplv2+ with kde option
 GPLVer2or3KDE+:GPLGenKDEor3\+Ver2,FSFwarranty,GPLseeDetailsVer0,GPLcopyVer0,GNUurl
 
+# we need to keep these towards the bottom
+GPLv2orLGPLv2.1:GPLv2orLGPLv2\.1Ver2
+GPLv2+orLGPLv2.1:GPLv2orLGPLv2\.1Ver2\+
 
 FSFUnlimited:FSFUnlimited
