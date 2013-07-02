@@ -102,7 +102,7 @@ if ($path eq "") {
 my $rules= $path . "rules.dict";
 my $interrules= $path . "interrules.dict";
 
-die "Usage $0 <filename>.sentences" unless $ARGV[0] =~ /\.senttok$/;
+die "Usage $0 <filename>.senttok" unless $ARGV[0] =~ /\.senttok$/;
 
 
 # read rules
@@ -222,6 +222,11 @@ sub Read_Rules
     my @rules = ();
     while ($sentence=<RULES>){
         chomp $sentence;
+	# clean up spaces
+	$sentence=~ s/^\s+//;
+	$sentence=~ s/\s+$//;
+	$sentence=~ s/\s*,\s*/,/g;
+	$sentence=~ s/\s*:\s*/:/g;
         #check format
         if ($sentence =~ /^#/ || $sentence !~ /(.*):(.*,)*(.*)/){
             next;
@@ -291,6 +296,7 @@ sub Match_License
         my $rulename=$rulelist[$j][0];
         my $lenRule = scalar(split(',', $rule));
         # replace rule with the length of the rule
+	print "To try [$rulename][$rule] on [$senttok]\n" if $debug;
         while ($senttok =~ s/,${rule},/,$lenRule,/){
             $countMatches ++;
             push (@result,$rulename);

@@ -1,3 +1,8 @@
+2013-07-02  dmg  <dmg@uvic.ca>
+
+	* matcher/matcher.pl: Added GPL2orOpenIB to the rules. Allowed
+	spaces in the defintion of the rules
+
 2013-07-01  dmg  <dmg@uvic.ca>
 
 	* filter/criticalword.dict: tighten some definitions to avoid

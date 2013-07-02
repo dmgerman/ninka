@@ -73,8 +73,7 @@ LGPLv2MISTAKE:LGPLv2MISTAKE
 
 GPLv1orArtistic:GPLv1orArtistic
 
-
-
+GPL2orOpenIB: GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary,X11asIs,X11asLiable
 
 CDDLv1orGPLv2:CDDLorGPLv2,CDDLorGPLv2compliance,CDDLorGPLv2where,ApachesPermLim,CDDLorGPLv2include
 
