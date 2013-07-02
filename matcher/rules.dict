@@ -130,9 +130,9 @@ ZLIBref:ZLibLic
 
 openSSL:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
 openSSLvar1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,SSLeayWindows,BSDcondAdvPart2,BSDasIs,BSDWarr,NoLicenseChangeAllowed
-openSSLvar2:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
 openSSLvar3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,BSDasIs,BSDWarr
 
+Apachev1.0:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
 Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
 Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
