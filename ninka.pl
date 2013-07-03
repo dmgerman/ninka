@@ -21,7 +21,9 @@ use Getopt::Std;
 
 my %opts = ();
 if (!getopts ("vfCcSsGgTtLd",\%opts) or scalar(@ARGV) == 0) {
-print STDERR "Usage $0 -fCtTvcgsGd <filename>
+print STDERR "Ninka version 1.1 RC1 
+
+Usage $0 -fCtTvcgsGd <filename>
 
   -v verbose
   -f force all processing
