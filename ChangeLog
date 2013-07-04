@@ -1,5 +1,15 @@
+2013-07-03  dmg  <dmg@uvic.ca>
+
+	* Version to 1.1 RC2
+	
+	* Added qt variants and fixed more GPL related unknowns. 
+
+	* When the license is unknown "UNKNOWN" is printed.
+
 2013-07-02  dmg  <dmg@uvic.ca>
 
+	* Added version to ninka.pl, set to 1.1 RC1
+	
 	* matcher/rules.dict: Added CDDLorGPLv2, CPLv1orGPLv2+orLGPLv2, QtorGPLv2orv3
 
 	* senttok/licensesentence.dict: the boost license sometimes contains just the URL refernece, fixed several regressions.

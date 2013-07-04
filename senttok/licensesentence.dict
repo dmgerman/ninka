@@ -33,6 +33,7 @@ GPLGen:20:1:^([^,;]+) is free software; you can redistribute it and/or modify it
 GPLGen:22:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of <VERSION> of the GPL$:
 GPLGen:23:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the GPL; <VERSION>:
 GPLGen:24:1:^([^,;]+) is <LICENSED> under the terms of the GPL <VERSION>, and can be copied, distributed, and modified under those terms:
+LesserGPLGen3or:25:1:^you can redistribute it and/or modify it under the terms of the Lesser GPL, either <VERSION> or 3 of the License
 LesserGPLGen:24:0:^you can redistribute it and/or modify it under the terms of the Lesser GPL <VERSION>:
 LesserGPLGen:23:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL \(as published by the Free Software Foundation\) <VERSION>$:
 LesserGPLGen:24:1:^([^,;]+) is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL, either <VERSION>$
@@ -58,6 +59,8 @@ GPLGen:80:1:^([^,;]+) provides this source code under the GPL <VERSION> License$
 GPLGen:81:1:^<LICENSED> under the GPL <VERSION>, see file ([^,;]+) in this ([^,;]+) for details$
 GPLGenVer2:90:0:^released under GNU GPL v2 or later license$
 GPLGenKDEor3+:10:1:^This program is free software; you can redistribute it and/or modify it under the terms of the GPL; either <VERSION>, or \(at your option\) version 3 or any later version accepted by the membership of KDE e\.V\. \(or its successor approved by the membership of KDE e\.V\.\), which shall act as a proxy defined in Section 14 of version 3 of the license$:
+
+LGPLGenKDEor3:10:1:^This library is free software; you can redistribute it and/or modify it under the terms of the Lesser GPL; either <VERSION>, or \(at your option\) version 3 accepted by the membership of KDE e\.V\. \(or its successor approved by the membership of KDE e\.V\.\), Nokia Corporation \(or its successors, if any\) and the KDE Free Qt Foundation, which shall act as a proxy defined in Section 6 of version 3 of the license$
 #
 GPLGenError:26:1:^You may use this ([^,;]+) under the GNU public license if you so wish$:
 GPLGenError:20:0:^this software may be distributed under the terms of the GNU Public License \(<quotes>GPL<quotes>\)$
@@ -198,7 +201,6 @@ XXXLGPLv2MISTAKE:24:1: is free software; you can redistribute it and/or modify i
 XXXLGPLv2MISTAKE:24:1: is free software; you can redistribute it and/or modify it under the terms of version 2 of the GNU Lesser General Public License as published by the Free Software Foundation:
 XXXLGPLv2_1:24:0:This is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; version 2\.1 of the License:
 XXXLGPLv2_1:24:1:This (library|program)? is free software; you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License version 2\.1,? as published by the Free Software Foundation:
-XXXLGPLv3+:17:0:you can redistribute it and/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation, either version 3 of the License, or \(at your option\) any later version:
 XXXLGPLv3seeDetails:70:0:See the GNU Lesser General Public License version 3 for more details:
 XXXLeGPLseeDetails:24:0:See the GNU Lesser General Public License for more details:
 XXXLiGPLseeDetails:24:0:See the GNU Library General Public License for more details:
@@ -213,8 +215,12 @@ BSDcondEndorseExtrict:10:2:Neither the names? of ([^;]+) nor the names of its co
 BSDasIsExtrict:10:4:THIS SOFTWARE IS PROVIDED BY (.+)<quotes>AS IS<quotes> AND ANY EXPRESS(ED)? OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED:
 BSDWarrExtrict:10:2:IN NO EVENT SHALL (.+) BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES \(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION\) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT \(INCLUDING NEGLIGENCE OR OTHERWISE\) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE:
 
+BSDlikeRef:10:1:^Use of this source code is governed by a BSD\-style license that can be found in the (.+) file$
+
+
 MITname:10:0:MIT License
 Copyright:10:1:Copyright \(c\)(.+)
+Copyright:20:1:^Copyright (.+)$:
 MITpermissionExtrict:10:0:Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files \(the <quotes>Software <quotes>\), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions<colon>:
 X11noticeExtrict:10:0:The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
 X11asIsExtrict:10:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT:
@@ -273,6 +279,7 @@ intelBSDexport1:70:0:EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPOR
 intelBSDexport2:70:0:It is licensee<quotes>s responsibility to comply with any export regulations applicable in licensee<quotes>s jurisdiction:
 intelBSDexport3:70:0:Under CURRENT \(May 2000\) U.S. export regulations this software is eligible for export from the U\.S\. and can be downloaded by or otherwise exported or reexported worldwide EXCEPT to U\.S\. embargoed destinations which include Cuba, Iraq, Libya, North Korea, Iran, Syria, Sudan, Afghanistan and any other country to which the U\.S\. has embargoed goods and services:
 FreeSoftware:70:0:This program is free software(<COLON>|\.):
+FreeSoftware:20:0:T^his library is free software<colon>$:
 SSLCopy:70:1:Copyright remains ([^,;]+), and as such any Copyright notices in the code are not to be removed:
 SSLeayAttrib:70:2:If this package is used in a product, ([^,;]+) should be given attribution as the author of the parts of the ([^,;]+) used:
 SSLeayAdType:70:0:This can be in the form of a textual message at program startup or in documentation \(online or textual\) provided with the package:
@@ -290,6 +297,10 @@ ApachesAsIs:52:0:Unless required by applicable law or agreed to in writing, soft
 ApachesPermLim:52:0:See the License for the specific language governing permissions and limitations under the License:
 Apachev2:52:0:Licensed under the Apache License, Version 2.0 \(the <quotes>License<quotes>\); You may not use this file except in compliance with the License:
 Apachev2:52:0:The ASF licenses this file to You under the Apache License, Version 2\.0 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+
+apacheAndLGPLgen:10:0:^<LICENSED> under the terms of either the Apache License \(<VERSION>\) or the Lesser GPL, as specified in the COPYING file$
+
+
 AsIsVariant2:52:1:This software is provided by ([^,;]+)<quotes>as is<quotes>:
 AsIsVariant:52:0:It is provided <quotes>AS IS<quotes> and no warranty of any kind including statutory or aspects relating to merchantability or fitness for any purpose is provided:
 BSDCondSourceVariant2:52:0:Redistributions of source code must retain the above copyright notice unmodified, this list of conditions, and the following disclaimer:
@@ -508,11 +519,30 @@ publicDomain:13:0:^This file has been put into the public domain$
 publicDomain:52:1:This ([^ ]+)is public domain software:
 publicDomain:53:1:and placed in the public domain:
 
-qtCommercialuse:52:0:Commercial Usage Licensees holding valid Qt Commercial licenses may use this file in accordance with the Qt Commercial License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Nokia:
+qtCommercialuse:52:1:Commercial Usage Licensees holding valid Qt Commercial licenses may use this file in accordance with the Qt Commercial License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Nokia:
+qtCommercialuse:10:2:Commercial License Usage Licensees holding valid commercial Qt licenses can use this file in accordance with the commercial license agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and (.+):
+qtDiaTems:10:0:For licensing terms and conditions see http<colon>//qt\.digia\.com/licensing:
+qtGPL:10:0:^GPL Usage Alternatively, this file can be used under the terms of the GPL <VERSION> and appearing in the file LICENSE.GPL included in the packaging of this file$:
+qtLGPL:10:0:^Lesser GPL Usage Alternatively, this file can be used under the terms of the Lesser GPL <VERSION> and appearing in the file LICENSE.LGPL included in the packaging of this file$:
 qtGPLv2or3:52:0:GPL Usage Alternatively, this file (can|may) be used under the terms of the GPL versions 2\.0 or 3\.0 as published by the Free Software Foundation and appearing in the file LICENSE\.GPL included in the packaging of this file:
+qtLGPL:10:0:^This file can be used under the terms of the Lesser GPL <VERSION> and appearing in the file LICENSE\.LGPL included in the packaging of this file$
 qtGPLwhere:52:0:http<colon>//www\.fsf\.org/licensing/licenses/info/GPLv2\.html and http<colon>//www\.gnu\.org/copyleft/gpl\.html:
+qtGPLwhere:10:0:http<colon>//www\.gnu\.org/copyleft/gpl\.html:
+qtLGPLv2.1where:10:0:http<colon>//www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 qtNokiaExtra:52:0:In addition, as a special exception, Nokia gives you certain additional rights:
+qtDigiaExtra:10:0:^In addition, as a special exception, Digia gives you certain additional rights$
 qtReviewGPL:52:0:Please review the following information to ensure General Public Licensing requirements will be met:
+qtReviewGPL:52:0:Please review the following information to ensure the GPL <VERSION> requirements will be met:
+qtReviewLGPL:52:0:Please review the following information to ensure the Lesser GPL <VERSION> requirements will be met<colon>:
+qtLegalNotice:10:0:^(Contact<colon> )?http<colon>//www.qt-project.org/legal$:
+qtBSDNotice:10:0:\$QT_BEGIN_LICENSE<colon>BSD\$ You may use this file under the terms of the BSD license as follows<colon>:
+qtRemovalNotice:10:0:^This header file may change from version to version without notice, or even be removed$:
+
+
+LesserGPLGen:20:1:\$QT_BEGIN_LICENSE<colon>LGPL\-ONLY\$ Lesser GPL Usage This file can be used under the terms of the Lesser GPL <VERSION> and appearing in the file LICENSE\.LGPL included in the packaging of this file:
+LesserGPLGen:10:0:Lesser GPL Usage This file can be used under the terms of the Lesser GPL <VERSION> and appearing in the file LICENSE.LGPL included in the packaging of this file
+
+
 #------------------------------------
 QTv1:10:0:^This file is distributed under the terms of the Q Public License version 1\.0$
 simpleLic1part1:52:0:Redistribution and use in source and binary forms are freely permitted provided that the above copyright notice and this paragraph and the following disclaimer are duplicated in all such forms:
@@ -613,6 +643,7 @@ Compliance:52:0:You may not use this file except in compliance with the License:
 IBMv1:10:0:^This software has been released under the terms of the IBM Public License:
 FreeType:10:0:^This file is part of the FreeType project, and may only be used, modified, and distributed under the terms of the FreeType project license, LICENSE.TXT$
 FreeType:11:0:^This file may only be used, modified, and distributed under the terms of the FreeType project license, LICENSE.TXT$
+FreeTypeNotice:10:0:^By continuing to use, modify, or distribute this file you indicate that you have read the license and understand and accept it fully$:
 ###
 Postfix:10:0:^LICENSE \.ad \.fi The Secure Mailer license must be distributed with this software$
 
@@ -649,8 +680,13 @@ ExceptionLeGPL:52:0:As a special exception to the GNU Lesser General Public Lice
 LinkExceptionOpenSSL:52:1:As a special exception to the GPL terms, (.*) grants permission to link the code of this program with any version of the OpenSSL library which is distributed under a license identical to that listed in the included Copying\.OpenSSL file, and distribute linked combinations including the two:
 ClassPathException:53:0:^([^,;]+) designates this particular file as subject to the <quotes>Classpath<quotes> exception as provided by ([^,;]+) in the GPL <VERSION> section of the License file that accompanied this code:
 ClassPathException:54:0:^([^,;]+) designates this particular file as subject to the <quotes>Classpath<quotes> exception as provided by ([^,;]+) in the LICENSE file that accompanied this code:
+# qt exception
 qtExceptionNotice:52:0:These rights are described in the Nokia Qt GPL Exception <VERSION>, included in the file GPL_EXCEPTION.txt in this package:
 qtExceptionWindows:10:0:^Qt for Windows\(R\) Licensees As a special exception, Nokia, as the sole copyright holder for Qt Designer, grants users of the Qt/Eclipse Integration plug\-in the right for the Qt/Eclipse Integration to link to functionality provided by Qt Designer and its related libraries$
+digiaQTExceptionNotice:10:0:^These rights are described in the Digia Qt LGPL Exception <VERSION>, included in the file LGPL_EXCEPTION.txt in this package$:
+#this rule should always follow the previous qtexception rules
+qtExceptionNoticeGenetic:10:1:^These rights are described in the (.+) Qt LGPL Exception <VERSION>, included in the file LGPL_EXCEPTION.txt in this package$:
+
 
 ### Ghosscript license
 artifex:10:0:^Refer to licensing information at http<colon>//www.artifex.com or contact Artifex Software.*$

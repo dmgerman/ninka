@@ -140,6 +140,9 @@ Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,Op
 Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 Apachev1.1:BSDpre,BSDcondSourceExtrict,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 
+# this is dangerous. The v2 applies to apache (ninka-ism)
+ApacheV2orLGPLgeneric:apacheAndLGPLgenVer2.0
+
 SleepyCat:BSDpre,BSDcondSource,BSDcondBinary,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarr
 
 
@@ -147,9 +150,22 @@ boost:boostPermission,boostPreserve,boostAsIs,boostWarr
 boostV1:boostRefv1
 boostV1Ref:boostSeev1
 SSLeay:SSLCopy,SSLeayAttrib,SSLeayAdType,BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,SSLeayCrypto,SSLeayWindows,BSDasIs,BSDWarr,SSLeayCantChangeLic
-QtorGPLv2orv3:qtCommercialuse,qtGPLv2or3Ver0
+# qt
+Qt:qtCommercialuseVer0
+orLGPLVer2.1:qtLGPLVer2.1
+orLGPLVer2:qtLGPLv2
+orGPLv3:qtGPLVer3.0
+orGPLv3:qtGPLVer3
+LGPL2.1:qtLGPLVer2.1
+
+#,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+#QtorGPLv2orLGPLv2.1:qtCommercialuseVer0,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+#QtorGPLv2orv3:qtCommercialuse,qtGPLv2or3Ver0
 # I don't think this next will ever match, but it does not matter any more
-GPLv2orv3qtException:qtCommercialuse,qtGPLv2or3,qtReviewGPL,qtGPLwhere,qtNokiaExtra,qtExceptionNotice
+#GPLv2orv3qtException:qtCommercialuse,qtGPLv2or3,qtReviewGPL,qtGPLwhere,qtNokiaExtra,qtExceptionNotice
+#QtorGPLv2orGPLv3orLGPLv2.1:qtCommercialuseVer0,qtDiaTems,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+#QtorGPLv2orLGPLv2.1:qtCommercialuseVer0,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+
 Cecill:CecillEn1,CecillEn2,CecillEn3,CecillEn4,CecillEn5,CecillEn6,CecillEn7,CecillEn8
 
 SimpleOnlyKeepCopyright:SimpleOnlyKeepCopyright
@@ -237,6 +253,7 @@ WxException:wxLinkExceptionPart1,wxLinkExceptionPart2,wxLinkExceptionPart3Ver0,w
 autoConfException:autoConfExceptionVer0
 qtWindowsException1.3:qtExceptionNoticeVer1.3
 qtExceptionWindows:qtExceptionWindows
+digiaQTExceptionNoticeVer1.1:digiaQTExceptionNoticeVer1.1
 
 #
 DoWhatTheFuckYouWantv2:DoWhatTheFuckYouWantv2
@@ -339,7 +356,7 @@ postgresql:psql,psqlLiab,psqlWarr,psqlWarr2
 postgresqlRef:postgresqlRef
 # gplv2+ with kde option
 GPLVer2or3KDE+:GPLGenKDEor3\+Ver2,FSFwarranty,GPLseeDetailsVer0,GPLcopyVer0,GNUurl
-
+LGPLVer2.1or3KDE+:LGPLGenKDEor3Ver2\.1\+,FSFwarranty,LesserGPLseeDetailsVer0,GPLcopyVer0
 # we need to keep these towards the bottom
 GPLv2orLGPLv2.1:GPLv2orLGPLv2\.1Ver2
 GPLv2+orLGPLv2.1:GPLv2orLGPLv2\.1Ver2\+

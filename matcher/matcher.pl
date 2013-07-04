@@ -83,7 +83,11 @@ $NonCriticalRules{"CDDLic"}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDD
 $NonCriticalRules{"CDDLorGPLv2"}= ["CDDLorGPLv2doNotAlter","AllRights","useOnlyInCompliance", "CDDLorGPLv2whereVer0", "ApachesPermLim", "CDDLorGPLv2include","CDDLorGPLv2IfApplicable", "CDDLorGPLv2Portions", "CDDLorGPLv2ifYouWishVer2", "CDDLorGPLv2IfYouAddVer2"];
 
 $NonCriticalRules{"CPLv1orGPLv2+orLGPLv2+"} = ["licenseBlockBegin", "licenseBlockEnd"];
-$NonCriticalRules{"QtorGPLv2orv3"} = ["Copyright","qtReviewGPLVer0","qtNokiaExtra","QTNokiaContact"];
+
+$NonCriticalRules{"Qt"} = ["Copyright","qtNokiaExtra","QTNokiaContact", "qtDiaTems"];
+$NonCriticalRules{"orLGPLVer2.1"} = ["LesserqtReviewGPLVer2.1","qtLGPLv2.1where"];
+$NonCriticalRules{"orGPLv3"} = ["qtReviewGPLVer3.0","qtReviewGPLVer3","qtGPLwhere"];
+$NonCriticalRules{"digiaQTExceptionNoticeVer1.1"} = ["qtDigiaExtra"];
 
 $NonCriticalRules{"MPLv1_0"}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
 $NonCriticalRules{"MPLv1_1"}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
@@ -98,6 +102,11 @@ $NonCriticalRules{"openSSLvar2"} = ['BSDcondAdvPart2'];
 
 $NonCriticalRules{"MPLv1_1"} = ['licenseBlockBegin','MPLsee','Copyright','licenseBlockEnd','ApacheLicWherePart1','MPLwarranty', 'MPLwarrantyVar'];
 $NonCriticalRules{"MPL1_1andLGPLv2_1"} = ["MPLoptionIfNotDelete2licsVer0",'MPL_LGPLseeVer0'];
+
+$NonCriticalRules{"FreeType"} = ["FreeTypeNotice"];
+
+$NonCriticalRules{"GPLVer2.1or3KDE+"} = [@gplNonCritical];
+$NonCriticalRules{"LGPLVer2.1or3KDE+"} = [@gplNonCritical];
 
 # initialize
 
@@ -401,8 +410,12 @@ sub Print_Result
     $senttok =~ s/^,(.*),$/$1/;
     
 #    print "$ignoredLines > $licenseLines > $unknownLines > $unmatchedLines\n";
-    
-    print join(',',@result), ";$countMatches;$licenseLines;$ignoredLines;$unmatchedLines;$unknownLines;$senttok\n";
+    if (scalar (@result) == 0) {
+	print "UNKNOWN";
+    } else {
+	print join(',',@result);
+    }
+    print ";$countMatches;$licenseLines;$ignoredLines;$unmatchedLines;$unknownLines;$senttok\n";
     $senttok = $save;
     
 }
