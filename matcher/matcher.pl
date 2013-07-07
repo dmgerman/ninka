@@ -76,6 +76,8 @@ $NonCriticalRules{"AGPLv3+"} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0
 $NonCriticalRules{"GPLnoVersion"} = [@gplNonCritical];
 
 $NonCriticalRules{"Apachev1.1"} = ['ApacheLic1_1'];
+$NonCriticalRules{"Apachev2"}   = ['ApachePre','ApacheSee'];
+
 $NonCriticalRules{"LibGCJLic"}  = ['LibGCJSee'];
 $NonCriticalRules{"CDDLicV1"}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
 $NonCriticalRules{"CDDLic"}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
