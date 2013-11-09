@@ -57,7 +57,7 @@ my $delete = exists $opts{d};
 
 my $path = $0;
 
-$path =~ s/\/+[^\/]+$//;
+$path =~ s/\/*[^\/]+$//;
 if ($path eq "") {
     $path = "./";
 }
