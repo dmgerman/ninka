@@ -19,8 +19,6 @@
 GPL2orBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorse,Altern,GPLGenVer2,BSDasIsExtrict,BSDWarrExtrict
 
 
-
-
 GPLv2:GPLv2
 GPLv2+:GPLv2\+
 GPLv3+:GPLv3\+
@@ -134,24 +132,25 @@ openSSL:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwrit
 openSSLvar1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,SSLeayWindows,BSDcondAdvPart2,BSDasIs,BSDWarr,NoLicenseChangeAllowed
 openSSLvar3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,BSDasIs,BSDWarr
 
-Apachev1.0:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSourceExtrict,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apache-1.0:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSourceExtrict,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 
 # this is dangerous. The v2 applies to apache (ninka-ism)
-ApacheV2orLGPLgeneric:apacheAndLGPLgenVer2.0
+Apache-2orLGPLgeneric:apacheAndLGPLgenVer2.0
 
 SleepyCat:BSDpre,BSDcondSource,BSDcondBinary,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarr
 
 
-boost:boostPermission,boostPreserve,boostAsIs,boostWarr
-boostV1:boostRefv1
-boostV1Ref:boostSeev1
+boost-1:boostPermission,boostPreserve,boostAsIs,boostWarr
+boost-1:boostRefv1
+boost-1ref:boostSeev1
+
 SSLeay:SSLCopy,SSLeayAttrib,SSLeayAdType,BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,SSLeayCrypto,SSLeayWindows,BSDasIs,BSDWarr,SSLeayCantChangeLic
 # qt
-Qt:qtCommercialuseVer0
+QPLt:qtCommercialuseVer0
 orLGPLVer2.1:qtLGPLVer2.1
 orLGPLVer2:qtLGPLv2
 orGPLv3:qtGPLVer3.0
@@ -171,7 +170,7 @@ Cecill:CecillEn1,CecillEn2,CecillEn3,CecillEn4,CecillEn5,CecillEn6,CecillEn7,Cec
 SimpleOnlyKeepCopyright:SimpleOnlyKeepCopyright
 
 #------------
-QTv1:QTv1
+QPLv1:QTv1
 
 CDDLv1orGPLv2:CDDLorGPLv2ifYouWish,CDDLorGPLv2IfYouAdd
 CDDLorGPLv2:CDDLorGPLVer2
@@ -233,8 +232,8 @@ EPLv1:EPLv1
 CDDLic:CDDLic
 CDDLicV1:CDDLicV1Only
 #----------------------------------------------------------------------
-Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2,ApachesAsIs,ApachesPermLim
-Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2
+Apache-2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2,ApachesAsIs,ApachesPermLim
+Apache-2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2
 # publid comain
 publicDomain:publicDomain
 
@@ -312,7 +311,7 @@ SameAsPerl:SameAsPerl
 
 ArtisticLicensev1:ArtisticLicensev1
 # QT triple license, outdated :)
-QtGPLv2or3:qtGPLv2or3
+QplGPLv2or3:qtGPLv2or3
 
 FreeType:FreeType
 ##

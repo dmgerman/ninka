@@ -20,7 +20,7 @@
 #
 # matchter.pl
 #
-# This script use a set of license sentence name as input 
+# This script use a set of license sentence name as input
 # and output license name corresponds to a rule which match the set.
 #
 # author: Yuki Manabe
@@ -64,6 +64,9 @@ $NonCriticalRules{'LesserGPLv2.1'} = [@gplNonCritical];
 $NonCriticalRules{'LGPLv2orv3'}= [@gplNonCritical];
 $NonCriticalRules{'LesserGPLv2'} = [@gplNonCritical];
 $NonCriticalRules{'LesserGPLv2+'} = [@gplNonCritical];
+$NonCriticalRules{'GPLVer2.1or3KDE+'} = [@gplNonCritical];
+$NonCriticalRules{'LGPLVer2.1or3KDE+'} = [@gplNonCritical];
+
 
 $NonCriticalRules{'GPLv2+'} = [@gplNonCritical];
 $NonCriticalRules{'GPLv2'} = [@gplNonCritical];
@@ -75,8 +78,8 @@ $NonCriticalRules{'AGPLv3'} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0'
 $NonCriticalRules{'AGPLv3+'} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0'];
 $NonCriticalRules{'GPLnoVersion'} = [@gplNonCritical];
 
-$NonCriticalRules{'Apachev1.1'} = ['ApacheLic1_1'];
-$NonCriticalRules{'Apachev2'}   = ['ApachePre','ApacheSee'];
+$NonCriticalRules{'Apache-1.1'} = ['ApacheLic1_1'];
+$NonCriticalRules{'Apache-2'}   = ['ApachePre','ApacheSee'];
 
 $NonCriticalRules{'LibGCJLic'}  = ['LibGCJSee'];
 $NonCriticalRules{'CDDLicV1'}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
@@ -106,9 +109,8 @@ $NonCriticalRules{'MPLv1_1'} = ['licenseBlockBegin','MPLsee','Copyright','licens
 $NonCriticalRules{'MPL1_1andLGPLv2_1'} = ['MPLoptionIfNotDelete2licsVer0','MPL_LGPLseeVer0'];
 
 $NonCriticalRules{'FreeType'} = ['FreeTypeNotice'];
+$NonCriticalRules{'boostV1'} = ['boostSeev1', 'SeeFile'];
 
-$NonCriticalRules{'GPLVer2.1or3KDE+'} = [@gplNonCritical];
-$NonCriticalRules{'LGPLVer2.1or3KDE+'} = [@gplNonCritical];
 
 # initialize
 
@@ -178,7 +180,7 @@ Match_License();
 
 my $match = 0;
 for (my $i=0;$i<=$#licSentNames ;$i++) {
-    if ($licSentNames[$i] == 0 and 
+    if ($licSentNames[$i] == 0 and
         ($licSentNames[$i] ne 'UNKNOWN'  and
          $licSentNames[$i] ne '')) {
 #        print "[$licSentNames[$i]]\n";
@@ -199,9 +201,9 @@ if ($match > 0) {
         #print $interRuleList[$i][0];
         @licSentNames = map { $_ eq $interRuleList[$i][0] ? $interRuleList[$i][1] : $_ } @licSentNames;
     }
-    
+
     $senttok= join(',',@licSentNames) . ',';
-    
+
     Match_License();
 }
 
@@ -284,7 +286,7 @@ sub Read_Original
     my ($inputF, $tokens, $originals) = @_;
 
     open (INPUTFILE, $inputF) or die ("Error: $inputF is not found.");
-    
+
     my $sentence;
     my @original;
     while ($sentence = <INPUTFILE>){
@@ -298,19 +300,19 @@ sub Read_Original
         print "NONE\n";
         exit 0;
     }
-    
+
 #print join(';',@licSentNames)."\n";
-    
+
     close INPUTFILE;
 }
 
 sub Match_License
 {
-    
+
 # create a string with the sentences
-    
+
     for (my $j=0;$j<=$#rulelist;$j++){
-        
+
         my $rule=$rulelist[$j][1];
         my $rulename=$rulelist[$j][0];
         my $lenRule = scalar(split(',', $rule));
@@ -324,7 +326,7 @@ sub Match_License
 #        print "\n";
         }
     }
-    
+
 #    print ">>>>[$senttok]\n";
 
     my $onlyAllRight = 0;
@@ -333,7 +335,7 @@ sub Match_License
 #print STDERR "Ending>>>>>>>$senttok\n";
 #print STDERR 'Size>>' , scalar(@result), "\n";
 #print STDERR 'Result>>', join(',', @result), "\n";
-    
+
 # let us remove allrights
 #    my $onlyAllRight = 1;
 #    for my $i (0.. scalar(@licSentNames)-1){
@@ -347,9 +349,9 @@ sub Match_License
 # output result
     if (scalar(@result) > 0){
         # at this point we have matched
-        
-        
-        # let us clean up the rules... let us print the matched rules, and the 
+
+
+        # let us clean up the rules... let us print the matched rules, and the
 #    if (grep(/GPL/, @result)) {
 #        print "GPL...\n";
 #        foreach my $r ($NonCriticalRules{GPL}) {
@@ -357,7 +359,7 @@ sub Match_License
 #        }
 #    }
         # general removal of rules
-        
+
 
         foreach my $r (@generalNonCritical) {
             while ($senttok =~ s/,$r,/,-1,/) {
@@ -365,7 +367,7 @@ sub Match_License
             }
         }
 #        print "[$senttok]\n";
-                
+
         foreach my $res (@result) {
             my $temp = $NonCriticalRules{$res};
             foreach my $r (@$temp) {
@@ -375,7 +377,7 @@ sub Match_License
                 }
             }
         }
-#        print "[$senttok]\n";        
+#        print "[$senttok]\n";
     }
 }
 
@@ -392,7 +394,7 @@ sub Print_Result
     my @sections = split(',', $senttok);
     die 'assertion 1' if $sections[0] ne '';
     die 'assertion 2' if $sections[scalar(@sections)] ne '';
-    
+
     my $ignoredLines = 0;
     my $licenseLines = 0;
     my $unknownLines = 0;
@@ -410,7 +412,7 @@ sub Print_Result
         }
     }
     $senttok =~ s/^,(.*),$/$1/;
-    
+
 #    print "$ignoredLines > $licenseLines > $unknownLines > $unmatchedLines\n";
     if (scalar (@result) == 0) {
 	print 'UNKNOWN';
@@ -419,5 +421,5 @@ sub Print_Result
     }
     print ";$countMatches;$licenseLines;$ignoredLines;$unmatchedLines;$unknownLines;$senttok\n";
     $senttok = $save;
-    
+
 }

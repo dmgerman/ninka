@@ -74,9 +74,13 @@ my $forceLicense = exists $opts{L};
 
 my $f = $ARGV[0];
 
+
 my $original = $f;
 
-
+$f =~ s/'/\\'/g;
+$f =~ s/\$/\\\$/g;
+$f =~ s/;/\\;/g;
+$f =~ s/ /\\ /g;
 
 print "Starting: $original;\n" if ($verbose);
 
@@ -87,38 +91,38 @@ my $sentencesFile = "${f}.sentences";
 my $goodsentFile = "${f}.goodsent";
 my $sentokFile = "${f}.senttok";
 
-if (not (-f "$f")) {
-    print "ERROR;[${f}] is not a file\n" ;
+if (not (-f $original)) {
+    print "ERROR;[${original}] is not a file\n" ;
     exit 0;
 }
 
 
 Do_File_Process($original, $commentsFile, ($force or $forceComments), 
-                "$path/extComments/extComments.pl -c1 '${original}'",
+                "$path/extComments/extComments.pl -c1 ${f}",
                 "Creating comments file",
                 exists $opts{c});
 
 
 Do_File_Process($commentsFile, $sentencesFile, ($force or $forceSentences), 
-                "$path/splitter/splitter.pl '${commentsFile}'",
+                "$path/splitter/splitter.pl ${commentsFile}",
                 "Splitting sentences", exists $opts{s}
     );
 
 Do_File_Process( $sentencesFile, $goodsentFile, ($force or $forceGood), 
-                 "$path/filter/filter.pl '${sentencesFile}'",
+                 "$path/filter/filter.pl ${sentencesFile}",
                  "Filtering good sentences", exists $opts{s}
     );
 
 Do_File_Process($goodsentFile, $sentokFile, ($force or $forceSentok), 
-                "$path/senttok/senttok.pl '${goodsentFile}' > '${sentokFile}'",
+                "$path/senttok/senttok.pl ${goodsentFile} > ${sentokFile}",
                 "Matching sentences against rules", exists $opts{t}
     );
 
 
 print "Matching ${f}.senttok against rules" if ($verbose);
-execute("$path/matcher/matcher.pl '${f}.senttok' > '${f}.license'");
+execute("$path/matcher/matcher.pl ${f}.senttok > ${f}.license");
 
-print `cat '${f}.license'`;
+print `cat ${f}.license`;
 
 unlink("${f}.code");
 
@@ -126,7 +130,7 @@ if ($delete) {
     unlink("${f}.badsent");
     unlink("${f}.comments");
     unlink("${f}.goodsent");
-#    unlink("${f}.sentences");
+    unlink("${f}.sentences");
     unlink("${f}.senttok");
 }
 

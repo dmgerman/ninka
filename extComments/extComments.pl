@@ -42,6 +42,14 @@ print STDERR "Usage $0 -v
 
 my $f = $ARGV[0];
 
+my $original = $f;
+
+$f =~ s/'/\\'/g;
+$f =~ s/\$/\\\$/g;
+$f =~ s/;/\\;/g;
+$f =~ s/ /\\ /g;
+
+
 #die "illegal file [$f]"  if $f =~ m@/\.@;
 
 my $numberComments = 1;
@@ -49,12 +57,14 @@ $numberComments = $opts{c} if exists $opts{c};
 my $verbose = 1;
 $verbose = exists $opts{v};
 
-
-
-if (get_size($f) == 0) {
+if (get_size($original) == 0) {
     print STDERR "Empty file, just exit\n" if $verbose;
     exit 0; # nothing to report, just end
 }
+
+
+
+
 
 my $commentsCmd = Determine_Comments_Extractor($f);
 
@@ -62,19 +72,20 @@ execute("$commentsCmd");
 
 if ($commentsCmd =~ /^comments/ and
     get_size("${f}.comments") == 0){
-    `cat '$f' | head -700  > ${f}.comments`;
+    `cat $f | head -700  > ${f}.comments`;
 }
 
 exit 0;
 
 
-sub Determine_Comments_Extractor 
+sub Determine_Comments_Extractor
 {
     my ($f) = @_;
+
     if ($f =~ /\.([^\.]+)$/) {
         my $ext= $1;
 
-        if ($ext =~ /^(pl|pm|py)$/ 
+        if ($ext =~ /^(pl|pm|py)$/
             ) {
 ########################
 # for the time being, let us just extract the top 400 lines
@@ -84,21 +95,21 @@ sub Determine_Comments_Extractor
         } elsif ($ext eq 'jl' or
                  $ext eq 'el'
             ) {
-            return "cat '$f' | head -400  > '${f}.comments'";
-#            return "$path/hashComments.pl -p ';' '$f'";;
+            return "cat $f | head -400  > ${f}.comments";
+#            return "$path/hashComments.pl -p ';' $f";;
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
             my $comm = `which comments`;
             if ($comm ne '') {
                 return "comments -c1 '$f' 2> /dev/null";
             } else {
-                return "cat '$f' | head -400  > '${f}.comments'";
+                return "cat $f | head -400  > ${f}.comments";
             }
         } else {
-            return "cat '$f' | head -700  > '${f}.comments'";
+            return "cat $f | head -700  > ${f}.comments";
         }
     } else {
         print "\n>>>>>>>>>>>>>>>>>>>>>\n";
-        return "cat '$f' | head -700  > '${f}.comments'";
+        return "cat $f | head -700  > ${f}.comments";
     }
 }
 
