@@ -2,6 +2,7 @@ package Ninka;
 
 use strict;
 use warnings;
+use Ninka::FileCleaner;
 use Ninka::CommentExtractor;
 use Ninka::LicenseMatcher;
 use Ninka::SentenceExtractor;
@@ -22,7 +23,10 @@ sub process_file {
 
     my %common_parameters = (verbose => $verbose);
 
-    my %parameters_step1 = (%common_parameters, input_file => $input_file);
+    my %parameters_step0 = (%common_parameters, input_file => $input_file);
+    my $cleaned_input_file = Ninka::FileCleaner->new(%parameters_step0)->execute;
+    
+    my %parameters_step1 = (%common_parameters, input_file => $cleaned_input_file);
     my $comments = Ninka::CommentExtractor->new(%parameters_step1)->execute();
 
     my %parameters_step2 = (%common_parameters, comments => $comments);

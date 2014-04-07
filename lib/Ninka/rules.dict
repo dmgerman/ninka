@@ -123,23 +123,25 @@ openSSL:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwrit
 openSSLvar1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,SSLeayWindows,BSDcondAdvPart2,BSDasIs,BSDWarr,NoLicenseChangeAllowed
 openSSLvar3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,BSDasIs,BSDWarr
 
-Apachev1.0:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
-Apachev1.1:BSDpre,BSDcondSourceExtrict,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apache-1.0:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apache-1.1:BSDpre,BSDcondSourceExtrict,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
 
 # this is dangerous. The v2 applies to apache (ninka-ism)
-ApacheV2orLGPLgeneric:apacheAndLGPLgenVer2.0
+Apache-2orLGPLgeneric:apacheAndLGPLgenVer2.0
 
 SleepyCat:BSDpre,BSDcondSource,BSDcondBinary,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarr
 
-boost:boostPermission,boostPreserve,boostAsIs,boostWarr
-boostV1:boostRefv1
-boostV1Ref:boostSeev1
+
+boost-1:boostPermission,boostPreserve,boostAsIs,boostWarr
+boost-1:boostRefv1
+boost-1ref:boostSeev1
+
 SSLeay:SSLCopy,SSLeayAttrib,SSLeayAdType,BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,SSLeayCrypto,SSLeayWindows,BSDasIs,BSDWarr,SSLeayCantChangeLic
 # qt
-Qt:qtCommercialuseVer0
+QPLt:qtCommercialuseVer0
 orLGPLVer2.1:qtLGPLVer2.1
 orLGPLVer2:qtLGPLv2
 orGPLv3:qtGPLVer3.0
@@ -158,7 +160,7 @@ Cecill:CecillEn1,CecillEn2,CecillEn3,CecillEn4,CecillEn5,CecillEn6,CecillEn7,Cec
 
 SimpleOnlyKeepCopyright:SimpleOnlyKeepCopyright
 
-QTv1:QTv1
+QPLv1:QTv1
 
 CDDLv1orGPLv2:CDDLorGPLv2ifYouWish,CDDLorGPLv2IfYouAdd
 CDDLorGPLv2:CDDLorGPLVer2
@@ -222,7 +224,8 @@ Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2
 # publid comain
 publicDomain:publicDomain
 
-# exceptions
+# Exceptions
+
 BisonException:BisonException
 ClassPathException:ClassPathException
 ClassPathExceptionGPLv2:ClassPathExceptionVer2
@@ -240,7 +243,7 @@ digiaQTExceptionNoticeVer1.1:digiaQTExceptionNoticeVer1.1
 
 DoWhatTheFuckYouWantv2:DoWhatTheFuckYouWantv2
 
-# MX4J license
+# MX4J License
 MX4J:MX4JLicense1,SeeMX4JLicense
 
 # beer
@@ -252,7 +255,7 @@ IntelACPILic:IntelPart02,IntelPart03,IntelPart04,IntelPart05,IntelPart06,IntelPa
 # X11 CMU variant
 X11CMU:X11CMUlicPerm,X11CMUAsIs,X11CMUlicLiability,X11CMUlicReturn
 
-# simple licenses
+# Simple licenses
 simpleLicense1:simpleLic1part1
 simpleLic2:simpleLic2
 simpleLic:simpleLic
@@ -283,8 +286,8 @@ IBMv1:IBMv1
 SameAsPerl:SameAsPerl
 
 ArtisticLicensev1:ArtisticLicensev1
-# QT triple license, outdated
-QtGPLv2or3:qtGPLv2or3
+# QT triple license, outdated :)
+QplGPLv2or3:qtGPLv2or3
 
 FreeType:FreeType
 
@@ -300,7 +303,7 @@ sequenceLic:sequenceLic
 # tmate
 tmate+:tmatePlus
 
-# error licenses
+# Error licenses
 subversionError:subversionError
 
 # ghostscript

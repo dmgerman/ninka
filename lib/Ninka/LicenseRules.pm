@@ -34,6 +34,8 @@ $NON_CRITICAL_RULES{'LesserGPLv2.1'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LGPLv2orv3'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LesserGPLv2'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LesserGPLv2+'} = [@GPL_NON_CRITICAL];
+$NON_CRITICAL_RULES{'GPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
+$NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 
 $NON_CRITICAL_RULES{'GPLv2+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'GPLv2'} = [@GPL_NON_CRITICAL];
@@ -45,8 +47,8 @@ $NON_CRITICAL_RULES{'AGPLv3'} = [@GPL_NON_CRITICAL, 'AGPLreceivedVer0', 'AGPLsee
 $NON_CRITICAL_RULES{'AGPLv3+'} = [@GPL_NON_CRITICAL, 'AGPLreceivedVer0', 'AGPLseeVer0'];
 $NON_CRITICAL_RULES{'GPLnoVersion'} = [@GPL_NON_CRITICAL];
 
-$NON_CRITICAL_RULES{'Apachev1.1'} = ['ApacheLic1_1'];
-$NON_CRITICAL_RULES{'Apachev2'} = ['ApachePre', 'ApacheSee'];
+$NON_CRITICAL_RULES{'Apache-1.1'} = ['ApacheLic1_1'];
+$NON_CRITICAL_RULES{'Apache-2'} = ['ApachePre', 'ApacheSee'];
 
 $NON_CRITICAL_RULES{'LibGCJLic'} = ['LibGCJSee'];
 $NON_CRITICAL_RULES{'CDDLicV1'} = ['Compliance', 'CDDLicWhere', 'ApachesPermLim', 'CDDLicIncludeFile', 'UseSubjectToTerm', 'useOnlyInCompliance'];
@@ -76,9 +78,9 @@ $NON_CRITICAL_RULES{'MPLv1_1'} = ['licenseBlockBegin', 'MPLsee', 'Copyright', 'l
 $NON_CRITICAL_RULES{'MPL1_1andLGPLv2_1'} = ['MPLoptionIfNotDelete2licsVer0', 'MPL_LGPLseeVer0'];
 
 $NON_CRITICAL_RULES{'FreeType'} = ['FreeTypeNotice'];
+$NON_CRITICAL_RULES{'boostV1'} = ['boostSeev1', 'SeeFile'];
 
-$NON_CRITICAL_RULES{'GPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
-$NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
+
 
 1;
 
