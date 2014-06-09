@@ -57,6 +57,7 @@ AGPLv3+:AGPLGenVer3\+
 LesserGPLv3+:LesserGPLGenVer3\+
 LesserGPLv3:LesserGPLGenVer3
 LesserGPLv2.1:LesserGPLGenVer2\.1
+LesserGPLv2.1:LGPLV2_1Ver0
 LesserGPLv2.1+:LesserGPLGenVer2\.1\+
 LibraryGPLv2:LibraryGPLGenVer2\.0\+|LibraryGPLGenVer2
 LibraryGPLv2+:LibraryGPLGenVer2\.0\+|LibraryGPLGenVer2\+
