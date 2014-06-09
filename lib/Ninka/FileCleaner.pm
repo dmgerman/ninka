@@ -49,7 +49,7 @@ Escapes apostrophes and other potentially disturbing characters
 
 =head1 COPYRIGHT AND LICENSE
 
-    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German, 2015 Daniele Fognini and Johannes Najjar
+    Copyright (C) 2009-2014  Yuki Manabe and Daniel M. German, 2015 Daniele Fognini and Johannes Najjar
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as

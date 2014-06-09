@@ -96,7 +96,7 @@ Contains rules used by Ninka::LicenseMatcher.
 
 =head1 COPYRIGHT AND LICENSE
 
-    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
+    Copyright (C) 2009-2014  Yuki Manabe and Daniel M. German
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as
