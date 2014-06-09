@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-#    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
+#    Copyright (C) 2009-2014  Yuki Manabe and Daniel M. German
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of the GNU General Public License as
@@ -21,7 +21,7 @@ use Getopt::Std;
 
 my %opts = ();
 if (!getopts ("vfCcSsGgTtLd",\%opts) or scalar(@ARGV) == 0) {
-print STDERR "Ninka version 1.1
+print STDERR "Ninka version 1.2
 
 Usage $0 -fCtTvcgsGd <filename>
 
