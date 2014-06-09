@@ -129,6 +129,7 @@ GNUurl:10:0:^If not, see <http://www.gnu.org/licenses/>$
 # Special cases GPL
 #
 GPLv2orv3:10:0:^This file may be used under the terms of the GPL versions 2\.0 or 3\.0 as published by the Free Software Foundation and appearing in the files LICENSE\.GPL2 and LICENSE\.GPL3 included in the packaging of this file$
+LGPLV2_1:11:0:^Lesser GPL 2\.1 applies:
 LGPLv2_1orv3:10:0:^([^,;]+) is free software; you can redistribute it and\/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2\.1 or 3 of the License$
 LGPLv2orv3:10:0:^([^,;]+) is free software; you can redistribute it and\/or modify it under the terms of the GNU Lesser General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) version 3$
 ###XXXGPLCopy:50:2:^You should have received a copy of the GPL along with (.*); see the file (.*); see the file (.*)$:
@@ -219,8 +220,6 @@ BSDlikeRef:10:1:^Use of this source code is governed by a BSD\-style license tha
 
 
 MITname:10:0:MIT License
-Copyright:10:1:Copyright \(c\)(.+)
-Copyright:20:1:^Copyright (.+)$:
 MITpermissionExtrict:10:0:Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files \(the <quotes>Software <quotes>\), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions<colon>:
 X11noticeExtrict:10:0:The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software
 X11asIsExtrict:10:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes>, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT:
@@ -712,3 +711,5 @@ FSFUnlimited:10:0:^This configure script is free software; the Free Software Fou
 # these should be the last one
 
 Exception:52:0:As a special exception,:
+Copyright:10:1:Copyright \(c\)(.+)
+Copyright:20:1:^Copyright (.+)$:
