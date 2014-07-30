@@ -2,11 +2,13 @@
 
 use strict;
 use Switch;
-use DBI;
 use File::Temp;
 use File::Find;
 use File::Basename;
 use Scalar::Util qw(looks_like_number);
+use Spreadsheet::WriteExcel;
+
+
 
 if(scalar(@ARGV) != 2){
     print STDERR "Incorrect number of arguments\n";
@@ -21,30 +23,26 @@ if ($path eq "") {
     $path = "./";
 }
 
-my ($pack, $db) = @ARGV;
+my ($pack, $excelFile) = @ARGV;
 
-my $dbh = DBI->connect("DBI:SQLite:dbname=$db", "", "", {RaiseError => 1, AutoCommit => 0})
-    or die $DBI::errstr;
-$dbh->do("CREATE TABLE IF NOT EXISTS
-          comments (filename TEXT, path TEXT, container TEXT, content TEXT,
-          PRIMARY KEY(filename, path, container))");
-$dbh->do("CREATE TABLE IF NOT EXISTS
-          sentences (filename TEXT, path TEXT, container TEXT, content TEXT,
-          PRIMARY KEY(filename, path, container))");
-$dbh->do("CREATE TABLE IF NOT EXISTS
-          goodsents (filename TEXT, path TEXT, container TEXT, content TEXT,
-          PRIMARY KEY(filename, path, container))");
-$dbh->do("CREATE TABLE IF NOT EXISTS
-          badsents (filename TEXT, path TEXT, container TEXT, content TEXT,
-          PRIMARY KEY(filename, path, container))");
-$dbh->do("CREATE TABLE IF NOT EXISTS
-          senttoks (filename TEXT, path TEXT, container TEXT, content TEXT,
-          PRIMARY KEY(filename, path, container))");
-$dbh->do("CREATE TABLE IF NOT EXISTS
-          licenses (filename TEXT, path TEXT, container TEXT, licenses TEXT,
-          num_found INT, lines INT, toks_ignored INT, toks_unmatched INT,
-          toks_unknown INT, tokens TEXT,
-          PRIMARY KEY(filename, path, container))");
+my $workbook = Spreadsheet::WriteExcel->new($excelFile);
+my $worksheet = $workbook->add_worksheet();
+my $format = $workbook->add_format(); # Add a format
+$format->set_bold();
+$format->set_color('blue');
+$format->set_align('center');
+
+$worksheet->set_column(0, 9,  30);
+$worksheet->write(0, 0, 'Container File', $format);
+$worksheet->write(0, 1, 'Path', $format);
+$worksheet->write(0, 2, 'Filename', $format);
+$worksheet->write(0, 3, 'Licenses', $format);
+$worksheet->write(0, 4, 'Num found', $format);
+$worksheet->write(0, 5, 'Lines', $format);
+$worksheet->write(0, 6, 'TokensIgnored', $format);
+$worksheet->write(0, 7, 'TokensUnmatched', $format);
+$worksheet->write(0, 8, 'TokensUnknown', $format);
+$worksheet->write(0, 9, 'Tokens', $format);
 
 my $tempdir = File::Temp->newdir();
 my $dirname = $tempdir->dirname;
@@ -82,7 +80,9 @@ find(
     $dirname
 );
 
-print "***** Entering Ninka Data into Database [$db] *****\n";
+print "***** Entering Ninka Data into excell file [$excelFile] *****\n";
+my $row = 1;
+
 foreach my $file (@ninkafiles) {
 
     my $filepath = dirname($file);
@@ -98,50 +98,50 @@ foreach my $file (@ninkafiles) {
     my $sth;
     switch (getExtension($basefile)){
 	case ".comments" {
-	    print "Inserting [$basefile] into table comments\n";
-	    $sth = $dbh->prepare("INSERT INTO comments VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
+	    ;
 	}
 	case ".sentences" {
-	    print "Inserting [$basefile] into table sentences\n";
-	    $sth = $dbh->prepare("INSERT INTO sentences VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
+	    ;
 	}
 	case ".goodsent" {
-	    print "Inserting [$basefile] into table goodsents\n";
-	    $sth = $dbh->prepare("INSERT INTO goodsents VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
+	    ;
 	}
 	case ".badsent" {
-	    print "Inserting [$basefile] into table goodsents\n";
-	    $sth = $dbh->prepare("INSERT INTO badsents VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
+	    ;
 	}
 	case ".senttok" {
-	    print "Inserting [$basefile] into table senttoks\n";
-	    $sth = $dbh->prepare("INSERT INTO senttoks VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
+	    ;
 	}
 	case ".license" {
 	    print "Inserting [$basefile] into table licenses\n";
 	    my @columns = parseLicenseData($filedata);
-	    $sth = $dbh->prepare("INSERT INTO licenses VALUES
-                                  ('$rootfile', '$filepath', '$packname', '$columns[0]', '$columns[1]',
-                                   '$columns[2]', '$columns[3]', '$columns[4]', '$columns[5]', '$columns[6]')");
+
+	    $worksheet->write($row, 0, $packname);
+	    $worksheet->write($row, 1, $filepath);
+	    $worksheet->write($row, 2, $rootfile);
+
+	    my $originalFile = $file;
+	    $originalFile =~ s/\.license$//;
+
+	    if (-T $originalFile) {
+		foreach my $i (0..7) {
+		    $worksheet->write($row, $i+3, $columns[$i]);
+		}
+	    } else {
+		$worksheet->write($row, 3, "Binary File");
+	    }
+
+            $row++;
 	}
     }
-
-    $sth->bind_param(1, $filedata);
-    $sth->execute;
     close($fh);
 }
 
-$dbh->commit();
-$dbh->disconnect();
+$workbook->close();
 
 sub parseLicenseData {
     my ($data) = @_;
-
+    chomp($data);
     my @columns;
     my @fields = split(';', $data);
     if($fields[0] eq "NONE\n"){
