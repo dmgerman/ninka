@@ -1,4 +1,20 @@
 #!/usr/bin/perl
+#
+#    Copyright (C) 2014  Anthony Kohan and Daniel M. German
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of the GNU General Public License as
+#    published by the Free Software Foundation; either version 2 of
+#    the License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#    General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 use strict;
 use Switch;
@@ -65,76 +81,52 @@ find(
 
 print "***** Beginning Execution of Ninka *****\n";
 foreach my $file (@files) {
-    print "Running ninka on file [$file]\n";
-    execute("perl ${path}/ninka.pl '$file'");
+    if (-T $file) {
+	print "Running ninka on file [$file]\n";
+	execute("perl ${path}/ninka.pl '$file'");
+    }
 }
 
-my @ninkafiles;
-find(
-    sub {
-	my $ext = getExtension($File::Find::name);
-	if($ext =~ m/(comments|sentences|goodsent|badsent|senttok|license)$/){
-	    push @ninkafiles, $File::Find::name;
-	}
-    },
-    $dirname
-);
 
 print "***** Entering Ninka Data into excell file [$excelFile] *****\n";
 my $row = 1;
 
-foreach my $file (@ninkafiles) {
+foreach my $file (@files) {
 
     my $filepath = dirname($file);
     $filepath =~ s/$dirname//;
-    my $basefile = basename($file);
-    my $rootfile = removeExtension($basefile);
+    my $basefile = fileparse($file, ());
     my $packname = basename($pack);
 
     #Read entire file into a string
-    open (my $fh, '<', $file) or die "Can't open file $!";
-    my $filedata = do { local $/; <$fh> };
+    my $filename = "${file}.license";
 
-    my $sth;
-    switch (getExtension($basefile)){
-	case ".comments" {
-	    ;
-	}
-	case ".sentences" {
-	    ;
-	}
-	case ".goodsent" {
-	    ;
-	}
-	case ".badsent" {
-	    ;
-	}
-	case ".senttok" {
-	    ;
-	}
-	case ".license" {
-	    print "Inserting [$basefile] into table licenses\n";
-	    my @columns = parseLicenseData($filedata);
+    $worksheet->write($row, 0, $packname);
+    $worksheet->write($row, 1, $filepath);
+    $worksheet->write($row, 2, $basefile);
 
-	    $worksheet->write($row, 0, $packname);
-	    $worksheet->write($row, 1, $filepath);
-	    $worksheet->write($row, 2, $rootfile);
+    print "Inserting [$basefile] into table spreedsheet\n";
 
-	    my $originalFile = $file;
-	    $originalFile =~ s/\.license$//;
+    if (-T $filename)  {
 
-	    if (-T $originalFile) {
-		foreach my $i (0..7) {
-		    $worksheet->write($row, $i+3, $columns[$i]);
-		}
-	    } else {
-		$worksheet->write($row, 3, "Binary File");
-	    }
+	open (my $fh, '<', $filename) or die "Can't open file $!";
+	my $filedata = do { local $/; <$fh> };
 
-            $row++;
+	my @columns = parseLicenseData($filedata);
+
+
+	my $originalFile = $file;
+	$originalFile =~ s/\.license$//;
+
+	foreach my $i (0..7) {
+	    $worksheet->write($row, $i+3, $columns[$i]);
 	}
+	close($fh);
+
+    } else {
+	$worksheet->write($row, 3, "Binary File");
     }
-    close($fh);
+    $row++;
 }
 
 $workbook->close();
