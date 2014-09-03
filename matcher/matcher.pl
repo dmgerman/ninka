@@ -54,72 +54,72 @@ my @gplNonCritical = ('GPLnoVersion',
                       'GNUurl',
                       'GPLseeDetailsVer0');
 
-$NonCriticalRules{"LibraryGPLv3+"} = [@gplNonCritical];
-$NonCriticalRules{"LibraryGPLv3"} = [@gplNonCritical];
-$NonCriticalRules{"LibraryGPLv2+"} = [@gplNonCritical];
-$NonCriticalRules{"LibraryGPLv2"} = [@gplNonCritical];
-$NonCriticalRules{"LesserGPLv3"} = [@gplNonCritical, 'LesserGPLseeVer3','LesserGPLcopyVer3','SeeFileVer3'];
-$NonCriticalRules{"LesserGPLv2.1+"} = [@gplNonCritical];
-$NonCriticalRules{"LesserGPLv2.1"} = [@gplNonCritical];
-$NonCriticalRules{"LGPLv2orv3"}= [@gplNonCritical];
-$NonCriticalRules{"LesserGPLv2"} = [@gplNonCritical];
-$NonCriticalRules{"LesserGPLv2+"} = [@gplNonCritical];
+$NonCriticalRules{'LibraryGPLv3+'} = [@gplNonCritical];
+$NonCriticalRules{'LibraryGPLv3'} = [@gplNonCritical];
+$NonCriticalRules{'LibraryGPLv2+'} = [@gplNonCritical];
+$NonCriticalRules{'LibraryGPLv2'} = [@gplNonCritical];
+$NonCriticalRules{'LesserGPLv3'} = [@gplNonCritical, 'LesserGPLseeVer3','LesserGPLcopyVer3','SeeFileVer3'];
+$NonCriticalRules{'LesserGPLv2.1+'} = [@gplNonCritical];
+$NonCriticalRules{'LesserGPLv2.1'} = [@gplNonCritical];
+$NonCriticalRules{'LGPLv2orv3'}= [@gplNonCritical];
+$NonCriticalRules{'LesserGPLv2'} = [@gplNonCritical];
+$NonCriticalRules{'LesserGPLv2+'} = [@gplNonCritical];
 
-$NonCriticalRules{"GPLv2+"} = [@gplNonCritical];
-$NonCriticalRules{"GPLv2"} = [@gplNonCritical];
-$NonCriticalRules{"GPLv1+"} = [@gplNonCritical];
-$NonCriticalRules{"GPLv1"} = [@gplNonCritical];
-$NonCriticalRules{"GPLv3+"} = [@gplNonCritical];
-$NonCriticalRules{"GPLv3"} = [@gplNonCritical];
-$NonCriticalRules{"AGPLv3"} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0'];
-$NonCriticalRules{"AGPLv3+"} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0'];
-$NonCriticalRules{"GPLnoVersion"} = [@gplNonCritical];
+$NonCriticalRules{'GPLv2+'} = [@gplNonCritical];
+$NonCriticalRules{'GPLv2'} = [@gplNonCritical];
+$NonCriticalRules{'GPLv1+'} = [@gplNonCritical];
+$NonCriticalRules{'GPLv1'} = [@gplNonCritical];
+$NonCriticalRules{'GPLv3+'} = [@gplNonCritical];
+$NonCriticalRules{'GPLv3'} = [@gplNonCritical];
+$NonCriticalRules{'AGPLv3'} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0'];
+$NonCriticalRules{'AGPLv3+'} = [@gplNonCritical, 'AGPLreceivedVer0','AGPLseeVer0'];
+$NonCriticalRules{'GPLnoVersion'} = [@gplNonCritical];
 
-$NonCriticalRules{"Apachev1.1"} = ['ApacheLic1_1'];
-$NonCriticalRules{"Apachev2"}   = ['ApachePre','ApacheSee'];
+$NonCriticalRules{'Apachev1.1'} = ['ApacheLic1_1'];
+$NonCriticalRules{'Apachev2'}   = ['ApachePre','ApacheSee'];
 
-$NonCriticalRules{"LibGCJLic"}  = ['LibGCJSee'];
-$NonCriticalRules{"CDDLicV1"}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
-$NonCriticalRules{"CDDLic"}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
+$NonCriticalRules{'LibGCJLic'}  = ['LibGCJSee'];
+$NonCriticalRules{'CDDLicV1'}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
+$NonCriticalRules{'CDDLic'}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
 
-$NonCriticalRules{"CDDLorGPLv2"}= ["CDDLorGPLv2doNotAlter","AllRights","useOnlyInCompliance", "CDDLorGPLv2whereVer0", "ApachesPermLim", "CDDLorGPLv2include","CDDLorGPLv2IfApplicable", "CDDLorGPLv2Portions", "CDDLorGPLv2ifYouWishVer2", "CDDLorGPLv2IfYouAddVer2"];
+$NonCriticalRules{'CDDLorGPLv2'}= ['CDDLorGPLv2doNotAlter','AllRights','useOnlyInCompliance', 'CDDLorGPLv2whereVer0', 'ApachesPermLim', 'CDDLorGPLv2include','CDDLorGPLv2IfApplicable', 'CDDLorGPLv2Portions', 'CDDLorGPLv2ifYouWishVer2', 'CDDLorGPLv2IfYouAddVer2'];
 
-$NonCriticalRules{"CPLv1orGPLv2+orLGPLv2+"} = ["licenseBlockBegin", "licenseBlockEnd"];
+$NonCriticalRules{'CPLv1orGPLv2+orLGPLv2+'} = ['licenseBlockBegin', 'licenseBlockEnd'];
 
-$NonCriticalRules{"Qt"} = ["Copyright","qtNokiaExtra","QTNokiaContact", "qtDiaTems"];
-$NonCriticalRules{"orLGPLVer2.1"} = ["LesserqtReviewGPLVer2.1","qtLGPLv2.1where"];
-$NonCriticalRules{"orGPLv3"} = ["qtReviewGPLVer3.0","qtReviewGPLVer3","qtGPLwhere"];
-$NonCriticalRules{"digiaQTExceptionNoticeVer1.1"} = ["qtDigiaExtra"];
+$NonCriticalRules{'Qt'} = ['Copyright','qtNokiaExtra','QTNokiaContact', 'qtDiaTems'];
+$NonCriticalRules{'orLGPLVer2.1'} = ['LesserqtReviewGPLVer2.1','qtLGPLv2.1where'];
+$NonCriticalRules{'orGPLv3'} = ['qtReviewGPLVer3.0','qtReviewGPLVer3','qtGPLwhere'];
+$NonCriticalRules{'digiaQTExceptionNoticeVer1.1'} = ['qtDigiaExtra'];
 
-$NonCriticalRules{"MPLv1_0"}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
-$NonCriticalRules{"MPLv1_1"}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
-$NonCriticalRules{"NPLv1_1"}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
-$NonCriticalRules{"NPLv1_0"}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
+$NonCriticalRules{'MPLv1_0'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
+$NonCriticalRules{'MPLv1_1'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
+$NonCriticalRules{'NPLv1_1'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
+$NonCriticalRules{'NPLv1_0'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
 
-$NonCriticalRules{"subversion"} = ['SeeFileSVN','subversionHistory'];
-$NonCriticalRules{"subversion+"} = ['SeeFileSVN','subversionHistory'];
-$NonCriticalRules{"tmate+"} = ['SeeFileSVN'];
+$NonCriticalRules{'subversion'} = ['SeeFileSVN','subversionHistory'];
+$NonCriticalRules{'subversion+'} = ['SeeFileSVN','subversionHistory'];
+$NonCriticalRules{'tmate+'} = ['SeeFileSVN'];
 
-$NonCriticalRules{"openSSLvar2"} = ['BSDcondAdvPart2'];
+$NonCriticalRules{'openSSLvar2'} = ['BSDcondAdvPart2'];
 
-$NonCriticalRules{"MPLv1_1"} = ['licenseBlockBegin','MPLsee','Copyright','licenseBlockEnd','ApacheLicWherePart1','MPLwarranty', 'MPLwarrantyVar'];
-$NonCriticalRules{"MPL1_1andLGPLv2_1"} = ["MPLoptionIfNotDelete2licsVer0",'MPL_LGPLseeVer0'];
+$NonCriticalRules{'MPLv1_1'} = ['licenseBlockBegin','MPLsee','Copyright','licenseBlockEnd','ApacheLicWherePart1','MPLwarranty', 'MPLwarrantyVar'];
+$NonCriticalRules{'MPL1_1andLGPLv2_1'} = ['MPLoptionIfNotDelete2licsVer0','MPL_LGPLseeVer0'];
 
-$NonCriticalRules{"FreeType"} = ["FreeTypeNotice"];
+$NonCriticalRules{'FreeType'} = ['FreeTypeNotice'];
 
-$NonCriticalRules{"GPLVer2.1or3KDE+"} = [@gplNonCritical];
-$NonCriticalRules{"LGPLVer2.1or3KDE+"} = [@gplNonCritical];
+$NonCriticalRules{'GPLVer2.1or3KDE+'} = [@gplNonCritical];
+$NonCriticalRules{'LGPLVer2.1or3KDE+'} = [@gplNonCritical];
 
 # initialize
 
 my $path = $0;
 $path =~ s/[^\/]+$//;
-if ($path eq "") {
-    $path = "./";
+if ($path eq '') {
+    $path = './';
   }
 
-my $rules= $path . "rules.dict";
-my $interrules= $path . "interrules.dict";
+my $rules= $path . 'rules.dict';
+my $interrules= $path . 'interrules.dict';
 
 die "Usage $0 <filename>.senttok" unless $ARGV[0] =~ /\.senttok$/;
 
@@ -160,7 +160,7 @@ Read_Original($ARGV[0], \@licSentNames, \@original);
 
 # matching spdx requires to match strict licenses, with no alternatives...
 
-my $senttok= "," . join(",",@licSentNames) . ",";
+my $senttok= ',' . join(',',@licSentNames) . ',';
 my @result=();
 my $countMatches = 0;
 
@@ -179,8 +179,8 @@ Match_License();
 my $match = 0;
 for (my $i=0;$i<=$#licSentNames ;$i++) {
     if ($licSentNames[$i] == 0 and 
-        ($licSentNames[$i] ne "UNKNOWN"  and
-         $licSentNames[$i] ne "")) {
+        ($licSentNames[$i] ne 'UNKNOWN'  and
+         $licSentNames[$i] ne '')) {
 #        print "[$licSentNames[$i]]\n";
         $licSentNames[$i] =~ s/Extrict$//;
         $match ++;
@@ -200,7 +200,7 @@ if ($match > 0) {
         @licSentNames = map { $_ eq $interRuleList[$i][0] ? $interRuleList[$i][1] : $_ } @licSentNames;
     }
     
-    $senttok= join(",",@licSentNames) . ',';
+    $senttok= join(',',@licSentNames) . ',';
     
     Match_License();
 }
@@ -213,7 +213,7 @@ exit 0;
 
 
 #print @licSentNames;
-#print join(";",@licSentNames)."\n";
+#print join(';',@licSentNames)."\n";
 
 
 # 3. matching
@@ -229,14 +229,14 @@ sub Is_Unknown
 {
     my ($s) = @_;
     my @f = split (/,/, $s);
-    return $f[0] eq "UNKNOWN";
+    return $f[0] eq 'UNKNOWN';
 }
 
 
 sub Read_Rules
 {
     my ($rulesF) = @_;
-    open (RULES, "<$rulesF") or die ("Error: rules.dict is not found.");
+    open (RULES, "<$rulesF") or die ('Error: rules.dict is not found.');
     my $sentence;
     my @rules = ();
     while ($sentence=<RULES>){
@@ -263,7 +263,7 @@ sub Read_Inter_Rules
     my ($interrules) = @_;
 
     my @list;
-    open (IRULES, "<$interrules") or die ("Error: interrules.dict is not found.");
+    open (IRULES, "<$interrules") or die ('Error: interrules.dict is not found.');
     my $sentence;
     while ($sentence=<IRULES>){
         chomp $sentence;
@@ -299,7 +299,7 @@ sub Read_Original
         exit 0;
     }
     
-#print join(";",@licSentNames)."\n";
+#print join(';',@licSentNames)."\n";
     
     close INPUTFILE;
 }
@@ -320,7 +320,7 @@ sub Match_License
             $countMatches ++;
             push (@result,$rulename);
 #        print ">>>>$senttok|$rulelist[$j][1]\n";
-#        print "Result: ", join(',', @result);
+#        print 'Result: ', join(',', @result);
 #        print "\n";
         }
     }
@@ -331,13 +331,13 @@ sub Match_License
 
 # ok, at this point we have removed all the matched sentences...
 #print STDERR "Ending>>>>>>>$senttok\n";
-#print STDERR "Size>>" , scalar(@result), "\n";
-#print STDERR "Result>>", join(',', @result), "\n";
+#print STDERR 'Size>>' , scalar(@result), "\n";
+#print STDERR 'Result>>', join(',', @result), "\n";
     
 # let us remove allrights
 #    my $onlyAllRight = 1;
 #    for my $i (0.. scalar(@licSentNames)-1){
-#        if (($licSentNames[$i] eq "AllRights")) {
+#        if (($licSentNames[$i] eq 'AllRights')) {
 #            $licSentNames[$i] = '';
 #        } else {
 #            $onlyAllRight = 0;
@@ -390,8 +390,8 @@ sub Print_Result
     # ok, so now, what I want to output it:
     # licenses; number of licenses matched;number of sentences matched; number of sentences ignored;number of sentences not matched;number of sentences unknown
     my @sections = split(',', $senttok);
-    die "assertion 1" if $sections[0] ne "";
-    die "assertion 2" if $sections[scalar(@sections)] ne "";
+    die 'assertion 1' if $sections[0] ne '';
+    die 'assertion 2' if $sections[scalar(@sections)] ne '';
     
     my $ignoredLines = 0;
     my $licenseLines = 0;
@@ -403,7 +403,7 @@ sub Print_Result
             $ignoredLines += - $sections[$i];
         } elsif ($sections[$i] != 0) {
             $licenseLines += $sections[$i];
-        } elsif ($sections[$i] eq "UNKNOWN") {
+        } elsif ($sections[$i] eq 'UNKNOWN') {
             $unknownLines ++;
         } else {
             $unmatchedLines++;
@@ -413,7 +413,7 @@ sub Print_Result
     
 #    print "$ignoredLines > $licenseLines > $unknownLines > $unmatchedLines\n";
     if (scalar (@result) == 0) {
-	print "UNKNOWN";
+	print 'UNKNOWN';
     } else {
 	print join(',',@result);
     }

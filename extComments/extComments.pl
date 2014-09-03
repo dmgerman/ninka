@@ -23,13 +23,13 @@ use strict;
 my $path = $0;
 
 $path =~ s/\/+[^\/]+$//;
-if ($path eq "") {
-    $path = "./";
+if ($path eq '') {
+    $path = './';
 }
 
 # set parameters
 my %opts = ();
-if (!getopts ("vc:p:",\%opts)) {
+if (!getopts ('vc:p:',\%opts)) {
 print STDERR "Usage $0 -v
 
   -v verbose
@@ -81,14 +81,14 @@ sub Determine_Comments_Extractor
 
             return "cat '$f' | head -400  > '${f}.comments'";
 #            return "$path/hashComments.pl -p '#' '$f'";
-        } elsif ($ext eq "jl" or
-                 $ext eq "el"
+        } elsif ($ext eq 'jl' or
+                 $ext eq 'el'
             ) {
             return "cat '$f' | head -400  > '${f}.comments'";
 #            return "$path/hashComments.pl -p ';' '$f'";;
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
             my $comm = `which comments`;
-            if ($comm ne "") {
+            if ($comm ne '') {
                 return "comments -c1 '$f' 2> /dev/null";
             } else {
                 return "cat '$f' | head -400  > '${f}.comments'";

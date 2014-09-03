@@ -35,8 +35,8 @@ use strict;
 # His ideas, however, linger in here (and his dictionary of abbreviations)
 
 
-my $dictionary = "splitter.dict";
-my $abbrv_file = "splitter.abv";
+my $dictionary = 'splitter.dict';
+my $abbrv_file = 'splitter.abv';
 my $len = 0;
 my %COMMON_TERMS = ();
 my %ABBREVIATIONS = ();
@@ -45,8 +45,8 @@ my $output_file = $ARGV[0];
 # where are we running the splitter from?
 my $path = $0;
 $path =~ s/[^\/]+$//;
-if ($path eq "") {
-    $path = "./";
+if ($path eq '') {
+    $path = './';
 }
 $dictionary = $path . $dictionary;
 $abbrv_file = $path . $abbrv_file;
@@ -212,7 +212,7 @@ sub Split_Text
     my $puctuation;
     my @result;
     my $after;
-    my $currentSentence = "";
+    my $currentSentence = '';
     # this breaks the sentence into 
     # 1. Any text before a separator
     # 2. The separator [.!?:\n]
@@ -229,18 +229,18 @@ sub Split_Text
         $after = $3;
         
         # if next character is not a space, then we are not in a sentence"
-        if ($after ne " " && $after ne "\t") {
+        if ($after ne ' ' && $after ne "\t") {
             $currentSentence .= $sentence;
             next;
         }
         #at this point we know that there is a space after
-        if ($punctuation eq ":"  || $punctuation eq "?"  || $punctuation eq "!") {
+        if ($punctuation eq ':'  || $punctuation eq '?'  || $punctuation eq '!') {
             # let us consider this right here a beginning of a sentence
             push @result, $currentSentence . $sentence;
-            $currentSentence = "";
+            $currentSentence = '';
             next;
         }
-        if ($punctuation eq ".") {
+        if ($punctuation eq '.') {
             # we have a bunch of alternatives
             # for the time being just consider a new sentence
 
@@ -259,16 +259,16 @@ sub Split_Text
                 if (length($lastWord) == 1 ) {
                     # single character abbreviations are special...
                     # we will assume they never split the sentence if they are capitalized. 
-                    if (($lastWord ge "A") and
-                        ($lastWord le "Z"))  {
+                    if (($lastWord ge 'A') and
+                        ($lastWord le 'Z'))  {
                         $currentSentence .= $sentence;
                         next;
                     }
                     print "last word an abbrev $sentenceMatch lastword [$lastWord] before [$before]\n";
 
                     # but some are lowercase!
-                    if (($lastWord eq "e") or
-                        ($lastWord eq "i"))  {
+                    if (($lastWord eq 'e') or
+                        ($lastWord eq 'i'))  {
                         $currentSentence .= $sentence;
                         next;
                     }
@@ -291,14 +291,14 @@ sub Split_Text
             }
 
             push @result, $currentSentence . $sentence;
-            $currentSentence = "";
+            $currentSentence = '';
             next;
         }
-        die "We have not dealt with this case";
+        die 'We have not dealt with this case';
     }
     push @result, $currentSentence . $text;
     
-    #Print_Non_Sentence($text,"\n","");
+    #Print_Non_Sentence($text,"\n",'');
     return @result;
 
 }
@@ -306,7 +306,7 @@ sub Split_Text
 sub loadDictionary {
 
 	# Initialise var
-    my $common_term = "";	
+    my $common_term = '';	
 
     if (open(DICT, $dictionary)) {
 
@@ -328,7 +328,7 @@ sub loadAbbreviations
 {
     
     # Initialise var
-    my $abbrv_term = "";	
+    my $abbrv_term = '';	
     
     if (open(ABBRV, $abbrv_file)) {
         

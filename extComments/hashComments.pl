@@ -26,7 +26,7 @@ use Getopt::Std;
 
 # set parameters
 my %opts = ();
-if (!getopts ("vc:p:",\%opts)) {
+if (!getopts ('vc:p:',\%opts)) {
 print STDERR "Usage $0 -v
 
   -v verbose
