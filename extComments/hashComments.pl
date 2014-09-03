@@ -1,5 +1,4 @@
 #!/usr/bin/env perl
-
 #
 #    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
 #
@@ -17,20 +16,18 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-
-# this is to extract the first <n> comments from any language that 
+# this is to extract the first <n> comments from any language that
 # uses the same prefix
 
 use Getopt::Std;
 
-
 # set parameters
 my %opts = ();
 if (!getopts ('vc:p:',\%opts)) {
-print STDERR "Usage $0 -v
+    print STDERR "Usage $0 -v
 
   -v verbose
-  -p comment char  
+  -p comment char
   -c count of comment blocks
 
 \n";
@@ -64,7 +61,7 @@ while (<>) {
     if (Is_Comment($_)) {
         s/\t/ /g;
         s/ +/ /g;
-        $comCount ++ if (not $insideComment);
+        $comCount++ if (not $insideComment);
         $insideComment = 1;
         /$commentChar+/;
         print OUT $' . "\n"; #'
@@ -72,18 +69,15 @@ while (<>) {
         print OUT "\n";
     } else {
         exit 0;
-    } 
+    }
 }
 
-
-sub Is_Comment
-{
+sub Is_Comment {
     my ($st) = @_;
     return  ($st =~ /^\s*$commentChar/);
 }
 
-sub Is_Blank
-{
+sub Is_Blank {
     my ($st) = @_;
     return ($st =~ /^\s*$/);
 }

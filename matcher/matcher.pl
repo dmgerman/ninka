@@ -1,5 +1,4 @@
 #!/usr/bin/env perl
-
 #
 #    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
 #
@@ -20,7 +19,7 @@
 #
 # matchter.pl
 #
-# This script use a set of license sentence name as input 
+# This script use a set of license sentence name as input
 # and output license name corresponds to a rule which match the set.
 #
 # author: Yuki Manabe
@@ -116,31 +115,23 @@ my $path = $0;
 $path =~ s/[^\/]+$//;
 if ($path eq '') {
     $path = './';
-  }
+}
 
 my $rules= $path . 'rules.dict';
 my $interrules= $path . 'interrules.dict';
 
 die "Usage $0 <filename>.senttok" unless $ARGV[0] =~ /\.senttok$/;
 
-
-# read rules
-
 my $countUnknowns = 0;
 
-
 # read the rules
-
 my @rulelist = Read_Rules($rules);
-
 my @interRuleList = Read_Inter_Rules($interrules);
 
-
-my @licSentNames=();
+my @licSentNames = ();
 my @original;
 
 Read_Original($ARGV[0], \@licSentNames, \@original);
-
 
 #foreach my $x (@licSentNames) {
 #    print "$x\n";
@@ -160,8 +151,8 @@ Read_Original($ARGV[0], \@licSentNames, \@original);
 
 # matching spdx requires to match strict licenses, with no alternatives...
 
-my $senttok= ',' . join(',',@licSentNames) . ',';
-my @result=();
+my $senttok = ',' . join(',', @licSentNames) . ',';
+my @result = ();
 my $countMatches = 0;
 
 print "[$senttok]\n" if $debug;
@@ -177,154 +168,136 @@ Match_License();
 #Print_Result();
 
 my $match = 0;
-for (my $i=0;$i<=$#licSentNames ;$i++) {
-    if ($licSentNames[$i] == 0 and 
-        ($licSentNames[$i] ne 'UNKNOWN'  and
+for (my $i = 0; $i <= $#licSentNames; $i++) {
+    if ($licSentNames[$i] == 0 and
+        ($licSentNames[$i] ne 'UNKNOWN' and
          $licSentNames[$i] ne '')) {
 #        print "[$licSentNames[$i]]\n";
         $licSentNames[$i] =~ s/Extrict$//;
-        $match ++;
+        $match++;
     }
 }
 
 #Print_Result();
 
-
 if ($match > 0) {
 #    print "REDO\n";
-    for (my $i=0;$i<=$#interRuleList ;$i++){
+    for (my $i = 0; $i <= $#interRuleList; $i++) {
         #for my $ref( @interRuleList[$i]){
         #  print "@$ref\n";
         #}
         #print $interRuleList[$i][0];
         @licSentNames = map { $_ eq $interRuleList[$i][0] ? $interRuleList[$i][1] : $_ } @licSentNames;
     }
-    
-    $senttok= join(',',@licSentNames) . ',';
-    
+
+    $senttok = join(',', @licSentNames) . ',';
+
     Match_License();
 }
 
 Print_Result();
 
-
 exit 0;
-
-
 
 #print @licSentNames;
 #print join(';',@licSentNames)."\n";
-
 
 # 3. matching
 ###############################
 
 # we will iterate over rules, matching as many as we can...
 
-
-
-
-
-sub Is_Unknown
-{
+sub Is_Unknown {
     my ($s) = @_;
     my @f = split (/,/, $s);
     return $f[0] eq 'UNKNOWN';
 }
 
-
-sub Read_Rules
-{
+sub Read_Rules {
     my ($rulesF) = @_;
     open (RULES, "<$rulesF") or die ('Error: rules.dict is not found.');
     my $sentence;
     my @rules = ();
-    while ($sentence=<RULES>){
+    while ($sentence = <RULES>) {
         chomp $sentence;
-	# clean up spaces
-	$sentence=~ s/^\s+//;
-	$sentence=~ s/\s+$//;
-	$sentence=~ s/\s*,\s*/,/g;
-	$sentence=~ s/\s*:\s*/:/g;
+        # clean up spaces
+        $sentence =~ s/^\s+//;
+        $sentence =~ s/\s+$//;
+        $sentence =~ s/\s*,\s*/,/g;
+        $sentence =~ s/\s*:\s*/:/g;
         #check format
-        if ($sentence =~ /^#/ || $sentence !~ /(.*):(.*,)*(.*)/){
+        if ($sentence =~ /^#/ || $sentence !~ /(.*):(.*,)*(.*)/) {
             next;
         }
         $sentence =~ /(.*?):(.*)/;
-        push (@rules,[$1,$2]);
+        push (@rules, [$1, $2]);
     }
     close RULES;
     return @rules;
 }
 
-
-sub Read_Inter_Rules
-{
+sub Read_Inter_Rules {
     my ($interrules) = @_;
 
     my @list;
     open (IRULES, "<$interrules") or die ('Error: interrules.dict is not found.');
     my $sentence;
-    while ($sentence=<IRULES>){
+    while ($sentence = <IRULES>) {
         chomp $sentence;
         #check format
-        if ($sentence =~ /^#/ || $sentence !~ /(.*?):(.*)/){
+        if ($sentence =~ /^#/ || $sentence !~ /(.*?):(.*)/) {
             next;
         }
-        foreach my $item (split(/\|/,$2)){
-            push (@list,[$item,$1]);
+        foreach my $item (split(/\|/, $2)) {
+            push (@list, [$item, $1]);
         }
     }
     close IRULES;
     return @list;
 }
 
-sub Read_Original
-{
+sub Read_Original {
     my ($inputF, $tokens, $originals) = @_;
 
     open (INPUTFILE, $inputF) or die ("Error: $inputF is not found.");
-    
+
     my $sentence;
     my @original;
-    while ($sentence = <INPUTFILE>){
+    while ($sentence = <INPUTFILE>) {
         chomp $sentence;
-        my @fields = split(':',$sentence);
-        push(@$originals,$fields[1]);
+        my @fields = split(':', $sentence);
+        push(@$originals, $fields[1]);
         my @token = split(';', $fields[0]);
-        push(@$tokens,$token[0]);
+        push(@$tokens, $token[0]);
     }
     if (scalar(@$originals) == 0) {
         print "NONE\n";
         exit 0;
     }
-    
+
 #print join(';',@licSentNames)."\n";
-    
+
     close INPUTFILE;
 }
 
-sub Match_License
-{
-    
+sub Match_License {
 # create a string with the sentences
-    
-    for (my $j=0;$j<=$#rulelist;$j++){
-        
-        my $rule=$rulelist[$j][1];
-        my $rulename=$rulelist[$j][0];
+
+    for (my $j = 0; $j <= $#rulelist; $j++) {
+        my $rule = $rulelist[$j][1];
+        my $rulename = $rulelist[$j][0];
         my $lenRule = scalar(split(',', $rule));
         # replace rule with the length of the rule
-	print "To try [$rulename][$rule] on [$senttok]\n" if $debug;
-        while ($senttok =~ s/,${rule},/,$lenRule,/){
-            $countMatches ++;
-            push (@result,$rulename);
+        print "To try [$rulename][$rule] on [$senttok]\n" if $debug;
+        while ($senttok =~ s/,${rule},/,$lenRule,/) {
+            $countMatches++;
+            push (@result, $rulename);
 #        print ">>>>$senttok|$rulelist[$j][1]\n";
 #        print 'Result: ', join(',', @result);
 #        print "\n";
         }
     }
-    
+
 #    print ">>>>[$senttok]\n";
 
     my $onlyAllRight = 0;
@@ -333,7 +306,7 @@ sub Match_License
 #print STDERR "Ending>>>>>>>$senttok\n";
 #print STDERR 'Size>>' , scalar(@result), "\n";
 #print STDERR 'Result>>', join(',', @result), "\n";
-    
+
 # let us remove allrights
 #    my $onlyAllRight = 1;
 #    for my $i (0.. scalar(@licSentNames)-1){
@@ -345,11 +318,10 @@ sub Match_License
 #    }
 
 # output result
-    if (scalar(@result) > 0){
+    if (scalar(@result) > 0) {
         # at this point we have matched
-        
-        
-        # let us clean up the rules... let us print the matched rules, and the 
+
+        # let us clean up the rules... let us print the matched rules, and the
 #    if (grep(/GPL/, @result)) {
 #        print "GPL...\n";
 #        foreach my $r ($NonCriticalRules{GPL}) {
@@ -357,7 +329,6 @@ sub Match_License
 #        }
 #    }
         # general removal of rules
-        
 
         foreach my $r (@generalNonCritical) {
             while ($senttok =~ s/,$r,/,-1,/) {
@@ -365,7 +336,7 @@ sub Match_License
             }
         }
 #        print "[$senttok]\n";
-                
+
         foreach my $res (@result) {
             my $temp = $NonCriticalRules{$res};
             foreach my $r (@$temp) {
@@ -375,13 +346,11 @@ sub Match_License
                 }
             }
         }
-#        print "[$senttok]\n";        
+#        print "[$senttok]\n";
     }
 }
 
-
-sub Print_Result
-{
+sub Print_Result {
 #        $senttok =~ s/AllRights(,?)/$1/g;
 #        $senttok =~ s/UNKNOWN,/,/g;
 #        $senttok =~ s/,+/,/g;
@@ -392,7 +361,7 @@ sub Print_Result
     my @sections = split(',', $senttok);
     die 'assertion 1' if $sections[0] ne '';
     die 'assertion 2' if $sections[scalar(@sections)] ne '';
-    
+
     my $ignoredLines = 0;
     my $licenseLines = 0;
     my $unknownLines = 0;
@@ -404,20 +373,20 @@ sub Print_Result
         } elsif ($sections[$i] != 0) {
             $licenseLines += $sections[$i];
         } elsif ($sections[$i] eq 'UNKNOWN') {
-            $unknownLines ++;
+            $unknownLines++;
         } else {
             $unmatchedLines++;
         }
     }
     $senttok =~ s/^,(.*),$/$1/;
-    
+
 #    print "$ignoredLines > $licenseLines > $unknownLines > $unmatchedLines\n";
     if (scalar (@result) == 0) {
-	print 'UNKNOWN';
+        print 'UNKNOWN';
     } else {
-	print join(',',@result);
+        print join(',',@result);
     }
     print ";$countMatches;$licenseLines;$ignoredLines;$unmatchedLines;$unknownLines;$senttok\n";
     $senttok = $save;
-    
 }
+

@@ -1,5 +1,4 @@
 #!/usr/bin/env perl
-
 #
 #    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
 #
@@ -30,7 +29,7 @@ if ($path eq '') {
 # set parameters
 my %opts = ();
 if (!getopts ('vc:p:',\%opts)) {
-print STDERR "Usage $0 -v
+    print STDERR "Usage $0 -v
 
   -v verbose
   -c count of comment blocks
@@ -49,8 +48,6 @@ $numberComments = $opts{c} if exists $opts{c};
 my $verbose = 1;
 $verbose = exists $opts{v};
 
-
-
 if (get_size($f) == 0) {
     print STDERR "Empty file, just exit\n" if $verbose;
     exit 0; # nothing to report, just end
@@ -60,30 +57,22 @@ my $commentsCmd = Determine_Comments_Extractor($f);
 
 execute("$commentsCmd");
 
-if ($commentsCmd =~ /^comments/ and
-    get_size("${f}.comments") == 0){
+if ($commentsCmd =~ /^comments/ and get_size("${f}.comments") == 0) {
     `cat '$f' | head -700  > ${f}.comments`;
 }
 
 exit 0;
 
-
-sub Determine_Comments_Extractor 
-{
+sub Determine_Comments_Extractor {
     my ($f) = @_;
     if ($f =~ /\.([^\.]+)$/) {
         my $ext= $1;
 
-        if ($ext =~ /^(pl|pm|py)$/ 
-            ) {
-########################
-# for the time being, let us just extract the top 400 lines
-
+        if ($ext =~ /^(pl|pm|py)$/) {
+            # for the time being, let us just extract the top 400 lines
             return "cat '$f' | head -400  > '${f}.comments'";
 #            return "$path/hashComments.pl -p '#' '$f'";
-        } elsif ($ext eq 'jl' or
-                 $ext eq 'el'
-            ) {
+        } elsif ($ext eq 'jl' or $ext eq 'el') {
             return "cat '$f' | head -400  > '${f}.comments'";
 #            return "$path/hashComments.pl -p ';' '$f'";;
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
@@ -102,20 +91,17 @@ sub Determine_Comments_Extractor
     }
 }
 
-sub execute
-{
+sub execute {
     my ($c) = @_;
-#    print "\nTo execute [$c]\n";
     my $r = `$c`;
     my $status = ($? >> 8);
     die "execution of program [$c] failed: status [$status]" if ($status != 0);
     return $r;
 }
 
-
-sub get_size
-{
+sub get_size {
     my ($f) = @_;
     my $size = (stat($f))[7];
     return $size;
 }
+

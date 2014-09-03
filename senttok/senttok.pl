@@ -15,8 +15,8 @@
 #    You should have received a copy of the GNU Affero General Public License
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
-use strict;
 
+use strict;
 
 my $TOO_LONG = 70;
 
@@ -32,7 +32,7 @@ open FH, "<$ARGV[0]";
 my @licensesentencelist=();
 open LICENSESENTENCEFILE, "<$licSentences";
 my $line;
-while ($line = <LICENSESENTENCEFILE>){
+while ($line = <LICENSESENTENCEFILE>) {
     chomp $line;
     next if $line =~ /^\#/;
     next if $line =~ /^ *$/;
@@ -44,7 +44,7 @@ while ($line = <LICENSESENTENCEFILE>){
 #  print $line;
 #}
 close LICENSESENTENCEFILE;
-while ($line = <>){
+while ($line = <>) {
     my $saveLine;
     my $originalLine;
     chomp $line;
@@ -56,14 +56,13 @@ while ($line = <>){
 
     $line = Normalize_Sentence($line);
 
-
-    my $check=0;
-    my $matchname="UNKNOWN";
-    my @parm=();
+    my $check = 0;
+    my $matchname = "UNKNOWN";
+    my @parm = ();
     my $sentence;
-    my $distance=1; #maximum? number
-    my $mostsimilarname="UNKNOWN";
-    my $before; 
+    my $distance = 1; #maximum? number
+    my $mostsimilarname = "UNKNOWN";
+    my $before;
     my $after;
     my $gpl = 0;
     my ($gplLater, $gplVersion);
@@ -74,8 +73,7 @@ while ($line = <>){
 #   [$line]
 #\n";
 
-
-    my $lineAsGPL ='';
+    my $lineAsGPL = '';
 
     if (Looks_Like_GPL($line)) {
         my $old = $line;
@@ -94,23 +92,23 @@ while ($line = <>){
         $gpl = $saveGPL;
         $LGPL = "";
       again:
-#       print "Testing 
+#       print "Testing
 #   lin[$line]
 #   ori[$saveLine]
 #   re [$regexp]
 #   lpg[$LGPL]
 #\n";
-        if ( $line =~ /$regexp/im ){
-            $before = $`; 
+        if ($line =~ /$regexp/im) {
+            $before = $`;
             $after = $'; #';
-            $check=1;
-            $matchname=$name;
-            for (my $i = 1; $i <= $number; $i++){
+            $check = 1;
+            $matchname = $name;
+            for (my $i = 1; $i <= $number; $i++) {
                 no strict 'refs';
-                push @parm,$$i;
+                push @parm, $$i;
             }
             last;
-        } else{
+        } else {
 #            print "NO MATCH\n";
             # let us try again in cas it is lesser/library
             # do it only once
@@ -124,45 +122,39 @@ while ($line = <>){
                 goto again;
             }
             next;## dmg
-            my $targetset=$regexp;
+            my $targetset = $regexp;
             $targetset =~ s/^(.*)$/$1/;
-            my $tmpdist=&levenshtein($line,$targetset)/max(length($targetset),length($sentence));
-            if ($tmpdist<$distance){
-                $mostsimilarname=$name;
-                $distance=$tmpdist;
+            my $tmpdist = levenshtein($line, $targetset) / max(length($targetset), length($sentence));
+            if ($tmpdist < $distance) {
+                $mostsimilarname = $name;
+                $distance = $tmpdist;
             }
         }
         last; ###
     }
-    if ($check == 1){
-        #licensesentence name, parm1, parm2,..
+    if ($check == 1) {
+        # licensesentence name, parm1, parm2,..
         if ($gpl) {
             $matchname .= "Ver" . $gplVersion;
             $matchname .= "+" if $gplLater;
             $matchname = $LGPL . $matchname;
-        } else {
         }
-        if (length($before)>$TOO_LONG ||
-            length($after) >$TOO_LONG) {
+        if (length($before) > $TOO_LONG || length($after) > $TOO_LONG) {
             $matchname .= "-TOOLONG";
         }
-        my $parmstrings=join(";",$matchname, $subRule, $before, $after, @parm);
-        print $parmstrings,":$originalLine\n";
-
-        
-    }else{
-        #UNKNOWN, sentence
+        my $parmstrings = join(";",$matchname, $subRule, $before, $after, @parm);
+        print $parmstrings, ":$originalLine\n";
+    } else {
+        # UNKNOWN, sentence
         chomp $line;
-        print $matchname,";",0, ";", $mostsimilarname,";",$distance,";",$saveLine,":$originalLine\n";
-    } 
-    
+        print $matchname, ";", 0, ";", $mostsimilarname, ";", $distance, ";", $saveLine, ":$originalLine\n";
+    }
 }
 
 close FH;
 exit 0;
 
-sub Normalize_GPL
-{
+sub Normalize_GPL {
     my ($line) = @_;
     my $later = 0;
     my $version = 0;
@@ -202,7 +194,6 @@ sub Normalize_GPL
     $line =~ s/GPL \(GPL\)/GPL/gi;
     $line =~ s/GPL \(<QUOTES>GPL<QUOTES>\)/GPL/gi;
 
-
     $line =~ s/GNU //gi;
     $line =~ s/under GPL/under the GPL/gi;
     $line =~ s/under Lesser/under the Lesser/gi;
@@ -231,8 +222,7 @@ sub Normalize_GPL
     return ($line,$later,$version);
 }
 
-sub Looks_Like_GPL
-{
+sub Looks_Like_GPL {
     my ($line) = @_;
 
     return 1 if $line =~ /GNU/;
@@ -242,18 +232,16 @@ sub Looks_Like_GPL
     return 0;
 }
 
-
-sub Normalize_Sentence
-{
+sub Normalize_Sentence {
     my ($line) = @_;
     # do some very quick spelling corrections for english/british words
-    $line=~ s/icence/icense/ig;
-    $line=~ s/(\.|;)$//;
+    $line =~ s/icence/icense/ig;
+    $line =~ s/(\.|;)$//;
 
     return $line;
 }
 
-# Return the Levenshtein distance (also called Edit distance) 
+# Return the Levenshtein distance (also called Edit distance)
 # between two strings
 #
 # The Levenshtein distance (LD) is a measure of similarity between two
@@ -272,22 +260,21 @@ sub Normalize_Sentence
 # The distance is named after the Russian scientist Vladimir
 # Levenshtein, who devised the algorithm in 1965
 #
-sub levenshtein
-  {
+sub levenshtein {
     # $s1 and $s2 are the two strings
     # $len1 and $len2 are their respective lengths
     #
     my ($s1, $s2) = @_;
     my ($len1, $len2) = (length $s1, length $s2);
-    
+
     # If one of the strings is empty, the distance is the length
     # of the other string
     #
     return $len2 if ($len1 == 0);
     return $len1 if ($len2 == 0);
-    
+
     my %mat;
-    
+
     # Init the distance matrix
     #
     # The first row to 0..$len1
@@ -297,35 +284,31 @@ sub levenshtein
     # The first row and column are initialized so to denote distance
     # from the empty string
     #
-    for (my $i = 0; $i <= $len1; ++$i)
-      {
-        for (my $j = 0; $j <= $len2; ++$j)
-	  {
+    for (my $i = 0; $i <= $len1; ++$i) {
+        for (my $j = 0; $j <= $len2; ++$j) {
             $mat{$i}{$j} = 0;
             $mat{0}{$j} = $j;
-	  }
-	
+      }
+
         $mat{$i}{0} = $i;
       }
-    
+
     # Some char-by-char processing is ahead, so prepare
     # array of chars from the strings
     #
     my @ar1 = split(//, $s1);
     my @ar2 = split(//, $s2);
-    
-    for (my $i = 1; $i <= $len1; ++$i)
-      {
-        for (my $j = 1; $j <= $len2; ++$j)
-	  {
+
+    for (my $i = 1; $i <= $len1; ++$i) {
+        for (my $j = 1; $j <= $len2; ++$j) {
             # Set the cost to 1 iff the ith char of $s1
             # equals the jth of $s2
-            # 
+            #
             # Denotes a substitution cost. When the char are equal
             # there is no need to substitute, so the cost is 0
             #
             my $cost = ($ar1[$i-1] eq $ar2[$j-1]) ? 0 : 1;
-	    
+
             # Cell $mat{$i}{$j} equals the minimum of:
             #
             # - The cell immediately above plus 1
@@ -338,36 +321,30 @@ sub levenshtein
             $mat{$i}{$j} = min([$mat{$i-1}{$j} + 1,
                                 $mat{$i}{$j-1} + 1,
                                 $mat{$i-1}{$j-1} + $cost]);
-	  }
-      }
-    
+        }
+    }
+
     # Finally, the Levenshtein distance equals the rightmost bottom cell
     # of the matrix
     #
     # Note that $mat{$x}{$y} denotes the distance between the substrings
     # 1..$x and 1..$y
-    #
     return $mat{$len1}{$len2};
-  }
-  
-  
-  # minimal element of a list
-  #
-  sub min
-    {
-      my @list = @{$_[0]};
-      my $min = $list[0];
-      
-      foreach my $i (@list)
-	{
-	  $min = $i if ($i < $min);
-	}
-      
-      return $min;
+}
+
+sub min {
+    my @list = @{$_[0]};
+    my $min = $list[0];
+
+    foreach my $i (@list) {
+        $min = $i if ($i < $min);
     }
-    
-    sub max{
-      my @list = @_;
-      return $list[0]>$list[1]?$list[0]:$list[1];
-    }
-    
+
+    return $min;
+}
+
+sub max {
+    my @list = @_;
+    return $list[0] > $list[1] ? $list[0] : $list[1];
+}
+

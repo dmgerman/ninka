@@ -16,7 +16,6 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-
 #
 # filter.pl
 # This script classify input sentences into two categories,
@@ -28,7 +27,6 @@
 # Author: Yuki Manabe
 #
 use strict;
-
 
 #print $ARGV[0];
 
@@ -44,7 +42,6 @@ die "Usagee $0 <filename>.sentences" unless $ARGV[0] =~ /\.sentences$/;
 
 my $goodfilename = $ARGV[0];
 
-
 die "Filename should end in '.sentences' [$goodfilename]" unless $goodfilename =~ s/\.sentences$/\.goodsent/;
 my $badfilename = $ARGV[0];
 $badfilename =~ s/\.sentences$/\.badsent/;
@@ -58,36 +55,37 @@ open (DICTIONARY, "<$critWords") or die ('Error: criticalword.dict is not found.
 open (GOODOUT, ">$goodfilename") || die ('Error');
 open (BADOUT, ">$badfilename") || die ('Error');
 
-my @cwordlist=();
+my @cwordlist = ();
 # read dictionary into list
 my $cword;
-while ($cword=<DICTIONARY>){
-  chomp $cword;
-  next if $cword =~ /^\#/;
-  $cword =~ s/\#.*$//; # remove everything to the end of file
-  push(@cwordlist,"$cword");
+while ($cword = <DICTIONARY>) {
+    chomp $cword;
+    next if $cword =~ /^\#/;
+    $cword =~ s/\#.*$//; # remove everything to the end of file
+    push(@cwordlist, "$cword");
 }
 close(DICTIONARY);
 
 #matching cliticalwords in list against sentences.
 my $sentence;
-while ($sentence=<INPUTFILE>){
-  my $check=0;
-  chomp $sentence;
-  foreach $cword (@cwordlist){
-    if($sentence =~ /\b$cword\b/i){
-      $check=1;
-      #print "$cword:$sentence";
-      last;
+while ($sentence = <INPUTFILE>) {
+    my $check = 0;
+    chomp $sentence;
+    foreach $cword (@cwordlist) {
+        if ($sentence =~ /\b$cword\b/i) {
+            $check = 1;
+            #print "$cword:$sentence";
+            last;
+        }
     }
-  }
-  if ($check==1){
-    print GOODOUT "$sentence\n";
-  }else{
-     print BADOUT "$sentence\n";
-  }
+    if ($check == 1) {
+        print GOODOUT "$sentence\n";
+    } else {
+        print BADOUT "$sentence\n";
+    }
 }
 
 close(INPUTFILE);
 close(GOODOUT);
 close(BADOUT);
+
