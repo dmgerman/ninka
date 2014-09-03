@@ -36,33 +36,33 @@ $path =~ s/[^\/]+$//;
 if ($path eq '') {
     $path = './';
 }
-my $critWords = $path . 'criticalword.dict';
+my $file_critical_words = $path . 'criticalword.dict';
 
 die "Usagee $0 <filename>.sentences" unless $ARGV[0] =~ /\.sentences$/;
 
-my $goodfilename = $ARGV[0];
+my $file_good = $ARGV[0];
 
-die "Filename should end in '.sentences' [$goodfilename]" unless $goodfilename =~ s/\.sentences$/\.goodsent/;
-my $badfilename = $ARGV[0];
-$badfilename =~ s/\.sentences$/\.badsent/;
+die "Filename should end in '.sentences' [$file_good]" unless $file_good =~ s/\.sentences$/\.goodsent/;
+my $file_bad = $ARGV[0];
+$file_bad =~ s/\.sentences$/\.badsent/;
 
-#print $goodfilename;
-#print $badfilename;
+#print $file_good;
+#print $file_bad;
 
 open (INPUTFILE, "<$ARGV[0]") or die ("Error: $ARGV[0] is not found.");
-open (DICTIONARY, "<$critWords") or die ('Error: criticalword.dict is not found.');
+open (DICTIONARY, "<$file_critical_words") or die ('Error: criticalword.dict is not found.');
 
-open (GOODOUT, ">$goodfilename") || die ('Error');
-open (BADOUT, ">$badfilename") || die ('Error');
+open (GOODOUT, ">$file_good") || die ('Error');
+open (BADOUT, ">$file_bad") || die ('Error');
 
-my @cwordlist = ();
+my @critical_words = ();
 # read dictionary into list
-my $cword;
-while ($cword = <DICTIONARY>) {
-    chomp $cword;
-    next if $cword =~ /^\#/;
-    $cword =~ s/\#.*$//; # remove everything to the end of file
-    push(@cwordlist, "$cword");
+my $critical_word;
+while ($critical_word = <DICTIONARY>) {
+    chomp $critical_word;
+    next if $critical_word =~ /^\#/;
+    $critical_word =~ s/\#.*$//; # remove everything to the end of file
+    push(@critical_words, "$critical_word");
 }
 close(DICTIONARY);
 
@@ -71,10 +71,10 @@ my $sentence;
 while ($sentence = <INPUTFILE>) {
     my $check = 0;
     chomp $sentence;
-    foreach $cword (@cwordlist) {
-        if ($sentence =~ /\b$cword\b/i) {
+    foreach $critical_word (@critical_words) {
+        if ($sentence =~ /\b$critical_word\b/i) {
             $check = 1;
-            #print "$cword:$sentence";
+            #print "$critical_word:$sentence";
             last;
         }
     }

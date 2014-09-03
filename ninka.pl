@@ -61,71 +61,69 @@ if ($path eq "") {
 }
 
 my $force = exists $opts{f};
-my $forceGood = exists $opts{G};
-my $forceSentences = exists $opts{S};
-my $forceSentok = exists $opts{T};
-my $forceComments = exists $opts{C};
-my $forceLicense = exists $opts{L};
+my $force_good = exists $opts{G};
+my $force_sentences = exists $opts{S};
+my $force_senttok = exists $opts{T};
+my $force_comments = exists $opts{C};
+my $force_license = exists $opts{L};
 
 #die "Usage $0 <filename>" unless $ARGV[0] =~ /\.(c|cpp|java|cc|cxx|h|jl|py|pm|el|pl)$/;
 
-my $f = $ARGV[0];
+my $input_file = $ARGV[0];
 
-my $original = $f;
+print "Starting: $input_file;\n" if ($verbose);
 
-print "Starting: $original;\n" if ($verbose);
+print "$input_file;";
 
-print "$original;";
+my $comments_file = "${input_file}.comments";
+my $sentences_file = "${input_file}.sentences";
+my $goodsent_file = "${input_file}.goodsent";
+my $senttok_file = "${input_file}.senttok";
 
-my $commentsFile = "${f}.comments";
-my $sentencesFile = "${f}.sentences";
-my $goodsentFile = "${f}.goodsent";
-my $sentokFile = "${f}.senttok";
-
-if (not (-f "$f")) {
-    print "ERROR;[${f}] is not a file\n" ;
+if (not (-f "$input_file")) {
+    print "ERROR;[${input_file}] is not a file\n" ;
     exit 0;
 }
 
-Do_File_Process($original, $commentsFile, ($force or $forceComments),
-                "$path/extComments/extComments.pl -c1 '${original}'",
+do_file_process($input_file, $comments_file, ($force or $force_comments),
+                "$path/extComments/extComments.pl -c1 '${input_file}'",
                 "Creating comments file",
                 exists $opts{c});
 
-Do_File_Process($commentsFile, $sentencesFile, ($force or $forceSentences),
-                "$path/splitter/splitter.pl '${commentsFile}'",
+do_file_process($comments_file, $sentences_file, ($force or $force_sentences),
+                "$path/splitter/splitter.pl '${comments_file}'",
                 "Splitting sentences", exists $opts{s});
 
-Do_File_Process($sentencesFile, $goodsentFile, ($force or $forceGood),
-                 "$path/filter/filter.pl '${sentencesFile}'",
+do_file_process($sentences_file, $goodsent_file, ($force or $force_good),
+                 "$path/filter/filter.pl '${sentences_file}'",
                  "Filtering good sentences", exists $opts{s});
 
-Do_File_Process($goodsentFile, $sentokFile, ($force or $forceSentok),
-                "$path/senttok/senttok.pl '${goodsentFile}' > '${sentokFile}'",
+do_file_process($goodsent_file, $senttok_file, ($force or $force_senttok),
+                "$path/senttok/senttok.pl '${goodsent_file}' > '${senttok_file}'",
                 "Matching sentences against rules", exists $opts{t});
 
-print "Matching ${f}.senttok against rules" if ($verbose);
-execute("$path/matcher/matcher.pl '${f}.senttok' > '${f}.license'");
+print "Matching ${input_file}.senttok against rules" if ($verbose);
+execute("$path/matcher/matcher.pl '${input_file}.senttok' > '${input_file}.license'");
 
-print `cat '${f}.license'`;
+print `cat '${input_file}.license'`;
 
-unlink("${f}.code");
+unlink("${input_file}.code");
 
 if ($delete) {
-    unlink("${f}.badsent");
-    unlink("${f}.comments");
-    unlink("${f}.goodsent");
-#    unlink("${f}.sentences");
-    unlink("${f}.senttok");
+    unlink("${input_file}.badsent");
+    unlink("${input_file}.comments");
+    unlink("${input_file}.goodsent");
+#    unlink("${input_file}.sentences");
+    unlink("${input_file}.senttok");
 }
 
 exit 0;
 
-sub Do_File_Process {
+sub do_file_process {
     my ($input, $output, $force, $cmd, $message, $end) = @_;
 
     print "${message}:" if ($verbose);
-    if ($force or newer($input, $output)) {
+    if ($force or is_newer($input, $output)) {
         print "Running ${cmd}:" if ($verbose);
         execute($cmd);
     } else {
@@ -139,15 +137,15 @@ sub Do_File_Process {
 }
 
 sub execute {
-    my ($c) = @_;
-#    print "\nTo execute [$c]\n";
-    my $r = `$c`;
+    my ($command) = @_;
+#    print "\nTo execute [$command]\n";
+    my $result = `$command`;
     my $status = ($? >> 8);
-    die "execution of program [$c] failed: status [$status]" if ($status != 0);
-    return $r;
+    die "execution of program [$command] failed: status [$status]" if ($status != 0);
+    return $result;
 }
 
-sub newer {
+sub is_newer {
     my ($f1, $f2) = @_;
     my ($f1write) = (stat($f1))[9];
     my ($f2write) = (stat($f2))[9];

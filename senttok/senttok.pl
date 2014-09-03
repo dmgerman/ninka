@@ -26,75 +26,75 @@ $path =~ s/[^\/]+$//;
 if ($path eq "") {
     $path = "./";
 }
-my $licSentences = $path . "licensesentence.dict";
+my $path_license_sentences = $path . "licensesentence.dict";
 
 open FH, "<$ARGV[0]";
-my @licensesentencelist=();
-open LICENSESENTENCEFILE, "<$licSentences";
+my @license_sentences = ();
+open LICENSESENTENCEFILE, "<$path_license_sentences";
 my $line;
 while ($line = <LICENSESENTENCEFILE>) {
     chomp $line;
     next if $line =~ /^\#/;
     next if $line =~ /^ *$/;
     die "Illegal format in license expression [$line] " unless $line =~ /(.*?):(.*?):(.*)/;
-  push @licensesentencelist,$line;
+    push @license_sentences, $line;
 }
 
-#foreach $line (@licensesentencelist) {
+#foreach $line (@license_sentences) {
 #  print $line;
 #}
 close LICENSESENTENCEFILE;
 while ($line = <>) {
-    my $saveLine;
-    my $originalLine;
+    my $save_line;
+    my $original_line;
     chomp $line;
-    $originalLine = $line;
+    $original_line = $line;
 
     if ($line =~ s/^Alternatively,? ?//) {
         print "Altern\n";
     }
 
-    $line = Normalize_Sentence($line);
+    $line = normalize_sentence($line);
 
     my $check = 0;
-    my $matchname = "UNKNOWN";
+    my $match_name = "UNKNOWN";
     my @parm = ();
     my $sentence;
     my $distance = 1; #maximum? number
-    my $mostsimilarname = "UNKNOWN";
+    my $most_similar_name = "UNKNOWN";
     my $before;
     my $after;
     my $gpl = 0;
-    my ($gplLater, $gplVersion);
+    my ($gpl_later, $gpl_version);
 
-    $saveLine = $line;
+    $save_line = $line;
 
 #        print "Original
 #   [$line]
 #\n";
 
-    my $lineAsGPL = '';
+    my $line_as_gpl = '';
 
-    if (Looks_Like_GPL($line)) {
+    if (looks_like_gpl($line)) {
         my $old = $line;
         $gpl = 1;
-        ($line, $gplLater, $gplVersion) = Normalize_GPL($line);
-        $lineAsGPL = $line;
+        ($line, $gpl_later, $gpl_version) = normalize_gpl($line);
+        $line_as_gpl = $line;
     }
-    my ($name, $subRule, $number, $regexp, $option);
-    my $saveLine = $line;
-    my $saveGPL = $gpl;
+    my ($name, $sub_rule, $number, $regexp, $option);
+    my $save_line = $line;
+    my $save_gpl = $gpl;
     my $LGPL = "";
-    foreach $sentence (@licensesentencelist) {
-        ($name, $subRule, $number, $regexp, $option) = split(/:/, $sentence);
+    foreach $sentence (@license_sentences) {
+        ($name, $sub_rule, $number, $regexp, $option) = split(/:/, $sentence);
         # we need this due to the goto again
-        $line = $saveLine;
-        $gpl = $saveGPL;
+        $line = $save_line;
+        $gpl = $save_gpl;
         $LGPL = "";
       again:
 #       print "Testing
 #   lin[$line]
-#   ori[$saveLine]
+#   ori[$save_line]
 #   re [$regexp]
 #   lpg[$LGPL]
 #\n";
@@ -102,7 +102,7 @@ while ($line = <>) {
             $before = $`;
             $after = $'; #';
             $check = 1;
-            $matchname = $name;
+            $match_name = $name;
             for (my $i = 1; $i <= $number; $i++) {
                 no strict 'refs';
                 push @parm, $$i;
@@ -118,7 +118,7 @@ while ($line = <>) {
             }
             if ($gpl) {
                 $gpl = 0;
-                $line = $saveLine;
+                $line = $save_line;
                 goto again;
             }
             next;## dmg
@@ -126,7 +126,7 @@ while ($line = <>) {
             $targetset =~ s/^(.*)$/$1/;
             my $tmpdist = levenshtein($line, $targetset) / max(length($targetset), length($sentence));
             if ($tmpdist < $distance) {
-                $mostsimilarname = $name;
+                $most_similar_name = $name;
                 $distance = $tmpdist;
             }
         }
@@ -135,26 +135,26 @@ while ($line = <>) {
     if ($check == 1) {
         # licensesentence name, parm1, parm2,..
         if ($gpl) {
-            $matchname .= "Ver" . $gplVersion;
-            $matchname .= "+" if $gplLater;
-            $matchname = $LGPL . $matchname;
+            $match_name .= "Ver" . $gpl_version;
+            $match_name .= "+" if $gpl_later;
+            $match_name = $LGPL . $match_name;
         }
         if (length($before) > $TOO_LONG || length($after) > $TOO_LONG) {
-            $matchname .= "-TOOLONG";
+            $match_name .= "-TOOLONG";
         }
-        my $parmstrings = join(";",$matchname, $subRule, $before, $after, @parm);
-        print $parmstrings, ":$originalLine\n";
+        my $parmstrings = join(";", $match_name, $sub_rule, $before, $after, @parm);
+        print $parmstrings, ":$original_line\n";
     } else {
         # UNKNOWN, sentence
         chomp $line;
-        print $matchname, ";", 0, ";", $mostsimilarname, ";", $distance, ";", $saveLine, ":$originalLine\n";
+        print $match_name, ";", 0, ";", $most_similar_name, ";", $distance, ";", $save_line, ":$original_line\n";
     }
 }
 
 close FH;
 exit 0;
 
-sub Normalize_GPL {
+sub normalize_gpl {
     my ($line) = @_;
     my $later = 0;
     my $version = 0;
@@ -222,7 +222,7 @@ sub Normalize_GPL {
     return ($line,$later,$version);
 }
 
-sub Looks_Like_GPL {
+sub looks_like_gpl {
     my ($line) = @_;
 
     return 1 if $line =~ /GNU/;
@@ -232,7 +232,7 @@ sub Looks_Like_GPL {
     return 0;
 }
 
-sub Normalize_Sentence {
+sub normalize_sentence {
     my ($line) = @_;
     # do some very quick spelling corrections for english/british words
     $line =~ s/icence/icense/ig;

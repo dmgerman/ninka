@@ -39,55 +39,55 @@ if (!getopts ('vc:p:',\%opts)) {
     die;
 }
 
-my $f = $ARGV[0];
+my $file = $ARGV[0];
 
-#die "illegal file [$f]"  if $f =~ m@/\.@;
+#die "illegal file [$file]"  if $file =~ m@/\.@;
 
-my $numberComments = 1;
-$numberComments = $opts{c} if exists $opts{c};
+my $number_comments = 1;
+$number_comments = $opts{c} if exists $opts{c};
 my $verbose = 1;
 $verbose = exists $opts{v};
 
-if (get_size($f) == 0) {
+if (get_size($file) == 0) {
     print STDERR "Empty file, just exit\n" if $verbose;
     exit 0; # nothing to report, just end
 }
 
-my $commentsCmd = Determine_Comments_Extractor($f);
+my $comments_cmd = determine_comments_extractor($file);
 
-execute("$commentsCmd");
+execute("$comments_cmd");
 
-if ($commentsCmd =~ /^comments/ and get_size("${f}.comments") == 0) {
-    `cat '$f' | head -700  > ${f}.comments`;
+if ($comments_cmd =~ /^comments/ and get_size("${file}.comments") == 0) {
+    `cat '$file' | head -700  > ${file}.comments`;
 }
 
 exit 0;
 
-sub Determine_Comments_Extractor {
-    my ($f) = @_;
-    if ($f =~ /\.([^\.]+)$/) {
+sub determine_comments_extractor {
+    my ($file) = @_;
+    if ($file =~ /\.([^\.]+)$/) {
         my $ext= $1;
 
         if ($ext =~ /^(pl|pm|py)$/) {
             # for the time being, let us just extract the top 400 lines
-            return "cat '$f' | head -400  > '${f}.comments'";
-#            return "$path/hashComments.pl -p '#' '$f'";
+            return "cat '$file' | head -400  > '${file}.comments'";
+#            return "$path/hashComments.pl -p '#' '$file'";
         } elsif ($ext eq 'jl' or $ext eq 'el') {
-            return "cat '$f' | head -400  > '${f}.comments'";
-#            return "$path/hashComments.pl -p ';' '$f'";;
+            return "cat '$file' | head -400  > '${file}.comments'";
+#            return "$path/hashComments.pl -p ';' '$file'";;
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
-            my $comm = `which comments`;
-            if ($comm ne '') {
-                return "comments -c1 '$f' 2> /dev/null";
+            my $comments_cmd_location = `which comments`;
+            if ($comments_cmd_location ne '') {
+                return "comments -c1 '$file' 2> /dev/null";
             } else {
-                return "cat '$f' | head -400  > '${f}.comments'";
+                return "cat '$file' | head -400  > '${file}.comments'";
             }
         } else {
-            return "cat '$f' | head -700  > '${f}.comments'";
+            return "cat '$file' | head -700  > '${file}.comments'";
         }
     } else {
         print "\n>>>>>>>>>>>>>>>>>>>>>\n";
-        return "cat '$f' | head -700  > '${f}.comments'";
+        return "cat '$file' | head -700  > '${file}.comments'";
     }
 }
 
@@ -100,8 +100,8 @@ sub execute {
 }
 
 sub get_size {
-    my ($f) = @_;
-    my $size = (stat($f))[7];
+    my ($file) = @_;
+    my $size = (stat($file))[7];
     return $size;
 }
 

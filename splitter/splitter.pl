@@ -30,11 +30,11 @@ use strict;
 
 # This program is originally based on the sentence splitter program
 # published by Paul Clough. Version 1.0, but then it was mostly rewritten
-# His ideas, however, linger in here (and his dictionary of abbreviations)
+# His ideas, however, linger in here (and his dictionary_file of abbreviations)
 
-my $dictionary = 'splitter.dict';
-my $abbrv_file = 'splitter.abv';
-my $len = 0;
+my $dictionary_file = 'splitter.dict';
+my $abbreviations_file = 'splitter.abv';
+my $length = 0;
 my %COMMON_TERMS = ();
 my %ABBREVIATIONS = ();
 my $output_file = $ARGV[0];
@@ -45,8 +45,8 @@ $path =~ s/[^\/]+$//;
 if ($path eq '') {
     $path = './';
 }
-$dictionary = $path . $dictionary;
-$abbrv_file = $path . $abbrv_file;
+$dictionary_file = $path . $dictionary_file;
+$abbreviations_file = $path . $abbreviations_file;
 
 die "Usage $0 <filename>.comments" unless $ARGV[0] =~ /\.comments$/;
 
@@ -59,10 +59,10 @@ open(OUT, ">$output_file") or die("Unable to create output file [$output_file]")
 # Load in the dictionary and find the common words.
 # Here, we assume the words in upper case are simply names and one
 # word per line - i.e. in same form as /usr/dict/words
-&loadDictionary;
+&load_dictionary;
 
 # Same assumptions as for dictionary
-&loadAbbreviations;
+&load_abbreviations;
 
 my $text;
 #   open(FILE, $opt_f) or die "Can't open $opt_f for reading\n";
@@ -132,22 +132,22 @@ while ($text =~ /^([^\n]*)\n/gsm) {
         $count++ if ($c ge 'A' && $c le 'z');
     }
 
-    my @sentences = Split_Text($curr);
+    my @sentences = split_text($curr);
 
     my $count2 = 0;
 
-    foreach my $s (@sentences) {
-        for my $i (0..length($s)-1) {
-            my $c = substr($s, $i, 1);
+    foreach my $sentence (@sentences) {
+        for my $i (0..length($sentence)-1) {
+            my $c = substr($sentence, $i, 1);
             $count2++ if ($c ge 'A' && $c le 'z');
         }
-        print OUT Clean_Sentence($s) , "\n";
+        print OUT clean_sentence($sentence) , "\n";
     }
     if ($count != $count2) {
         print STDERR "-------------------------------------\n";
         print STDERR "[$curr]\n";
-        foreach my $s (@sentences) {
-            print STDERR Clean_Sentence($s) , "\n";
+        foreach my $sentence (@sentences) {
+            print STDERR clean_sentence($sentence) , "\n";
         }
         die "Number of printable chars does not match! [$count][$count2]";
     }
@@ -161,7 +161,7 @@ exit;
 # procedures
 #***************************************************************************************************
 
-sub Clean_Sentence {
+sub clean_sentence {
     ($_) = @_;
     # check for trailing bullets of different types
 
@@ -187,16 +187,16 @@ sub Clean_Sentence {
     return $_;
 }
 
-sub Split_Text {
+sub split_text {
     my ($text) = @_;
-    my $len = 0;
+    my $length = 0;
     my $next_word;
     my $last_word;
     my $stuff_after_period;
     my $puctuation;
     my @result;
     my $after;
-    my $currentSentence = '';
+    my $current_sentence = '';
     # this breaks the sentence into
     # 1. Any text before a separator
     # 2. The separator [.!?:\n]
@@ -207,21 +207,21 @@ sub Split_Text {
                      (?=(.?))
                    /xsm) { #/(?:(?=([([{\"\'`)}\]<]*[ ]+)[([{\"\'`)}\] ]*([A-Z0-9][a-z]*))|(?=([()\"\'`)}\<\] ]+)\s))/sm ) {
         $text = $';    #';
-        my $sentenceMatch = $1;
+        my $sentence_match = $1;
         my $sentence = $1 . $2;
         my $punctuation = $2;
         $after = $3;
 
         # if next character is not a space, then we are not in a sentence"
         if ($after ne ' ' && $after ne "\t") {
-            $currentSentence .= $sentence;
+            $current_sentence .= $sentence;
             next;
         }
         #at this point we know that there is a space after
         if ($punctuation eq ':' || $punctuation eq '?' || $punctuation eq '!') {
             # let us consider this right here a beginning of a sentence
-            push @result, $currentSentence . $sentence;
-            $currentSentence = '';
+            push @result, $current_sentence . $sentence;
+            $current_sentence = '';
             next;
         }
         if ($punctuation eq '.') {
@@ -235,33 +235,33 @@ sub Split_Text {
 
             # is the last word an abbreviation? For this the period has to follow the word
             # this expression might have to be updated to take care of special characters  in names :(
-            if ($sentenceMatch =~ /(.?)([^[:punct:]\s]+)$/) {
+            if ($sentence_match =~ /(.?)([^[:punct:]\s]+)$/) {
                 my $before = $1;
-                my $lastWord = $2;
+                my $last_word = $2;
                 #is it an abbreviation
 
-                if (length($lastWord) == 1 ) {
+                if (length($last_word) == 1 ) {
                     # single character abbreviations are special...
                     # we will assume they never split the sentence if they are capitalized.
-                    if (($lastWord ge 'A') and ($lastWord le 'Z')) {
-                        $currentSentence .= $sentence;
+                    if (($last_word ge 'A') and ($last_word le 'Z')) {
+                        $current_sentence .= $sentence;
                         next;
                     }
-                    print "last word an abbrev $sentenceMatch lastword [$lastWord] before [$before]\n";
+                    print "last word an abbrev $sentence_match lastword [$last_word] before [$before]\n";
 
                     # but some are lowercase!
-                    if (($lastWord eq 'e') or ($lastWord eq 'i')) {
-                        $currentSentence .= $sentence;
+                    if (($last_word eq 'e') or ($last_word eq 'i')) {
+                        $current_sentence .= $sentence;
                         next;
                     }
-                    print "2 last word an abbrev $sentenceMatch lastword [$lastWord] before [$before]\n";
+                    print "2 last word an abbrev $sentence_match lastword [$last_word] before [$before]\n";
                 } else {
-                    $lastWord = lc $lastWord;
+                    $last_word = lc $last_word;
 
                     # only accept abbreviations if the previous char to the abbrev is space or
                     # is empty (beginning of line). This avoids things like .c
-                    if (length($before) > 0 and $before eq ' ' and  $ABBREVIATIONS{$lastWord}) {
-                        $currentSentence .= $sentence;
+                    if (length($before) > 0 and $before eq ' ' and  $ABBREVIATIONS{$last_word}) {
+                        $current_sentence .= $sentence;
                         next;
                     } else {
                         # just keep going, we handle this case below
@@ -269,22 +269,22 @@ sub Split_Text {
                 }
             }
 
-            push @result, $currentSentence . $sentence;
-            $currentSentence = '';
+            push @result, $current_sentence . $sentence;
+            $current_sentence = '';
             next;
         }
         die 'We have not dealt with this case';
     }
-    push @result, $currentSentence . $text;
+    push @result, $current_sentence . $text;
 
-    #Print_Non_Sentence($text,"\n",'');
+    #print_non_sentence($text,"\n",'');
     return @result;
 }
 
-sub loadDictionary {
+sub load_dictionary {
     my $common_term = '';
 
-    if (open(DICT, $dictionary)) {
+    if (open(DICT, $dictionary_file)) {
         while (defined ($line = <DICT>)) {
             chomp($line);
             if ($line !~ /^[A-Z]/) {
@@ -294,14 +294,14 @@ sub loadDictionary {
 
         close(DICT);
     } else {
-        die "cannot open dictionary file $dictionary: $!";
+        die "cannot open dictionary file $dictionary_file: $!";
     }
 }
 
-sub loadAbbreviations {
+sub load_abbreviations {
     my $abbrv_term = '';
 
-    if (open(ABBRV, $abbrv_file)) {
+    if (open(ABBRV, $abbreviations_file)) {
         while (defined ($line = <ABBRV>)) {
             chomp($line);
             $ABBREVIATIONS{$line} = $line;
@@ -309,7 +309,7 @@ sub loadAbbreviations {
 
         close(ABBRV);
     } else {
-        die "cannot open dictionary file $abbrv_file: $!";
+        die "cannot open abbreviations file $abbreviations_file: $!";
     }
 }
 

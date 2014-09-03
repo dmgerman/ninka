@@ -34,50 +34,50 @@ if (!getopts ('vc:p:',\%opts)) {
 
     die;
 }
-my $f = $ARGV[0];
+my $file = $ARGV[0];
 
-open (OUT, ">${f}.comments") or die "Unable to create [${f}.comments]";
+open (OUT, ">${file}.comments") or die "Unable to create [${file}.comments]";
 
  <>;
 print OUT unless /^\#\!/;
 
-my $commentChar = '#';
+my $comment_char = '#';
 
-$commentChar = $opts{p} if exists $opts{p};
+$comment_char = $opts{p} if exists $opts{p};
 
-my $numberComments = 1;
-$numberComments = $opts{c} if exists $opts{c};
+my $comments_count = 1;
+$comments_count = $opts{c} if exists $opts{c};
 
 my $verbose = exists $opts{v};
 
-my $insideComment = 0;
-my $insideCode = 0;
+my $inside_comment = 0;
+my $inside_code = 0;
 
-my $comCount = 0;
-my $countCode = 0;
+my $comment_count = 0;
+my $code_count = 0;
 
 while (<>) {
     chomp;
-    if (Is_Comment($_)) {
+    if (is_comment($_)) {
         s/\t/ /g;
         s/ +/ /g;
-        $comCount++ if (not $insideComment);
-        $insideComment = 1;
-        /$commentChar+/;
+        $comment_count++ if (not $inside_comment);
+        $inside_comment = 1;
+        /$comment_char+/;
         print OUT $' . "\n"; #'
-    } elsif (Is_Blank($_)) {
+    } elsif (is_blank($_)) {
         print OUT "\n";
     } else {
         exit 0;
     }
 }
 
-sub Is_Comment {
+sub is_comment {
     my ($st) = @_;
-    return  ($st =~ /^\s*$commentChar/);
+    return  ($st =~ /^\s*$comment_char/);
 }
 
-sub Is_Blank {
+sub is_blank {
     my ($st) = @_;
     return ($st =~ /^\s*$/);
 }
