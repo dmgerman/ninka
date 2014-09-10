@@ -110,7 +110,7 @@ $NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 my $INPUT_FILE_EXTENSION = 'senttok';
 
 # parse cmdline parameters
-if (!getopts('') || scalar(@ARGV) == 0 || !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+if (!getopts('') || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
     print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
     exit 1;
 }
