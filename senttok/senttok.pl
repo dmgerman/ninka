@@ -16,35 +16,36 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+#
+# senttok.pl
+#
+# This script creates a file that corresponds to the recognized sentence tokens.
+# For each sentence, it outputs its sentence token, or unknown otherwise.
+#
+
 use strict;
+#use warnings;
+use Getopt::Std;
+
+my $INPUT_FILE_EXTENSION = 'goodsent';
+
+# parse cmdline parameters
+if (!getopts('') or scalar(@ARGV) == 0 or !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+    print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
+    exit 1;
+}
 
 my $TOO_LONG = 70;
 
-# where are we running the splitter from?
-my $path = $0;
-$path =~ s/[^\/]+$//;
-if ($path eq "") {
-    $path = "./";
-}
-my $path_license_sentences = $path . "licensesentence.dict";
+my $path = get_my_path($0);
 
-open FH, "<$ARGV[0]";
-my @license_sentences = ();
-open LICENSESENTENCEFILE, "<$path_license_sentences";
-my $line;
-while ($line = <LICENSESENTENCEFILE>) {
-    chomp $line;
-    next if $line =~ /^\#/;
-    next if $line =~ /^ *$/;
-    die "Illegal format in license expression [$line] " unless $line =~ /(.*?):(.*?):(.*)/;
-    push @license_sentences, $line;
-}
+my $input_file = $ARGV[0];
+my $license_sentences_file = "$path/licensesentence.dict";
 
-#foreach $line (@license_sentences) {
-#  print $line;
-#}
-close LICENSESENTENCEFILE;
-while ($line = <>) {
+my @license_sentences = read_license_sentences($license_sentences_file);
+
+open my $input_fh, '<', $input_file or die "can't open file [$input_file]: $!";
+while (my $line = <$input_fh>) {
     my $save_line;
     my $original_line;
     chomp $line;
@@ -57,21 +58,16 @@ while ($line = <>) {
     $line = normalize_sentence($line);
 
     my $check = 0;
-    my $match_name = "UNKNOWN";
-    my @parm = ();
-    my $sentence;
+    my $match_name = 'UNKNOWN';
+    my @parameters = ();
     my $distance = 1; #maximum? number
-    my $most_similar_name = "UNKNOWN";
+    my $most_similar_name = 'UNKNOWN';
     my $before;
     my $after;
     my $gpl = 0;
     my ($gpl_later, $gpl_version);
 
     $save_line = $line;
-
-#        print "Original
-#   [$line]
-#\n";
 
     my $line_as_gpl = '';
 
@@ -82,35 +78,28 @@ while ($line = <>) {
         $line_as_gpl = $line;
     }
     my ($name, $sub_rule, $number, $regexp, $option);
-    my $save_line = $line;
+    $save_line = $line;
     my $save_gpl = $gpl;
-    my $LGPL = "";
-    foreach $sentence (@license_sentences) {
-        ($name, $sub_rule, $number, $regexp, $option) = split(/:/, $sentence);
+    my $LGPL = '';
+    foreach my $sentence (@license_sentences) {
+        ($name, $sub_rule, $number, $regexp, $option) = split /:/, $sentence;
         # we need this due to the goto again
         $line = $save_line;
         $gpl = $save_gpl;
-        $LGPL = "";
+        $LGPL = '';
       again:
-#       print "Testing
-#   lin[$line]
-#   ori[$save_line]
-#   re [$regexp]
-#   lpg[$LGPL]
-#\n";
         if ($line =~ /$regexp/im) {
             $before = $`;
-            $after = $'; #';
+            $after = $';
             $check = 1;
             $match_name = $name;
             for (my $i = 1; $i <= $number; $i++) {
                 no strict 'refs';
-                push @parm, $$i;
+                push @parameters, $$i;
             }
             last;
         } else {
-#            print "NO MATCH\n";
-            # let us try again in cas it is lesser/library
+            # let us try again in case it is lesser/library
             # do it only once
             if ($gpl and $line =~ s/(Lesser|Library) GPL/GPL/i) {
                 $LGPL = $1;
@@ -121,7 +110,7 @@ while ($line = <>) {
                 $line = $save_line;
                 goto again;
             }
-            next;## dmg
+            next;
             my $targetset = $regexp;
             $targetset =~ s/^(.*)$/$1/;
             my $tmpdist = levenshtein($line, $targetset) / max(length($targetset), length($sentence));
@@ -130,29 +119,41 @@ while ($line = <>) {
                 $distance = $tmpdist;
             }
         }
-        last; ###
+        last;
     }
-    if ($check == 1) {
-        # licensesentence name, parm1, parm2,..
+    if ($check) {
+        # licensesentence name, param1, param2, ...
         if ($gpl) {
-            $match_name .= "Ver" . $gpl_version;
-            $match_name .= "+" if $gpl_later;
+            $match_name .= 'Ver' . $gpl_version;
+            $match_name .= '+' if $gpl_later;
             $match_name = $LGPL . $match_name;
         }
         if (length($before) > $TOO_LONG || length($after) > $TOO_LONG) {
-            $match_name .= "-TOOLONG";
+            $match_name .= '-TOOLONG';
         }
-        my $parmstrings = join(";", $match_name, $sub_rule, $before, $after, @parm);
-        print $parmstrings, ":$original_line\n";
+        # TODO: Use of uninitialized value in @parameters
+        my $parameter_string = join ';', $match_name, $sub_rule, $before, $after, @parameters;
+        print $parameter_string, ":$original_line\n";
     } else {
         # UNKNOWN, sentence
         chomp $line;
-        print $match_name, ";", 0, ";", $most_similar_name, ";", $distance, ";", $save_line, ":$original_line\n";
+        my $parameter_string = join ';', $match_name, 0, $most_similar_name, $distance, $save_line;
+        print $parameter_string, ":$original_line\n";
     }
 }
+close $input_fh;
 
-close FH;
 exit 0;
+
+sub get_my_path {
+    my ($self) = @_;
+    my $path = $self;
+    $path =~ s/\/+[^\/]+$//;
+    if ($path eq '') {
+        $path = './';
+    }
+    return $path;
+}
 
 sub normalize_gpl {
     my ($line) = @_;
@@ -177,7 +178,6 @@ sub normalize_gpl {
     }
     if ($line =~ s/(version|v\.?) ([123\.0]+)/<VERSION>/i) {
         $version = $2;
-#        print "Version [$version]\n";
     }
     if ($line =~ s/GPL ?[v\-]([123\.0]+)/GPL <VERSION>/i) {
         $version = $1;
@@ -217,9 +217,7 @@ sub normalize_gpl {
     $line =~ s/ +/ /;
     $line =~ s/ +$//;
 
-#    print ">>>>>>>>>>$line:$later:$version\n";
-
-    return ($line,$later,$version);
+    return ($line, $later, $version);
 }
 
 sub looks_like_gpl {
@@ -296,8 +294,8 @@ sub levenshtein {
     # Some char-by-char processing is ahead, so prepare
     # array of chars from the strings
     #
-    my @ar1 = split(//, $s1);
-    my @ar2 = split(//, $s2);
+    my @ar1 = split //, $s1;
+    my @ar2 = split //, $s2;
 
     for (my $i = 1; $i <= $len1; ++$i) {
         for (my $j = 1; $j <= $len2; ++$j) {
@@ -346,5 +344,24 @@ sub min {
 sub max {
     my @list = @_;
     return $list[0] > $list[1] ? $list[0] : $list[1];
+}
+
+sub read_license_sentences {
+    my ($file) = @_;
+    my @license_sentences = ();
+
+    open my $fh, '<', $file or die "can't open file [$file]: $!";
+
+    while (my $line = <$fh>) {
+        chomp $line;
+        next if $line =~ /^\#/;
+        next if $line =~ /^ *$/;
+        die "illegal format in license expression [$line]" unless $line =~ /(.*?):(.*?):(.*)/;
+        push @license_sentences, $line;
+    }
+
+    close $fh;
+
+    return @license_sentences;
 }
 

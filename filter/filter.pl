@@ -18,74 +18,85 @@
 
 #
 # filter.pl
-# This script classify input sentences into two categories,
-# good sentences and bad sentences.
-# This script regard a sentence include a critical word (ex. legal term) as good
 #
-# usage: filter.pl (inputfilename)
+# This script classifies input sentences into two categories, good sentences and bad sentences.
+# A sentence including a critical word (ex. legal term) is regarded as good.
 #
-# Author: Yuki Manabe
-#
+
 use strict;
+use warnings;
+use Getopt::Std;
 
-#print $ARGV[0];
+my $INPUT_FILE_EXTENSION = 'sentences';
 
-# where are we running the program from
-my $path = $0;
-$path =~ s/[^\/]+$//;
-if ($path eq '') {
-    $path = './';
+# parse cmdline parameters
+if (!getopts('') or scalar(@ARGV) == 0 or !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+    print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
+    exit 1;
 }
-my $file_critical_words = $path . 'criticalword.dict';
 
-die "Usagee $0 <filename>.sentences" unless $ARGV[0] =~ /\.sentences$/;
+my $path = get_my_path($0);
 
-my $file_good = $ARGV[0];
+my $input_file = $ARGV[0];
+my $file_critical_words = "$path/criticalword.dict";
 
-die "Filename should end in '.sentences' [$file_good]" unless $file_good =~ s/\.sentences$/\.goodsent/;
-my $file_bad = $ARGV[0];
-$file_bad =~ s/\.sentences$/\.badsent/;
+my $file_good = $input_file; $file_good =~ s/\.$INPUT_FILE_EXTENSION$/\.goodsent/;
+my $file_bad  = $input_file; $file_bad  =~ s/\.$INPUT_FILE_EXTENSION$/\.badsent/;
 
-#print $file_good;
-#print $file_bad;
+open my $input_fh, '<', $input_file or die "can't open input file [$input_file]: $!";
 
-open (INPUTFILE, "<$ARGV[0]") or die ("Error: $ARGV[0] is not found.");
-open (DICTIONARY, "<$file_critical_words") or die ('Error: criticalword.dict is not found.');
+open my $good_fh, '>', $file_good or die "can't create good sentences file [$file_good]: $!";
+open my $bad_fh, '>', $file_bad or die "can't create bad sentences file [$file_bad]: $!";
 
-open (GOODOUT, ">$file_good") || die ('Error');
-open (BADOUT, ">$file_bad") || die ('Error');
+my @critical_words = read_critical_words($file_critical_words);
 
-my @critical_words = ();
-# read dictionary into list
-my $critical_word;
-while ($critical_word = <DICTIONARY>) {
-    chomp $critical_word;
-    next if $critical_word =~ /^\#/;
-    $critical_word =~ s/\#.*$//; # remove everything to the end of file
-    push(@critical_words, "$critical_word");
-}
-close(DICTIONARY);
-
-#matching cliticalwords in list against sentences.
-my $sentence;
-while ($sentence = <INPUTFILE>) {
-    my $check = 0;
+# matching critical words in list against sentences
+while (my $sentence = <$input_fh>) {
     chomp $sentence;
-    foreach $critical_word (@critical_words) {
+    next unless $sentence;
+    my $check = 0;
+    foreach my $critical_word (@critical_words) {
         if ($sentence =~ /\b$critical_word\b/i) {
             $check = 1;
-            #print "$critical_word:$sentence";
             last;
         }
     }
-    if ($check == 1) {
-        print GOODOUT "$sentence\n";
+    if ($check) {
+        print $good_fh "$sentence\n";
     } else {
-        print BADOUT "$sentence\n";
+        print $bad_fh "$sentence\n";
     }
 }
 
-close(INPUTFILE);
-close(GOODOUT);
-close(BADOUT);
+close $input_fh;
+close $good_fh;
+close $bad_fh;
+
+sub get_my_path {
+    my ($self) = @_;
+    my $path = $self;
+    $path =~ s/\/+[^\/]+$//;
+    if ($path eq '') {
+        $path = './';
+    }
+    return $path;
+}
+
+sub read_critical_words {
+    my ($file) = @_;
+    my @critical_words = ();
+
+    open my $fh, '<', $file or die "can't open file [$file]: $!";
+
+    while (my $line = <$fh>) {
+        chomp $line;
+        next if $line =~ /^\#/;
+        $line =~ s/\#.*$//; # remove everything to the end of line
+        push @critical_words, $line;
+    }
+
+    close $fh;
+
+    return @critical_words;
+}
 

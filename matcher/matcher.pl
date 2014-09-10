@@ -19,21 +19,19 @@
 #
 # matchter.pl
 #
-# This script use a set of license sentence name as input
-# and output license name corresponds to a rule which match the set.
-#
-# author: Yuki Manabe
-#
-# usage: matchter.pl (inputfilename)
+# This script uses a set of license sentence names as input and
+# outputs license names corresponds to a rule which match the set.
 #
 
 use strict;
+#use warnings;
+use Getopt::Std;
+
 my $debug = 0;
 
 my %NON_CRITICAL_RULES = ();
 
 # these should go into a file, but for the time being, let us keep them here
-
 # once we have matched a rule, these are not that important
 
 my @GENERAL_NON_CRITICAL = ('AllRights');
@@ -57,10 +55,10 @@ $NON_CRITICAL_RULES{'LibraryGPLv3+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LibraryGPLv3'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LibraryGPLv2+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LibraryGPLv2'} = [@GPL_NON_CRITICAL];
-$NON_CRITICAL_RULES{'LesserGPLv3'} = [@GPL_NON_CRITICAL, 'LesserGPLseeVer3','LesserGPLcopyVer3','SeeFileVer3'];
+$NON_CRITICAL_RULES{'LesserGPLv3'} = [@GPL_NON_CRITICAL, 'LesserGPLseeVer3', 'LesserGPLcopyVer3', 'SeeFileVer3'];
 $NON_CRITICAL_RULES{'LesserGPLv2.1+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LesserGPLv2.1'} = [@GPL_NON_CRITICAL];
-$NON_CRITICAL_RULES{'LGPLv2orv3'}= [@GPL_NON_CRITICAL];
+$NON_CRITICAL_RULES{'LGPLv2orv3'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LesserGPLv2'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LesserGPLv2+'} = [@GPL_NON_CRITICAL];
 
@@ -70,84 +68,67 @@ $NON_CRITICAL_RULES{'GPLv1+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'GPLv1'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'GPLv3+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'GPLv3'} = [@GPL_NON_CRITICAL];
-$NON_CRITICAL_RULES{'AGPLv3'} = [@GPL_NON_CRITICAL, 'AGPLreceivedVer0','AGPLseeVer0'];
-$NON_CRITICAL_RULES{'AGPLv3+'} = [@GPL_NON_CRITICAL, 'AGPLreceivedVer0','AGPLseeVer0'];
+$NON_CRITICAL_RULES{'AGPLv3'} = [@GPL_NON_CRITICAL, 'AGPLreceivedVer0', 'AGPLseeVer0'];
+$NON_CRITICAL_RULES{'AGPLv3+'} = [@GPL_NON_CRITICAL, 'AGPLreceivedVer0', 'AGPLseeVer0'];
 $NON_CRITICAL_RULES{'GPLnoVersion'} = [@GPL_NON_CRITICAL];
 
 $NON_CRITICAL_RULES{'Apachev1.1'} = ['ApacheLic1_1'];
-$NON_CRITICAL_RULES{'Apachev2'}   = ['ApachePre','ApacheSee'];
+$NON_CRITICAL_RULES{'Apachev2'} = ['ApachePre', 'ApacheSee'];
 
-$NON_CRITICAL_RULES{'LibGCJLic'}  = ['LibGCJSee'];
-$NON_CRITICAL_RULES{'CDDLicV1'}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
-$NON_CRITICAL_RULES{'CDDLic'}  = ['Compliance','CDDLicWhere','ApachesPermLim','CDDLicIncludeFile','UseSubjectToTerm', 'useOnlyInCompliance'];
+$NON_CRITICAL_RULES{'LibGCJLic'} = ['LibGCJSee'];
+$NON_CRITICAL_RULES{'CDDLicV1'} = ['Compliance', 'CDDLicWhere', 'ApachesPermLim', 'CDDLicIncludeFile', 'UseSubjectToTerm', 'useOnlyInCompliance'];
+$NON_CRITICAL_RULES{'CDDLic'} = ['Compliance', 'CDDLicWhere', 'ApachesPermLim', 'CDDLicIncludeFile', 'UseSubjectToTerm', 'useOnlyInCompliance'];
 
-$NON_CRITICAL_RULES{'CDDLorGPLv2'}= ['CDDLorGPLv2doNotAlter','AllRights','useOnlyInCompliance', 'CDDLorGPLv2whereVer0', 'ApachesPermLim', 'CDDLorGPLv2include','CDDLorGPLv2IfApplicable', 'CDDLorGPLv2Portions', 'CDDLorGPLv2ifYouWishVer2', 'CDDLorGPLv2IfYouAddVer2'];
+$NON_CRITICAL_RULES{'CDDLorGPLv2'} = ['CDDLorGPLv2doNotAlter', 'AllRights', 'useOnlyInCompliance', 'CDDLorGPLv2whereVer0', 'ApachesPermLim', 'CDDLorGPLv2include', 'CDDLorGPLv2IfApplicable', 'CDDLorGPLv2Portions', 'CDDLorGPLv2ifYouWishVer2', 'CDDLorGPLv2IfYouAddVer2'];
 
 $NON_CRITICAL_RULES{'CPLv1orGPLv2+orLGPLv2+'} = ['licenseBlockBegin', 'licenseBlockEnd'];
 
-$NON_CRITICAL_RULES{'Qt'} = ['Copyright','qtNokiaExtra','QTNokiaContact', 'qtDiaTems'];
-$NON_CRITICAL_RULES{'orLGPLVer2.1'} = ['LesserqtReviewGPLVer2.1','qtLGPLv2.1where'];
-$NON_CRITICAL_RULES{'orGPLv3'} = ['qtReviewGPLVer3.0','qtReviewGPLVer3','qtGPLwhere'];
+$NON_CRITICAL_RULES{'Qt'} = ['Copyright', 'qtNokiaExtra', 'QTNokiaContact', 'qtDiaTems'];
+$NON_CRITICAL_RULES{'orLGPLVer2.1'} = ['LesserqtReviewGPLVer2.1', 'qtLGPLv2.1where'];
+$NON_CRITICAL_RULES{'orGPLv3'} = ['qtReviewGPLVer3.0', 'qtReviewGPLVer3', 'qtGPLwhere'];
 $NON_CRITICAL_RULES{'digiaQTExceptionNoticeVer1.1'} = ['qtDigiaExtra'];
 
-$NON_CRITICAL_RULES{'MPLv1_0'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
-$NON_CRITICAL_RULES{'MPLv1_1'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
-$NON_CRITICAL_RULES{'NPLv1_1'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
-$NON_CRITICAL_RULES{'NPLv1_0'}  = ['ApacheLicWherePart1','MPLwarranty','MPLSee'];
+$NON_CRITICAL_RULES{'MPLv1_0'} = ['ApacheLicWherePart1', 'MPLwarranty', 'MPLSee'];
+$NON_CRITICAL_RULES{'MPLv1_1'} = ['ApacheLicWherePart1', 'MPLwarranty', 'MPLSee'];
+$NON_CRITICAL_RULES{'NPLv1_1'} = ['ApacheLicWherePart1', 'MPLwarranty', 'MPLSee'];
+$NON_CRITICAL_RULES{'NPLv1_0'} = ['ApacheLicWherePart1', 'MPLwarranty', 'MPLSee'];
 
-$NON_CRITICAL_RULES{'subversion'} = ['SeeFileSVN','subversionHistory'];
-$NON_CRITICAL_RULES{'subversion+'} = ['SeeFileSVN','subversionHistory'];
+$NON_CRITICAL_RULES{'subversion'} = ['SeeFileSVN', 'subversionHistory'];
+$NON_CRITICAL_RULES{'subversion+'} = ['SeeFileSVN', 'subversionHistory'];
 $NON_CRITICAL_RULES{'tmate+'} = ['SeeFileSVN'];
 
 $NON_CRITICAL_RULES{'openSSLvar2'} = ['BSDcondAdvPart2'];
 
-$NON_CRITICAL_RULES{'MPLv1_1'} = ['licenseBlockBegin','MPLsee','Copyright','licenseBlockEnd','ApacheLicWherePart1','MPLwarranty', 'MPLwarrantyVar'];
-$NON_CRITICAL_RULES{'MPL1_1andLGPLv2_1'} = ['MPLoptionIfNotDelete2licsVer0','MPL_LGPLseeVer0'];
+$NON_CRITICAL_RULES{'MPLv1_1'} = ['licenseBlockBegin', 'MPLsee', 'Copyright', 'licenseBlockEnd', 'ApacheLicWherePart1', 'MPLwarranty', 'MPLwarrantyVar'];
+$NON_CRITICAL_RULES{'MPL1_1andLGPLv2_1'} = ['MPLoptionIfNotDelete2licsVer0', 'MPL_LGPLseeVer0'];
 
 $NON_CRITICAL_RULES{'FreeType'} = ['FreeTypeNotice'];
 
 $NON_CRITICAL_RULES{'GPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 $NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 
-# initialize
+my $INPUT_FILE_EXTENSION = 'senttok';
 
-my $path = $0;
-$path =~ s/[^\/]+$//;
-if ($path eq '') {
-    $path = './';
+# parse cmdline parameters
+if (!getopts('') or scalar(@ARGV) == 0 or !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+    print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
+    exit 1;
 }
 
-my $rules_file = $path . 'rules.dict';
-my $interrules_file = $path . 'interrules.dict';
+my $path = get_my_path($0);
 
-die "Usage $0 <filename>.senttok" unless $ARGV[0] =~ /\.senttok$/;
+my $input_file = $ARGV[0];
+my $rules_file = "$path/rules.dict";
+my $interrules_file = "$path/interrules.dict";
 
-my $count_unknowns = 0;
+my @license_sentence_names = ();
+my @originals = ();
+read_original($input_file, \@license_sentence_names, \@originals);
 
-# read the rules
 my @rules = read_rules($rules_file);
 my @inter_rules = read_inter_rules($interrules_file);
 
-my @license_sentence_names = ();
-my @original;
-
-read_original($ARGV[0], \@license_sentence_names, \@original);
-
-#foreach my $x (@license_sentence_names) {
-#    print "$x\n";
-#}
-#exit;
-
-#foreach my $x (@original) {
-#    print "$x\n";
-#}
-#exit;
-
 ##########################################
-
-#for my $ref( @inter_rules ){
-#   print "@$ref\n";
-#}
 
 # matching spdx requires to match strict licenses, with no alternatives...
 
@@ -159,9 +140,9 @@ print "[$senttok]\n" if $debug;
 match_license();
 
 # do we have to check again?
-## todo, verifythat we have unmatched sentences...
+## todo, verify that we have unmatched sentences...
 
-@license_sentence_names = split(',', $senttok);
+@license_sentence_names = split ',', $senttok;
 
 # first remove the extrict part from it
 
@@ -172,15 +153,12 @@ for (my $i = 0; $i <= $#license_sentence_names; $i++) {
     if ($license_sentence_names[$i] == 0 and
         ($license_sentence_names[$i] ne 'UNKNOWN' and
          $license_sentence_names[$i] ne '')) {
-#        print "[$license_sentence_names[$i]]\n";
         $license_sentence_names[$i] =~ s/Extrict$//;
         $match++;
     }
 }
 
-#print_result();
-
-if ($match > 0) {
+if ($match) {
 #    print "REDO\n";
     for (my $i = 0; $i <= $#inter_rules; $i++) {
         #for my $ref( @inter_rules[$i]){
@@ -199,99 +177,104 @@ print_result();
 
 exit 0;
 
-#print @license_sentence_names;
-#print join(';',@license_sentence_names)."\n";
-
-# 3. matching
-###############################
-
-# we will iterate over rules, matching as many as we can...
+sub get_my_path {
+    my ($self) = @_;
+    my $path = $self;
+    $path =~ s/\/+[^\/]+$//;
+    if ($path eq '') {
+        $path = './';
+    }
+    return $path;
+}
 
 sub is_unknown {
     my ($s) = @_;
-    my @f = split (/,/, $s);
+    my @f = split /,/, $s;
     return $f[0] eq 'UNKNOWN';
 }
 
 sub read_rules {
     my ($file) = @_;
-    open (RULES, "<$file") or die ('Error: rules.dict is not found.');
-    my $sentence;
     my @rules = ();
-    while ($sentence = <RULES>) {
-        chomp $sentence;
+
+    open my $fh, '<', $file or die "can't open file [$file]: $!";
+
+    while (my $line = <$fh>) {
+        chomp $line;
         # clean up spaces
-        $sentence =~ s/^\s+//;
-        $sentence =~ s/\s+$//;
-        $sentence =~ s/\s*,\s*/,/g;
-        $sentence =~ s/\s*:\s*/:/g;
-        #check format
-        if ($sentence =~ /^#/ || $sentence !~ /(.*):(.*,)*(.*)/) {
+        $line =~ s/^\s+//;
+        $line =~ s/\s+$//;
+        $line =~ s/\s*,\s*/,/g;
+        $line =~ s/\s*:\s*/:/g;
+        # check format
+        if ($line =~ /^#/ || $line !~ /(.*):(.*,)*(.*)/) {
             next;
         }
-        $sentence =~ /(.*?):(.*)/;
-        push (@rules, [$1, $2]);
+        $line =~ /(.*?):(.*)/;
+        push @rules, [$1, $2];
     }
-    close RULES;
+
+    close $fh;
+
     return @rules;
 }
 
 sub read_inter_rules {
     my ($file) = @_;
+    my @inter_rules = ();
 
-    my @inter_rules;
-    open (IRULES, "<$file") or die ('Error: interrules.dict is not found.');
-    my $sentence;
-    while ($sentence = <IRULES>) {
-        chomp $sentence;
-        #check format
-        if ($sentence =~ /^#/ || $sentence !~ /(.*?):(.*)/) {
+    open my $fh, '<', $file or die "can't open file [$file]: $!";
+
+    while (my $line = <$fh>) {
+        chomp $line;
+        # check format
+        if ($line =~ /^#/ || $line !~ /(.*?):(.*)/) {
             next;
         }
-        foreach my $item (split(/\|/, $2)) {
-            push (@inter_rules, [$item, $1]);
+        foreach my $item (split /\|/, $2) {
+            push @inter_rules, [$item, $1];
         }
     }
-    close IRULES;
+
+    close $fh;
+
     return @inter_rules;
 }
 
 sub read_original {
     my ($file, $tokens, $originals) = @_;
 
-    open (INPUTFILE, $file) or die ("Error: $file is not found.");
+    open my $fh, '<', $file or die "can't open file [$file]: $!";
 
-    my $sentence;
-    my @original;
-    while ($sentence = <INPUTFILE>) {
+    while (my $sentence = <$fh>) {
         chomp $sentence;
-        my @fields = split(':', $sentence);
-        push(@$originals, $fields[1]);
-        my @token = split(';', $fields[0]);
-        push(@$tokens, $token[0]);
+        my @fields = split ':', $sentence;
+        push @$originals, $fields[1];
+        my @token = split ';', $fields[0];
+        push @$tokens, $token[0];
     }
+
+    close $fh;
+
     if (scalar(@$originals) == 0) {
         print "NONE\n";
         exit 0;
     }
-
-#print join(';',@license_sentence_names)."\n";
-
-    close INPUTFILE;
 }
 
+# we will iterate over rules, matching as many as we can...
 sub match_license {
 # create a string with the sentences
 
     for (my $j = 0; $j <= $#rules; $j++) {
         my $rule = $rules[$j][1];
         my $rulename = $rules[$j][0];
-        my $rule_length = scalar(split(',', $rule));
+        my $rule_length = scalar(split ',', $rule);
         # replace rule with the length of the rule
         print "To try [$rulename][$rule] on [$senttok]\n" if $debug;
-        while ($senttok =~ s/,${rule},/,$rule_length,/) {
+        while ($senttok =~ s/,$rule,/,$rule_length,/) {
             $count_matches++;
-            push (@result, $rulename);
+            push @result, $rulename;
 #        print ">>>>$senttok|$rules[$j][1]\n";
 #        print 'Result: ', join(',', @result);
 #        print "\n";
@@ -351,14 +334,12 @@ sub match_license {
 }
 
 sub print_result {
-#        $senttok =~ s/AllRights(,?)/$1/g;
-#        $senttok =~ s/UNKNOWN,/,/g;
-#        $senttok =~ s/,+/,/g;
+#   $senttok =~ s/AllRights(,?)/$1/g;
+#   $senttok =~ s/UNKNOWN,/,/g;
+#   $senttok =~ s/,+/,/g;
 
     my $save = $senttok;
-    # ok, so now, what I want to output it:
-    # licenses; number of licenses matched;number of sentences matched; number of sentences ignored;number of sentences not matched;number of sentences unknown
-    my @sections = split(',', $senttok);
+    my @sections = split ',', $senttok;
     die 'assertion 1' if $sections[0] ne '';
     die 'assertion 2' if $sections[scalar(@sections)] ne '';
 
@@ -367,7 +348,6 @@ sub print_result {
     my $unknown_lines = 0;
     my $unmatched_lines = 0;
     foreach my $i (1..scalar(@sections)-1) {
-#        print "$i;$sections[$i]\n";
         if ($sections[$i] < 0) {
             $ignored_lines += - $sections[$i];
         } elsif ($sections[$i] != 0) {
@@ -380,12 +360,13 @@ sub print_result {
     }
     $senttok =~ s/^,(.*),$/$1/;
 
-#    print "$ignored_lines > $license_lines > $unknown_lines > $unmatched_lines\n";
     if (scalar (@result) == 0) {
         print 'UNKNOWN';
     } else {
-        print join(',',@result);
+        print join ',', @result;
     }
+    # ok, so now, what I want to output is:
+    # licenses; number of licenses matched;number of sentences matched; number of sentences ignored;number of sentences not matched;number of sentences unknown
     print ";$count_matches;$license_lines;$ignored_lines;$unmatched_lines;$unknown_lines;$senttok\n";
     $senttok = $save;
 }

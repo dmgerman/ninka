@@ -16,39 +16,33 @@
 #    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
-# this is to extract the first <n> comments from any language that
-# uses the same prefix
+#
+# hashComments.pl
+#
+# This script extracts the first <n> comments from any language that uses the same prefix.
+#
 
+use strict;
+use warnings;
 use Getopt::Std;
 
-# set parameters
+# parse cmdline parameters
 my %opts = ();
-if (!getopts ('vc:p:',\%opts)) {
-    print STDERR "Usage $0 -v
+if (!getopts ('vc:p:', \%opts)) {
+    print STDERR "Usage: $0 [OPTIONS] <filename>
 
+Options:
   -v verbose
   -p comment char
-  -c count of comment blocks
+  -c count of comment blocks\n";
 
-\n";
-
-    die;
+    exit 1;
 }
-my $file = $ARGV[0];
-
-open (OUT, ">${file}.comments") or die "Unable to create [${file}.comments]";
-
- <>;
-print OUT unless /^\#\!/;
-
-my $comment_char = '#';
-
-$comment_char = $opts{p} if exists $opts{p};
-
-my $comments_count = 1;
-$comments_count = $opts{c} if exists $opts{c};
 
 my $verbose = exists $opts{v};
+
+my $comment_char   = exists $opts{p} ? $opts{p} : '#';
+my $comments_count = exists $opts{c} ? $opts{c} : 1;
 
 my $inside_comment = 0;
 my $inside_code = 0;
@@ -56,29 +50,41 @@ my $inside_code = 0;
 my $comment_count = 0;
 my $code_count = 0;
 
-while (<>) {
-    chomp;
-    if (is_comment($_)) {
-        s/\t/ /g;
-        s/ +/ /g;
+my $input_file = $ARGV[0];
+my $comments_file = "$input_file.comments";
+
+open my $input_fh, '>', $input_file or die "can't open input file [$input_file]";
+open my $comments_fh, '>', $comments_file or die "can't create output file [$comments_file]";
+
+<$input_fh>;
+print $comments_fh unless /^\#\!/;
+
+while (my $line = <$input_fh>) {
+    chomp $line;
+    if (is_comment($line)) {
+        $line =~ s/\t/ /g;
+        $line =~ s/ +/ /g;
         $comment_count++ if (not $inside_comment);
         $inside_comment = 1;
-        /$comment_char+/;
-        print OUT $' . "\n"; #'
-    } elsif (is_blank($_)) {
-        print OUT "\n";
+        $line =~ /$comment_char+/;
+        print $comments_fh substr($line, $+[0]) . "\n";
+    } elsif (is_blank($line)) {
+        print $comments_fh "$line\n";
     } else {
-        exit 0;
+        last;
     }
 }
 
+close $input_fh;
+close $comments_fh;
+
 sub is_comment {
-    my ($st) = @_;
-    return  ($st =~ /^\s*$comment_char/);
+    my ($string) = @_;
+    return ($string =~ /^\s*$comment_char/);
 }
 
 sub is_blank {
-    my ($st) = @_;
-    return ($st =~ /^\s*$/);
+    my ($string) = @_;
+    return ($string =~ /^\s*$/);
 }
 
