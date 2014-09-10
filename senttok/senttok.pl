@@ -30,7 +30,7 @@ use Getopt::Std;
 my $INPUT_FILE_EXTENSION = 'goodsent';
 
 # parse cmdline parameters
-if (!getopts('') or scalar(@ARGV) == 0 or !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+if (!getopts('') || scalar(@ARGV) == 0 || !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
     print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
     exit 1;
 }
@@ -101,7 +101,7 @@ while (my $line = <$input_fh>) {
         } else {
             # let us try again in case it is lesser/library
             # do it only once
-            if ($gpl and $line =~ s/(Lesser|Library) GPL/GPL/i) {
+            if ($gpl && $line =~ s/(Lesser|Library) GPL/GPL/i) {
                 $LGPL = $1;
                 goto again;
             }

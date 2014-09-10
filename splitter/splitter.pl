@@ -43,7 +43,7 @@ use Getopt::Std;
 my $INPUT_FILE_EXTENSION = 'comments';
 
 # parse cmdline parameters
-if (!getopts('') or scalar(@ARGV) == 0 or !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+if (!getopts('') || scalar(@ARGV) == 0 || !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
     print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
     exit 1;
 }
@@ -236,14 +236,14 @@ sub split_text {
                 if (length($last_word) == 1 ) {
                     # single character abbreviations are special...
                     # we will assume they never split the sentence if they are capitalized.
-                    if (($last_word ge 'A') and ($last_word le 'Z')) {
+                    if ($last_word ge 'A' && $last_word le 'Z') {
                         $current_sentence .= $sentence;
                         next;
                     }
                     print "last word an abbrev $sentence_match lastword [$last_word] before [$before]\n";
 
                     # but some are lowercase!
-                    if (($last_word eq 'e') or ($last_word eq 'i')) {
+                    if ($last_word eq 'e' || $last_word eq 'i') {
                         $current_sentence .= $sentence;
                         next;
                     }
@@ -253,7 +253,7 @@ sub split_text {
 
                     # only accept abbreviations if the previous char to the abbrev is space or
                     # is empty (beginning of line). This avoids things like .c
-                    if (length($before) > 0 and $before eq ' ' and $abbreviations{$last_word}) {
+                    if (length($before) > 0 && $before eq ' ' && $abbreviations{$last_word}) {
                         $current_sentence .= $sentence;
                         next;
                     } else {

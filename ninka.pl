@@ -22,7 +22,7 @@ use Getopt::Std;
 
 # parse cmdline parameters
 my %opts = ();
-if (!getopts('vfCcSsGgTtLd', \%opts) or scalar(@ARGV) == 0) {
+if (!getopts('vfCcSsGgTtLd', \%opts) || scalar(@ARGV) == 0) {
     print STDERR "Ninka version 1.1
 
 Usage: $0 [OPTIONS] <filename>
@@ -80,23 +80,23 @@ if (not (-f $input_file)) {
     exit 1;
 }
 
-process_file($input_file, $comments_file, ($force or $force_comments),
+process_file($input_file, $comments_file, ($force || $force_comments),
              "$path/extComments/extComments.pl '$input_file'",
              'Creating comments file', exists $opts{c});
 
-process_file($comments_file, $sentences_file, ($force or $force_sentences),
+process_file($comments_file, $sentences_file, ($force || $force_sentences),
              "$path/splitter/splitter.pl '$comments_file'",
              'Splitting sentences', exists $opts{s});
 
-process_file($sentences_file, $goodsent_file, ($force or $force_good),
+process_file($sentences_file, $goodsent_file, ($force || $force_good),
              "$path/filter/filter.pl '$sentences_file'",
              'Filtering good sentences', exists $opts{s});
 
-process_file($goodsent_file, $senttok_file, ($force or $force_senttok),
+process_file($goodsent_file, $senttok_file, ($force || $force_senttok),
              "$path/senttok/senttok.pl '$goodsent_file' > '$senttok_file'",
              'Matching sentences against rules', exists $opts{t});
 
-process_file($senttok_file, $license_file, ($force or $force_license),
+process_file($senttok_file, $license_file, ($force || $force_license),
              "$path/matcher/matcher.pl '$senttok_file' > '$license_file'",
              'Matching sentence tokens against rules', 0);
 
@@ -126,7 +126,7 @@ sub process_file {
     my ($input, $output, $force, $cmd, $message, $end) = @_;
 
     print "$message:" if $verbose;
-    if ($force or is_newer($input, $output)) {
+    if ($force || is_newer($input, $output)) {
         print "Running $cmd:" if $verbose;
         execute($cmd);
     } else {
@@ -153,7 +153,7 @@ sub is_newer {
     my $f1write = (stat $f1)[9];
     my $f2write = (stat $f2)[9];
 
-    if (defined $f1write and defined $f2write) {
+    if (defined $f1write && defined $f2write) {
         return $f1write > $f2write;
     } else {
         return 1;

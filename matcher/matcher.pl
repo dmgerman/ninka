@@ -110,7 +110,7 @@ $NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 my $INPUT_FILE_EXTENSION = 'senttok';
 
 # parse cmdline parameters
-if (!getopts('') or scalar(@ARGV) == 0 or !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
+if (!getopts('') || scalar(@ARGV) == 0 || !($ARGV[0] =~ /\.$INPUT_FILE_EXTENSION$/)) {
     print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
     exit 1;
 }
@@ -150,9 +150,9 @@ match_license();
 
 my $match = 0;
 for (my $i = 0; $i <= $#license_sentence_names; $i++) {
-    if ($license_sentence_names[$i] == 0 and
-        ($license_sentence_names[$i] ne 'UNKNOWN' and
-         $license_sentence_names[$i] ne '')) {
+    if ($license_sentence_names[$i] == 0 &&
+        $license_sentence_names[$i] ne 'UNKNOWN' &&
+        $license_sentence_names[$i] ne '') {
         $license_sentence_names[$i] =~ s/Extrict$//;
         $match++;
     }

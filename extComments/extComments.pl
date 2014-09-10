@@ -29,7 +29,7 @@ use Getopt::Std;
 
 # parse cmdline parameters
 my %opts = ();
-if (!getopts('v', \%opts) or scalar(@ARGV) == 0) {
+if (!getopts('v', \%opts) || scalar(@ARGV) == 0) {
     print STDERR "Usage: $0 [OPTIONS] <filename>
 
 Options:
@@ -47,7 +47,7 @@ my $comments_file = "$input_file.comments";
 
 my $comments_cmd = determine_comments_cmd($input_file, $comments_file);
 execute($comments_cmd);
-if ($comments_cmd =~ /^comments/ and get_size($comments_file) == 0) {
+if ($comments_cmd =~ /^comments/ && get_size($comments_file) == 0) {
     $comments_cmd = create_head_cmd($input_file, $comments_file, 700);
     execute($comments_cmd);
 }
