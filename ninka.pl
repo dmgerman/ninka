@@ -72,35 +72,34 @@ my $badsent_file   = "$input_file.badsent";
 my $senttok_file   = "$input_file.senttok";
 my $license_file   = "$input_file.license";
 
-print "Starting: $input_file;\n" if $verbose;
-print "$input_file;";
+print STDERR "analysing file [$input_file]\n" if $verbose;
 
 if (not (-f $input_file)) {
-    print "ERROR;[$input_file] is not a file\n";
+    print STDERR "file [$input_file] is not a file\n";
     exit 1;
 }
 
 process_file($input_file, $comments_file, ($force || $force_comments),
-             "$path/extComments/extComments.pl '$input_file'",
-             'Creating comments file', exists $opts{c});
+             "$path/extComments/extComments.pl " . forward_verbosity() . "'$input_file'",
+             'creating comments file', exists $opts{c});
 
 process_file($comments_file, $sentences_file, ($force || $force_sentences),
              "$path/splitter/splitter.pl '$comments_file'",
-             'Splitting sentences', exists $opts{s});
+             'splitting sentences', exists $opts{s});
 
 process_file($sentences_file, $goodsent_file, ($force || $force_good),
              "$path/filter/filter.pl '$sentences_file'",
-             'Filtering good sentences', exists $opts{s});
+             'filtering good sentences', exists $opts{s});
 
 process_file($goodsent_file, $senttok_file, ($force || $force_senttok),
              "$path/senttok/senttok.pl '$goodsent_file' > '$senttok_file'",
-             'Matching sentences against rules', exists $opts{t});
+             'matching sentences against rules', exists $opts{t});
 
 process_file($senttok_file, $license_file, ($force || $force_license),
-             "$path/matcher/matcher.pl '$senttok_file' > '$license_file'",
-             'Matching sentence tokens against rules', 0);
+             "$path/matcher/matcher.pl " . forward_verbosity() . "'$senttok_file' > '$license_file'",
+             'matching sentence tokens against rules', 0);
 
-print `cat '$license_file'`;
+print $input_file, ';', `cat '$license_file'`;
 
 if ($delete) {
     unlink $comments_file;
@@ -122,20 +121,23 @@ sub get_my_path {
     return $path;
 }
 
+sub forward_verbosity {
+    return $opts{v} ? '-v ' : '';
+}
+
 sub process_file {
     my ($input, $output, $force, $cmd, $message, $end) = @_;
 
-    print "$message:" if $verbose;
+    print STDERR "$message\n" if $verbose;
     if ($force || is_newer($input, $output)) {
-        print "Running $cmd:" if $verbose;
+        print STDERR "running command [$cmd]\n" if $verbose;
         execute($cmd);
     } else {
-        print "File [$output] newer than input [$input], not creating:" if $verbose;
+        print STDERR "input file [$output] newer than input file [$input], doing nothing\n" if $verbose;
     }
 
     if ($end) {
-        print "Exiting after $message" if $verbose;
-        print "\n";
+        print STDERR "exiting after $message\n" if $verbose;
         exit 0;
     }
 }

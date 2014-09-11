@@ -27,8 +27,6 @@ use strict;
 #use warnings;
 use Getopt::Std;
 
-my $debug = 0;
-
 my %NON_CRITICAL_RULES = ();
 
 # these should go into a file, but for the time being, let us keep them here
@@ -110,10 +108,17 @@ $NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 my $INPUT_FILE_EXTENSION = 'senttok';
 
 # parse cmdline parameters
-if (!getopts('') || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
-    print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
+my %opts = ();
+if (!getopts('v', \%opts) || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
+    print STDERR "Usage $0 [OPTIONS] <filename>.$INPUT_FILE_EXTENSION
+
+Options:
+  -v verbose\n";
+
     exit 1;
 }
+
+my $verbose = exists $opts{v};
 
 my $path = get_my_path($0);
 
@@ -132,11 +137,11 @@ my @inter_rules = read_inter_rules($interrules_file);
 
 # matching spdx requires to match strict licenses, with no alternatives...
 
-my $senttok = ',' . join(',', @license_sentence_names) . ',';
 my @result = ();
 my $count_matches = 0;
 
-print "[$senttok]\n" if $debug;
+my $senttok = ',' . join(',', @license_sentence_names) . ',';
+print STDERR "senttok [$senttok]\n" if $verbose;
 match_license();
 
 # do we have to check again?
@@ -161,7 +166,7 @@ if ($match) {
     }
 
     $senttok = join(',', @license_sentence_names) . ',';
-
+    print STDERR "senttok [$senttok]\n" if $verbose;
     match_license();
 }
 
@@ -261,14 +266,17 @@ sub match_license {
         my ($rule_name, $rule_tokens) = @$rule;
         my $rule_length = scalar(split ',', $rule_tokens);
 
-        print "To try [$rule_name][$rule_tokens] on [$senttok]\n" if $debug;
+        print STDERR "trying [$rule_name][$rule_tokens] on [$senttok]\n" if $verbose;
         while ($senttok =~ s/,$rule_tokens,/,$rule_length,/) {
+            print STDERR "rule matched\n" if $verbose;
             $count_matches++;
             push @result, $rule_name;
         }
     }
 
-#    print ">>>>[$senttok]\n";
+    # at this point we have removed all the matched sentences...
+    print STDERR "senttok after matching rules [$senttok]\n" if $verbose;
+    print STDERR "result after matching rules [" . join(',', @result) . "]\n" if $verbose;
 
 #    # let us remove allrights
 #    my $only_all_right = 1;
@@ -297,7 +305,7 @@ sub match_license {
                 ;
             }
         }
-#        print "[$senttok]\n";
+        print STDERR "senttok after removal of general non-critical rules [$senttok]\n" if $verbose;
 
         foreach my $rule_name (@result) {
             foreach my $rule (@{$NON_CRITICAL_RULES{$rule_name}}) {
@@ -306,7 +314,7 @@ sub match_license {
                 }
             }
         }
-#        print "[$senttok]\n";
+        print STDERR "senttok after removal of non-critical rules [$senttok]\n" if $verbose;
     }
 }
 
