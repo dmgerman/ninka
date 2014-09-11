@@ -129,16 +129,16 @@ while ($text =~ /^([^\n]*)\n/gsm) {
         }
         my $clean_sentence = clean_sentence($sentence);
         next unless $clean_sentence;
-        print $output_fh $clean_sentence, "\n";
+        print $output_fh "$clean_sentence\n";
     }
 
     if ($count1 != $count2) {
-        print STDERR "-------------------------------------\n";
-        print STDERR "[$curr]\n";
+        print STDERR "number of printable chars does not match for [$curr]: [$count1] vs. [$count2]\n";
         foreach my $sentence (@sentences) {
-            print STDERR clean_sentence($sentence), "\n";
+            my $clean_sentence = clean_sentence($sentence);
+            print STDERR "cleaned sentence [$clean_sentence]\n";
         }
-        die "Number of printable chars does not match! [$count1][$count2]";
+        exit 1;
     }
 }
 close $output_fh;
@@ -198,7 +198,7 @@ sub split_text {
                      ([^\.\!\?\:\n]*) #
                      ([\.\!\?\:\n])
                      (?=(.?))
-                   /xsm) { #/(?:(?=([([{\"\'`)}\]<]*[ ]+)[([{\"\'`)}\] ]*([A-Z0-9][a-z]*))|(?=([()\"\'`)}\<\] ]+)\s))/sm ) {
+                   /xsm) { #/(?:(?=([([{\"\'`)}\]<]*[ ]+)[([{\"\'`)}\] ]*([A-Z0-9][a-z]*))|(?=([()\"\'`)}\<\] ]+)\s))/sm) {
         $text = $';
         my $sentence_match = $1;
         my $sentence = $1 . $2;
@@ -233,7 +233,7 @@ sub split_text {
                 my $last_word = $2;
                 #is it an abbreviation
 
-                if (length($last_word) == 1 ) {
+                if (length($last_word) == 1) {
                     # single character abbreviations are special...
                     # we will assume they never split the sentence if they are capitalized.
                     if ($last_word ge 'A' && $last_word le 'Z') {

@@ -46,16 +46,15 @@ my @license_sentences = read_license_sentences($license_sentences_file);
 
 open my $input_fh, '<', $input_file or die "can't open file [$input_file]: $!";
 while (my $line = <$input_fh>) {
-    my $save_line;
-    my $original_line;
     chomp $line;
-    $original_line = $line;
+    my $original_line = $line;
 
     if ($line =~ s/^Alternatively,? ?//) {
         print "Altern\n";
     }
 
     $line = normalize_sentence($line);
+    my $save_line = $line;
 
     my $check = 0;
     my $match_name = 'UNKNOWN';
@@ -65,17 +64,13 @@ while (my $line = <$input_fh>) {
     my $before;
     my $after;
     my $gpl = 0;
-    my ($gpl_later, $gpl_version);
-
-    $save_line = $line;
-
-    my $line_as_gpl = '';
+    my $gpl_later;
+    my $gpl_version;
 
     if (looks_like_gpl($line)) {
         my $old = $line;
         $gpl = 1;
         ($line, $gpl_later, $gpl_version) = normalize_gpl($line);
-        $line_as_gpl = $line;
     }
     my ($name, $sub_rule, $number, $regexp, $option);
     $save_line = $line;
@@ -222,20 +217,14 @@ sub normalize_gpl {
 
 sub looks_like_gpl {
     my ($line) = @_;
-
-    return 1 if $line =~ /GNU/;
-    return 1 if $line =~ /General Public License/;
-    return 1 if $line =~ /GPL/;
-
-    return 0;
+    return $line =~ /GNU|GPL|General Public License/;
 }
 
 sub normalize_sentence {
     my ($line) = @_;
     # do some very quick spelling corrections for english/british words
     $line =~ s/icence/icense/ig;
-    $line =~ s/(\.|;)$//;
-
+    $line =~ s/[.;]$//;
     return $line;
 }
 

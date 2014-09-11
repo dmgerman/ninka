@@ -145,9 +145,6 @@ match_license();
 @license_sentence_names = split ',', $senttok;
 
 # first remove the extrict part from it
-
-#print_result();
-
 my $match = 0;
 for (my $i = 0; $i <= $#license_sentence_names; $i++) {
     if ($license_sentence_names[$i] == 0 &&
@@ -159,13 +156,8 @@ for (my $i = 0; $i <= $#license_sentence_names; $i++) {
 }
 
 if ($match) {
-#    print "REDO\n";
-    for (my $i = 0; $i <= $#inter_rules; $i++) {
-        #for my $ref( @inter_rules[$i]){
-        #  print "@$ref\n";
-        #}
-        #print $inter_rules[$i][0];
-        @license_sentence_names = map { $_ eq $inter_rules[$i][0] ? $inter_rules[$i][1] : $_ } @license_sentence_names;
+    foreach my $inter_rule (@inter_rules) {
+        @license_sentence_names = map { $_ eq $inter_rule->[0] ? $inter_rule->[1] : $_ } @license_sentence_names;
     }
 
     $senttok = join(',', @license_sentence_names) . ',';
@@ -173,7 +165,7 @@ if ($match) {
     match_license();
 }
 
-print_result();
+print_result($senttok);
 
 exit 0;
 
@@ -264,43 +256,31 @@ sub read_original {
 
 # we will iterate over rules, matching as many as we can...
 sub match_license {
-# create a string with the sentences
+    # create a string with the sentences
+    foreach my $rule (@rules) {
+        my ($rule_name, $rule_tokens) = @$rule;
+        my $rule_length = scalar(split ',', $rule_tokens);
 
-    for (my $j = 0; $j <= $#rules; $j++) {
-        my $rule = $rules[$j][1];
-        my $rulename = $rules[$j][0];
-        my $rule_length = scalar(split ',', $rule);
-        # replace rule with the length of the rule
-        print "To try [$rulename][$rule] on [$senttok]\n" if $debug;
-        while ($senttok =~ s/,$rule,/,$rule_length,/) {
+        print "To try [$rule_name][$rule_tokens] on [$senttok]\n" if $debug;
+        while ($senttok =~ s/,$rule_tokens,/,$rule_length,/) {
             $count_matches++;
-            push @result, $rulename;
-#        print ">>>>$senttok|$rules[$j][1]\n";
-#        print 'Result: ', join(',', @result);
-#        print "\n";
+            push @result, $rule_name;
         }
     }
 
 #    print ">>>>[$senttok]\n";
 
-    my $only_all_right = 0;
-
-# ok, at this point we have removed all the matched sentences...
-#print STDERR "Ending>>>>>>>$senttok\n";
-#print STDERR 'Size>>' , scalar(@result), "\n";
-#print STDERR 'Result>>', join(',', @result), "\n";
-
-# let us remove allrights
+#    # let us remove allrights
 #    my $only_all_right = 1;
 #    for my $i (0.. scalar(@license_sentence_names)-1){
-#        if (($license_sentence_names[$i] eq 'AllRights')) {
+#        if ($license_sentence_names[$i] eq 'AllRights') {
 #            $license_sentence_names[$i] = '';
 #        } else {
 #            $only_all_right = 0;
 #        }
 #    }
 
-# output result
+    # output result
     if (scalar(@result) > 0) {
         # at this point we have matched
 
@@ -311,20 +291,17 @@ sub match_license {
 #            $senttok =~ s/(,|^)$r(,|$)/$1$2/g;
 #        }
 #    }
-        # general removal of rules
 
-        foreach my $r (@GENERAL_NON_CRITICAL) {
-            while ($senttok =~ s/,$r,/,-1,/) {
+        foreach my $rule (@GENERAL_NON_CRITICAL) {
+            while ($senttok =~ s/,$rule,/,-1,/) {
                 ;
             }
         }
 #        print "[$senttok]\n";
 
-        foreach my $res (@result) {
-            my $temp = $NON_CRITICAL_RULES{$res};
-            foreach my $r (@$temp) {
-#            print ">>Senttok [$r][$senttok]\n";
-                while ($senttok =~ s/,$r,/,-1,/g) {
+        foreach my $rule_name (@result) {
+            foreach my $rule (@{$NON_CRITICAL_RULES{$rule_name}}) {
+                while ($senttok =~ s/,$rule,/,-1,/g) {
                     ;
                 }
             }
@@ -334,11 +311,12 @@ sub match_license {
 }
 
 sub print_result {
+    my ($senttok) = @_;
+
 #   $senttok =~ s/AllRights(,?)/$1/g;
 #   $senttok =~ s/UNKNOWN,/,/g;
 #   $senttok =~ s/,+/,/g;
 
-    my $save = $senttok;
     my @sections = split ',', $senttok;
     die 'assertion 1' if $sections[0] ne '';
     die 'assertion 2' if $sections[scalar(@sections)] ne '';
@@ -347,9 +325,10 @@ sub print_result {
     my $license_lines = 0;
     my $unknown_lines = 0;
     my $unmatched_lines = 0;
+
     foreach my $i (1..scalar(@sections)-1) {
         if ($sections[$i] < 0) {
-            $ignored_lines += - $sections[$i];
+            $ignored_lines -= $sections[$i];
         } elsif ($sections[$i] != 0) {
             $license_lines += $sections[$i];
         } elsif ($sections[$i] eq 'UNKNOWN') {
@@ -360,7 +339,7 @@ sub print_result {
     }
     $senttok =~ s/^,(.*),$/$1/;
 
-    if (scalar (@result) == 0) {
+    if (scalar(@result) == 0) {
         print 'UNKNOWN';
     } else {
         print join ',', @result;
@@ -368,6 +347,5 @@ sub print_result {
     # ok, so now, what I want to output is:
     # licenses; number of licenses matched;number of sentences matched; number of sentences ignored;number of sentences not matched;number of sentences unknown
     print ";$count_matches;$license_lines;$ignored_lines;$unmatched_lines;$unknown_lines;$senttok\n";
-    $senttok = $save;
 }
 

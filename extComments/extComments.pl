@@ -75,7 +75,7 @@ sub determine_comments_cmd {
         } elsif ($ext =~ /^(jl|el)$/) {
             return create_head_cmd($input_file, $comments_file, 400);
 #            return "$path/hashComments.pl -p ';' '$input_file'";;
-        } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
+        } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/) {
             my $comments_binary = 'comments';
             if (`which $comments_binary` ne '') {
                 return "$comments_binary -c1 '$input_file' 2> /dev/null";
@@ -105,7 +105,7 @@ sub execute {
 
 sub get_size {
     my ($file) = @_;
-    my $size = (stat($file))[7];
+    my $size = (stat $file)[7];
     return $size;
 }
 
