@@ -44,24 +44,15 @@ my $file_good = $input_file; $file_good =~ s/\.$INPUT_FILE_EXTENSION$/\.goodsent
 my $file_bad  = $input_file; $file_bad  =~ s/\.$INPUT_FILE_EXTENSION$/\.badsent/;
 
 open my $input_fh, '<', $input_file or die "can't open input file [$input_file]: $!";
-
 open my $good_fh, '>', $file_good or die "can't create good sentences file [$file_good]: $!";
 open my $bad_fh, '>', $file_bad or die "can't create bad sentences file [$file_bad]: $!";
 
 my @critical_words = read_critical_words($file_critical_words);
 
-# matching critical words in list against sentences
 while (my $sentence = <$input_fh>) {
     chomp $sentence;
     next unless $sentence;
-    my $check = 0;
-    foreach my $critical_word (@critical_words) {
-        if ($sentence =~ /\b$critical_word\b/i) {
-            $check = 1;
-            last;
-        }
-    }
-    if ($check) {
+    if (contains_critical_word($sentence)) {
         print $good_fh "$sentence\n";
     } else {
         print $bad_fh "$sentence\n";
@@ -100,3 +91,14 @@ sub read_critical_words {
     return @critical_words;
 }
 
+sub contains_critical_word {
+    my ($sentence) = @_;
+    my $check = 0;
+    foreach my $critical_word (@critical_words) {
+        if ($sentence =~ /\b$critical_word\b/i) {
+            $check = 1;
+            last;
+        }
+    }
+    return $check;
+}
