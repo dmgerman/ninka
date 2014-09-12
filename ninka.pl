@@ -120,14 +120,15 @@ sub forward_verbosity {
 }
 
 sub process_file {
-    my ($input, $output, $force, $cmd, $message, $end) = @_;
+    my ($input_file, $output_file, $force, $command, $message, $end) = @_;
 
     print STDERR "$message\n" if $verbose;
-    if ($force || is_newer($input, $output)) {
-        print STDERR "running command [$cmd]\n" if $verbose;
-        execute($cmd);
+
+    if ($force || is_newer($input_file, $output_file)) {
+        print STDERR "running command [$command]\n" if $verbose;
+        execute($command);
     } else {
-        print STDERR "input file [$output] newer than input file [$input], doing nothing\n" if $verbose;
+        print STDERR "output file [$output_file] is newer than input file [$input_file], doing nothing\n" if $verbose;
     }
 
     if ($end) {
@@ -149,10 +150,6 @@ sub is_newer {
     my $f1write = (stat $f1)[9];
     my $f2write = (stat $f2)[9];
 
-    if (defined $f1write && defined $f2write) {
-        return $f1write > $f2write;
-    } else {
-        return 1;
-    }
+    return (defined $f1write && defined $f2write) ? $f1write > $f2write : 1;
 }
 
