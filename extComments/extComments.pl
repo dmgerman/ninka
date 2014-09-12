@@ -25,13 +25,14 @@
 
 use strict;
 use warnings;
+use File::Basename qw(dirname);
 use Getopt::Std;
 
 my %opts = parse_cmdline_parameters();
 
 my $verbose = exists $opts{v};
 
-my $path = get_my_path($0);
+my $path = dirname($0);
 
 my $input_file = $ARGV[0];
 my $comments_file = "$input_file.comments";
@@ -56,16 +57,6 @@ Options:
         exit 1;
     }
     return %opts;
-}
-
-sub get_my_path {
-    my ($self) = @_;
-    my $path = $self;
-    $path =~ s/\/+[^\/]+$//;
-    if ($path eq '') {
-        $path = './';
-    }
-    return $path;
 }
 
 sub determine_comments_cmd {
