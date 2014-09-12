@@ -53,13 +53,7 @@ Options:
 
 my $verbose = exists $opts{v};
 my $delete  = exists $opts{d};
-
-my $force           = exists $opts{f};
-my $force_comments  = exists $opts{C};
-my $force_sentences = exists $opts{S};
-my $force_good      = exists $opts{G};
-my $force_senttok   = exists $opts{T};
-my $force_license   = exists $opts{L};
+my $force   = exists $opts{f};
 
 my $path = get_my_path($0);
 
@@ -79,23 +73,23 @@ if (not (-f $input_file)) {
     exit 1;
 }
 
-process_file($input_file, $comments_file, ($force || $force_comments),
+process_file($input_file, $comments_file, ($force || exists $opts{C}),
              "$path/extComments/extComments.pl " . forward_verbosity() . "'$input_file'",
              'creating comments file', exists $opts{c});
 
-process_file($comments_file, $sentences_file, ($force || $force_sentences),
+process_file($comments_file, $sentences_file, ($force || exists $opts{S}),
              "$path/splitter/splitter.pl '$comments_file'",
              'splitting sentences', exists $opts{s});
 
-process_file($sentences_file, $goodsent_file, ($force || $force_good),
+process_file($sentences_file, $goodsent_file, ($force || exists $opts{G}),
              "$path/filter/filter.pl '$sentences_file'",
-             'filtering good sentences', exists $opts{s});
+             'filtering good sentences', exists $opts{g});
 
-process_file($goodsent_file, $senttok_file, ($force || $force_senttok),
+process_file($goodsent_file, $senttok_file, ($force || exists $opts{T}),
              "$path/senttok/senttok.pl '$goodsent_file' > '$senttok_file'",
              'matching sentences against rules', exists $opts{t});
 
-process_file($senttok_file, $license_file, ($force || $force_license),
+process_file($senttok_file, $license_file, ($force || exists $opts{L}),
              "$path/matcher/matcher.pl " . forward_verbosity() . "'$senttok_file' > '$license_file'",
              'matching sentence tokens against rules', 0);
 
@@ -122,7 +116,7 @@ sub get_my_path {
 }
 
 sub forward_verbosity {
-    return $opts{v} ? '-v ' : '';
+    return $verbose ? '-v ' : '';
 }
 
 sub process_file {
