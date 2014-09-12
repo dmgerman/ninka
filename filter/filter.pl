@@ -76,7 +76,7 @@ sub read_critical_words {
         chomp $line;
         next if $line =~ /^\#/;
         $line =~ s/\#.*$//; # remove everything to the end of line
-        push @critical_words, $line;
+        push @critical_words, qr/\b$line\b/i;
     }
 
     close $fh;
@@ -88,7 +88,7 @@ sub contains_critical_word {
     my ($sentence) = @_;
     my $check = 0;
     foreach my $critical_word (@critical_words) {
-        if ($sentence =~ /\b$critical_word\b/i) {
+        if ($sentence =~ $critical_word) {
             $check = 1;
             last;
         }
