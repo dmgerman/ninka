@@ -27,16 +27,7 @@ use strict;
 use warnings;
 use Getopt::Std;
 
-# parse cmdline parameters
-my %opts = ();
-if (!getopts('v', \%opts) || scalar(@ARGV) == 0) {
-    print STDERR "Usage: $0 [OPTIONS] <filename>
-
-Options:
-  -v verbose\n";
-
-    exit 1;
-}
+my %opts = parse_cmdline_parameters();
 
 my $verbose = exists $opts{v};
 
@@ -53,6 +44,19 @@ if ($comments_cmd =~ /^comments/ && get_size($comments_file) == 0) {
 }
 
 exit 0;
+
+sub parse_cmdline_parameters {
+    my %opts = ();
+    if (!getopts('v', \%opts) || scalar(@ARGV) == 0) {
+        print STDERR "Usage: $0 [options] <filename>
+
+Options:
+  -v verbose\n";
+
+        exit 1;
+    }
+    return %opts;
+}
 
 sub get_my_path {
     my ($self) = @_;

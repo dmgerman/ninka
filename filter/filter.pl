@@ -29,11 +29,7 @@ use Getopt::Std;
 
 my $INPUT_FILE_EXTENSION = 'sentences';
 
-# parse cmdline parameters
-if (!getopts('') || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
-    print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
-    exit 1;
-}
+parse_cmdline_parameters();
 
 my $path = get_my_path($0);
 
@@ -62,6 +58,15 @@ while (my $sentence = <$input_fh>) {
 close $input_fh;
 close $good_fh;
 close $bad_fh;
+
+exit 0;
+
+sub parse_cmdline_parameters {
+    if (!getopts('') || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
+        print STDERR "Usage $0 <filename>.$INPUT_FILE_EXTENSION\n";
+        exit 1;
+    }
+}
 
 sub get_my_path {
     my ($self) = @_;

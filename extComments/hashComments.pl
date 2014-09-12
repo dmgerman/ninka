@@ -26,18 +26,7 @@ use strict;
 use warnings;
 use Getopt::Std;
 
-# parse cmdline parameters
-my %opts = ();
-if (!getopts ('vc:p:', \%opts)) {
-    print STDERR "Usage: $0 [OPTIONS] <filename>
-
-Options:
-  -v verbose
-  -p comment char
-  -c count of comment blocks\n";
-
-    exit 1;
-}
+my %opts = parse_cmdline_parameters();
 
 my $verbose = exists $opts{v};
 
@@ -77,6 +66,23 @@ while (my $line = <$input_fh>) {
 
 close $input_fh;
 close $comments_fh;
+
+exit 0;
+
+sub parse_cmdline_parameters {
+    my %opts = ();
+    if (!getopts ('vc:p:', \%opts)) {
+        print STDERR "Usage: $0 [options] <filename>
+
+Options:
+  -v verbose
+  -p comment char
+  -c count of comment blocks\n";
+
+        exit 1;
+    }
+    return %opts;
+}
 
 sub is_comment {
     my ($string) = @_;

@@ -107,16 +107,7 @@ $NON_CRITICAL_RULES{'LGPLVer2.1or3KDE+'} = [@GPL_NON_CRITICAL];
 
 my $INPUT_FILE_EXTENSION = 'senttok';
 
-# parse cmdline parameters
-my %opts = ();
-if (!getopts('v', \%opts) || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
-    print STDERR "Usage $0 [OPTIONS] <filename>.$INPUT_FILE_EXTENSION
-
-Options:
-  -v verbose\n";
-
-    exit 1;
-}
+my %opts = parse_cmdline_parameters();
 
 my $verbose = exists $opts{v};
 
@@ -173,6 +164,19 @@ if ($match) {
 print_result($senttok);
 
 exit 0;
+
+sub parse_cmdline_parameters {
+    my %opts = ();
+    if (!getopts('v', \%opts) || scalar(@ARGV) == 0 || $ARGV[0] !~ /\.$INPUT_FILE_EXTENSION$/) {
+        print STDERR "Usage $0 [options] <filename>.$INPUT_FILE_EXTENSION
+
+Options:
+  -v verbose\n";
+
+        exit 1;
+    }
+    return %opts;
+}
 
 sub get_my_path {
     my ($self) = @_;

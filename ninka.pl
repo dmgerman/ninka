@@ -20,36 +20,7 @@ use strict;
 use warnings;
 use Getopt::Std;
 
-# parse cmdline parameters
-my %opts = ();
-if (!getopts('vfCcSsGgTtLd', \%opts) || scalar(@ARGV) == 0) {
-    print STDERR "Ninka version 1.1
-
-Usage: $0 [OPTIONS] <filename>
-
-Options:
-  -v verbose
-
-  -f force all processing
-
-  -C force creation of comments
-  -c stop after creation of comments
-
-  -S force creation of sentences
-  -s stop after creation of sentences
-
-  -G force creation of goodsent
-  -g stop after creation of goodsent
-
-  -T force creation of senttok
-  -t stop after creation of senttok
-
-  -L force creation of matching
-
-  -d delete intermediate files\n";
-
-    exit 1;
-}
+my %opts = parse_cmdline_parameters();
 
 my $verbose = exists $opts{v};
 my $delete  = exists $opts{d};
@@ -104,6 +75,39 @@ if ($delete) {
 }
 
 exit 0;
+
+sub parse_cmdline_parameters {
+    my %opts = ();
+    if (!getopts('vfCcSsGgTtLd', \%opts) || scalar(@ARGV) == 0) {
+        print STDERR "Ninka version 1.1
+
+Usage: $0 [options] <filename>
+
+Options:
+  -v verbose
+
+  -f force all processing
+
+  -C force creation of comments
+  -c stop after creation of comments
+
+  -S force creation of sentences
+  -s stop after creation of sentences
+
+  -G force creation of goodsent
+  -g stop after creation of goodsent
+
+  -T force creation of senttok
+  -t stop after creation of senttok
+
+  -L force creation of matching
+
+  -d delete intermediate files\n";
+
+        exit 1;
+    }
+    return %opts;
+}
 
 sub get_my_path {
     my ($self) = @_;
