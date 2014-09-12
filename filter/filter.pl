@@ -49,11 +49,8 @@ my @critical_words = read_critical_words($file_critical_words);
 while (my $sentence = <$input_fh>) {
     chomp $sentence;
     next unless $sentence;
-    if (contains_critical_word($sentence)) {
-        print $good_fh "$sentence\n";
-    } else {
-        print $bad_fh "$sentence\n";
-    }
+    my $fh = contains_critical_word($sentence) ? $good_fh : $bad_fh;
+    print $fh "$sentence\n";
 }
 
 close $input_fh;
@@ -98,3 +95,4 @@ sub contains_critical_word {
     }
     return $check;
 }
+
