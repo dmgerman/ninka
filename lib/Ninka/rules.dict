@@ -1,0 +1,364 @@
+#
+#    Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
+#
+#    This program is free software; you can redistribute it and/or modify
+#    it under the terms of the GNU Affero General Public License as
+#    published by the Free Software Foundation, either version 3 of the
+#    License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU Affero General Public License for more details.
+#
+#    You should have received a copy of the GNU Affero General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+########## This ones are deprecated, I think
+#some rules that supersets should be done first
+GPL2orBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorse,Altern,GPLGenVer2,BSDasIsExtrict,BSDWarrExtrict
+
+
+
+
+GPLv2:GPLv2
+GPLv2+:GPLv2\+
+GPLv3+:GPLv3\+
+GPLv3:GPLv3
+LGPLv2_1:LGPLv2_1
+LGPLv2:LGPLv2
+LGPLv2+:LGPLv2\+
+LGPLv2.1+:LGPLv2\.1\+
+LGPLv2.1:LGPLv2\.1
+LGPLv3:LGPLv3
+LGPLv3+:LGPLv3\+
+GPLv1+:GPLv1\+
+LGPLv2orv3:LGPLv2orv3
+###############
+
+#### some weird dual license rules
+
+################
+LGPLv2_1orv3:LGPLv2_1orv3
+
+GPLnoVersion:GPLnoVersionVer0
+GPLnoVersion:GPLnoVersion
+LesserGPLnoVersion:LesserGPLnoVersionVer0
+LesserGPLnoVersion:LesserGPLnoVersion
+LibraryGPLnoVersion:LibraryGPLnoVersionVer0
+
+LesserGPLnoVersion:LesserGPLnoVersionVer0
+GPLv1:GPLGenVer1
+GPLv1+:GPLGenVer1\+
+GPLv2:GPLGenVer2
+GPLv2:GPLGenVer2.0
+GPLv2+:GPLGenVer2\+
+GPLv2+:GPLGenVer2.0\+
+GPLv3:GPLGenVer3
+GPLv3+:GPLGenVer3\+
+GPLv3+:GPLGenVer3\.0\+
+AGPLv3+:AGPLGenVer3\.0\+
+AGPLv3+:AGPLGenVer3\+
+LesserGPLv3+:LesserGPLGenVer3\+
+LesserGPLv3:LesserGPLGenVer3
+LesserGPLv2.1:LesserGPLGenVer2\.1
+LesserGPLv2.1+:LesserGPLGenVer2\.1\+
+LibraryGPLv2:LibraryGPLGenVer2\.0\+|LibraryGPLGenVer2
+LibraryGPLv2+:LibraryGPLGenVer2\.0\+|LibraryGPLGenVer2\+
+LesserGPLv2+:LesserGPLGenVer2\.0\+|LesserGPLGenVer2\+
+LesserGPLv2:LesserGPLGenVer2.0|LesserGPLGenVer2
+GPLv2orv3:GPLv2orv3
+
+
+LGPLv2+MISTAKE:LGPLv2\+MISTAKE
+LGPLv2MISTAKE:LGPLv2MISTAKE
+
+GPLv1orArtistic:GPLv1orArtisticVer0
+
+GPL2orOpenIB: GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary,X11asIs,X11asLiable
+
+CDDLv1orGPLv2:CDDLorGPLv2,CDDLorGPLv2compliance,CDDLorGPLv2where,ApachesPermLim,CDDLorGPLv2include
+
+# this one should go before the BSD ones
+intelBSDLicense:BSDpre,BSDcondSource,BSDcondBinary,BSDcondEndorseRULE,BSDasIs,BSDWarr,intelBSDexport1,intelBSDexport2,intelBSDexport3
+
+# this rule should be before BSDs
+spdxSleepyCat:SleepyCatNameExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarrExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict,AllRights,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
+
+spdxBSD4:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondAdvPart1Extrict,BSDcondAdvPart2Extrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
+spdxBSD3:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict
+spdxBSD2:BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDasIsExtrict,BSDWarrExtrict
+
+# do not include copyright in the rule
+spdxMIT:MITpermissionExtrict,X11noticeExtrict,X11asIsExtrict,X11asLiableExtrict
+
+
+
+#,SleepyCatObtain,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete
+#,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,BSDcondEndorseExtrict,BSDasIsExtrict,BSDWarrExtrict,BSDpre,BSDcondSourceExtrict,BSDcondBinaryExtrict,SleepyCatAsIs,BSDWarrExtrict
+
+
+BSD4:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,BSDcondEndorseRULE,BSDasIs,BSDWarr
+BSD4:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,BSDcondEndorseRULE,BSDasIs,BSDWarr
+BSD3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondEndorseRULE,BSDasIs,BSDWarr
+BSD3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
+BSD3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,BSDcondAdvRULE,BSDasIs,BSDWarr
+BSD3NoWarranty:BSDpre,BSDcondSource,BSDcondBinary,BSDcondEndorseRULE,BSDasIs
+BSD4NoEndor:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,BSDasIs,BSDWarr
+
+BSD2:BSDpre,BSDcondSource,BSDcondBinary,BSDasIs,BSDWarr
+#BSD2EndorseInsteadOfBinary:BSDpre,BSDcondEndorse,BSDasIs,BSDWarr
+BSD2EndorseInsteadOfBinary:BSDpre,BSDcondSource,BSDcondEndorseRULE,BSDasIs,BSDWarr
+BSD2AdvInsteadOfBinary:BSDpre,BSDcondSource,BSDcondAdvRULE,BSDasIs,BSDWarr
+BSD1:BSDpre,BSDcondBinary,BSDasIs,BSDWarr
+
+BSDOnlyAdv:BSDpre,BSDcondAdvRULE,BSDasIs,BSDWarr
+BSDOnlyEndorseNoWarranty:BSDpreLike,BSDcondEndorseRULE,BSDasIs
+
+BSD2var1:BSDpre,BSDCondSourceVariant,BSDcondBinary,BSDasIs,BSDWarr
+BSD2var2:BSDpre,BSDCondSourceVariant2,BSDcondBinary,BSDasIs,BSDWarr
+
+BSD2aic700:BSDpre,BSDcondSource,BSDcondBinaryVar1,AsIsVariant2,LiabilityBSDVariantAIC700
+
+BSD2SoftAndDoc:BSDpreSoftAndDoc,BSDcondSourceOrDoc,BSDcondBinary,BSDasIsSoftAndDoc,BSDWarr
+
+BSDCairoStyleWarr:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+BSDdovecotStyle:BSDpre,BSDcondSource,BSDcondBinary,OpenSSLendorse,DovecotwriteCod,OpenSSLAckPart1,BSDcondAdvPart2,MITstyleCairoWarranty
+
+
+
+ZLIB:BSDpre,BSDcondSource,originNotMisrepresented,BSDZlibAck,BSDZlibAltered,BSDcondEndorseRULE,BSDasIs,BSDWarr
+ZLIBref:ZLibRef
+
+openSSL:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
+openSSLvar1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,SSLeayWindows,BSDcondAdvPart2,BSDasIs,BSDWarr,NoLicenseChangeAllowed
+openSSLvar3:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,BSDasIs,BSDWarr
+
+Apachev1.0:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAckPart1,BSDcondAdvPart2,BSDasIs,BSDWarr
+Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdv,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,OpenSSLAck,BSDasIs,BSDWarr
+Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart1,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apachev1.1:BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+Apachev1.1:BSDpre,BSDcondSourceExtrict,BSDcondBinary,BSDcondAdvPart2,OpenSSLendorse,OpenSSLwritCond,OpenSSLName,BSDasIs,BSDWarr
+
+# this is dangerous. The v2 applies to apache (ninka-ism)
+ApacheV2orLGPLgeneric:apacheAndLGPLgenVer2.0
+
+SleepyCat:BSDpre,BSDcondSource,BSDcondBinary,SleepyCatObtain,SleepyCatSourceIncluded,SleepyCatSourceComplete,SleepyCatDoesNotInclude,SleepyCatAsIs,BSDWarr
+
+
+boost:boostPermission,boostPreserve,boostAsIs,boostWarr
+boostV1:boostRefv1
+boostV1Ref:boostSeev1
+SSLeay:SSLCopy,SSLeayAttrib,SSLeayAdType,BSDpre,BSDcondSource,BSDcondBinary,BSDcondAdvRULE,SSLeayCrypto,SSLeayWindows,BSDasIs,BSDWarr,SSLeayCantChangeLic
+# qt
+Qt:qtCommercialuseVer0
+orLGPLVer2.1:qtLGPLVer2.1
+orLGPLVer2:qtLGPLv2
+orGPLv3:qtGPLVer3.0
+orGPLv3:qtGPLVer3
+LGPL2.1:qtLGPLVer2.1
+
+#,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+#QtorGPLv2orLGPLv2.1:qtCommercialuseVer0,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+#QtorGPLv2orv3:qtCommercialuse,qtGPLv2or3Ver0
+# I don't think this next will ever match, but it does not matter any more
+#GPLv2orv3qtException:qtCommercialuse,qtGPLv2or3,qtReviewGPL,qtGPLwhere,qtNokiaExtra,qtExceptionNotice
+#QtorGPLv2orGPLv3orLGPLv2.1:qtCommercialuseVer0,qtDiaTems,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+#QtorGPLv2orLGPLv2.1:qtCommercialuseVer0,qtLGPLVer2.1,LesserqtReviewGPLVer2.1,qtLGPLv2.1where
+
+Cecill:CecillEn1,CecillEn2,CecillEn3,CecillEn4,CecillEn5,CecillEn6,CecillEn7,CecillEn8
+
+SimpleOnlyKeepCopyright:SimpleOnlyKeepCopyright
+
+#------------
+QTv1:QTv1
+
+CDDLv1orGPLv2:CDDLorGPLv2ifYouWish,CDDLorGPLv2IfYouAdd
+CDDLorGPLv2:CDDLorGPLVer2
+#----------------------------------------------------------------------
+MPL-MIT-dual:MPL-MIT-dual1,MPL-MIT-dual2
+#MPL1_1_GPL2_LGPL2:MPL1_1_GPL2_LGPL2_1intention,MPLv1_1,ApacheLicWherePart1,MPLwarranty,MPLsee,AllRights,MPLGPL2orLGPLv2_1,MPLorNPLandGPLandLPGLonlyGPLorLGPL,MPLoptionIfNotDelete3lics
+orGPLv2+orLGPLv2.1+:Altern,GPLv2orLGPLv2\.1Ver2\+,MPLoptionNOTGPLVer0,MPLoptionIfNotDelete3licsVer0
+
+MPLGPL2orLGPLv2_1:MPLGPL2orLGPLv2_1
+MPL1_1andLGPLv2_1:MPL1_1andLGPLVer2.1
+#,MPLoptionIfNotDelete2lics,GPLcopypart2,MPLv1_1,ApacheLicWherePart1,MPLwarrantyVar,MPL_LGPLsee
+#MPLsee:MPLsee
+MPL_LGPLsee:MPL_LGPLsee
+#MPL and NPL
+MPLv1_1:MPLv1_1
+NPLv1_1:NPLv1_1
+MPLv1_0:MPLv1_0
+NPLv1_0:NPLv1_0
+
+# version 2.0
+MPLv2:MPLv2part1,MPLv2part2
+
+#----------------------------------------------------------------------
+MITold:MITperm,MITnorep,MITasis
+MIToldwithoutSell:MITperNoSell,MITnorep,MITasis
+MIToldwithoutSellCMUVariant:MITpermNoSell,X11CMUAsIs,X11CMULiability,X11CMUredistribute
+MIToldwithoutSell:MITpermNoSell,MITandGPLasis,MITandGPLwar
+MIToldwithoutSellandNoDocumentationRequi:MITpermNoSellNoDoc,BSDasIs,BSDWarr
+MIToldwithoutSellandNoDocumentationRequi:MITpermNoSellNoDoc,MITnorep,MITasis
+MIToldMichiganVersion:MITpermNoSell,WarrantySupplied
+#------------
+#
+#----------------------------------------------------------------------
+X11:X11per,X11notice,X11asIs,X11asLiable,X11adv
+X11mit:MITpermWithoutEndor,X11notice,X11asIs,X11asLiable,X11adv
+NCSA:X11per,BSDcondSource,BSDcondBinary,BSDcondEndorse,X11asIs,X11asLiable
+X11Festival:X11FestivalPerm,X11FestivalNotice,X11FestivalNoEndorse,MITstyleCairoWarranty
+MITmodern:MITmodermPerm,MITmodernLiable,MITmodermWarr,MitmodernAsIs
+MITX11BSDvar:MITpermAndOr,BSDasIs,BSDWarr
+MITCMU:MITpermNoSellVer3,CMUAsIs,CMULiability
+MITCMUvar2:MITpermNoSell,X11CMULiability,X11CMUredistribute
+MITCMUvar3:X11CMUlicPerm,X11CMUAsIs,X11CMUlicLiability
+
+# the next two have to be in order
+MITX11:X11notice,X11asIs,X11asLiable
+MITX11noNotice:X11asIs,X11asLiable
+
+MITX11simple:X11per,X11notice,X11asIs
+MITX11NoSellNoDocDocBSDvar:MITpermNoSellNoDoc,X11asIsLike,BSDWarr
+#
+MITVariant:MITpermWithoutEndor,MITnorep,MITasis
+BindMITX11Var:MITpermAndOr,X11asIsLike,BSDWarr
+
+#----------------------------------------------------------------------
+MITandGPL:MITandGPLper,MITandGPLgpl,MITandGPLplease,MITandGPLasis,MITandGPLwar
+#----------------------------------------------------------------------
+EPLv1:EPLv1
+#----------------------------------------------------------------------
+CDDLic:CDDLic
+CDDLicV1:CDDLicV1Only
+#----------------------------------------------------------------------
+Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2,ApachesAsIs,ApachesPermLim
+Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2
+# publid comain
+publicDomain:publicDomain
+
+# Exceptions
+
+BisonException:BisonException
+ClassPathException:ClassPathException
+ClassPathExceptionGPLv2:ClassPathExceptionVer2
+Exception:Exception
+LinkException:LinkException
+LinkExceptionBison:LinkExceptionBison
+LinkExceptionGPL:LinkExceptionGPL
+LinkExceptionLeGPL:LinkExceptionLeGPL
+LinkExceptionOpenSSL:LinkExceptionOpenSSL
+WxException:wxLinkExceptionPart1,wxLinkExceptionPart2,wxLinkExceptionPart3Ver0,wxLinkExceptionPart4,wxLinkExceptionPart5,wxLinkExceptionPart6
+autoConfException:autoConfExceptionVer0
+qtWindowsException1.3:qtExceptionNoticeVer1.3
+qtExceptionWindows:qtExceptionWindows
+digiaQTExceptionNoticeVer1.1:digiaQTExceptionNoticeVer1.1
+
+#
+DoWhatTheFuckYouWantv2:DoWhatTheFuckYouWantv2
+
+#MX4J License
+MX4J:MX4JLicense1,SeeMX4JLicense
+
+# beer
+BeerWareVer42:BeerWareVer42LicPart1,BeerWareVer42LicPart2,BeerWareVer42LicPart3,BeerWareVer42LicPart4
+
+# intel acpi license
+IntelACPILic:IntelPart02,IntelPart03,IntelPart04,IntelPart05,IntelPart06,IntelPart07,IntelPart08,IntelPart09,IntelPart10,IntelPart11,IntelPart12,IntelPart13,IntelPart14,IntelPart15,IntelPart16,IntelPart17,IntelPart18,IntelPart19,IntelPart20,IntelPart21,IntelPart22,IntelPart23,IntelPart24,IntelPart25,IntelPart26,IntelPart27,IntelPart28
+
+############################
+## X11 CMU variant
+X11CMU:X11CMUlicPerm,X11CMUAsIs,X11CMUlicLiability,X11CMUlicReturn
+
+
+##############
+# Simple licenses
+simpleLicense1:simpleLic1part1
+simpleLic2:simpleLic2
+simpleLic:simpleLic
+
+#-------
+CPLv1orGPLv2+orLGPLv2+:CPL1_GPL2_LGPL2_1intentionVer0,CPLv1,ApacheLicWherePart1,MPLwarranty,MPLsee,Copyright,Altern,GPLv2orLGPLv2\.1Ver2\+,CPLoptionNOTGPLVer0,CPLoptionIfNotDelete3licsVer0
+CPLv1:CPLv1
+CPLv0.5:CPLv0.5
+
+
+
+
+#-------
+sunRPC:sunRPCLic1,sunRPCLic2,sunRCPnoWarranty,sunRCPnoSupport
+
+#-------------
+# This is created by senttok
+# THIS IS A BAD RULE. We should not print ALtern unless we know what the alternative is
+#Altern:Altern
+
+###------------ IN case there is a reference to a file
+SeeFile:SeeFile
+
+###
+# LibGCJSee
+LibGCJLic:LibGCJLic
+#
+SunSimpleLic:SunSimpleLic
+W3CLic:W3CLic
+emacsLic:EmacsLicense
+
+SameTermsAs:SameTermsAs
+GhostscriptGPL:GhostscriptGPL
+IBMv1:IBMv1
+SameAsPerl:SameAsPerl
+
+ArtisticLicensev1:ArtisticLicensev1
+# QT triple license, outdated :)
+QtGPLv2or3:qtGPLv2or3
+
+FreeType:FreeType
+##
+Postfix:Postfix
+# subversion
+subversion+:subversion,subversionPlus
+subversion:subversion
+## svnkit
+svnkit+:svnkitPlus
+svnkit:svnkit
+sequenceLic:sequenceLic
+
+## tmate
+tmate+:tmatePlus
+
+
+
+### Error licenses
+subversionError:subversionError
+
+
+# ghostscript
+artifex:artifex
+
+# simple licenses
+SimpleLic:SimpleLic
+
+#
+MX4JLicensev1:MX4JLicense1.0
+# dovecot license
+dovecotSeeCopying:dovecotSeeCopying
+#php
+phpLicV3.01:phpLic3.01
+zendv2:zendv2
+
+#kerberos
+kerberos:exportLicRequired,exportNoLia,exportMITper,exportMITmodify,MITnorep,MITasis
+
+# postgresql
+postgresql:psql,psqlLiab,psqlWarr,psqlWarr2
+postgresqlRef:postgresqlRef
+# gplv2+ with kde option
+GPLVer2or3KDE+:GPLGenKDEor3\+Ver2,FSFwarranty,GPLseeDetailsVer0,GPLcopyVer0,GNUurl
+LGPLVer2.1or3KDE+:LGPLGenKDEor3Ver2\.1\+,FSFwarranty,LesserGPLseeDetailsVer0,GPLcopyVer0
+# we need to keep these towards the bottom
+GPLv2orLGPLv2.1:GPLv2orLGPLv2\.1Ver2
+GPLv2+orLGPLv2.1:GPLv2orLGPLv2\.1Ver2\+
+
+FSFUnlimited:FSFUnlimited
