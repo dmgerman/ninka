@@ -1,40 +1,4 @@
 package Ninka::SentenceExtractor;
-#
-#***************************************************************************************************
-#       SENTENCE SPLITTER
-# Author:   Paul Clough     {cloughie@dcs.shef.ac.uk}
-#
-
-#    This program is originally based on the sentence splitter program
-#    published by Paul Clough. Version 1.0, available from
-#    http://ir.shef.ac.uk/cloughie/software.html (splitter.zip)
-#    The original program is without a license.
-#
-#    It was mostly rewritten.
-#    His ideas, however, linger in here (and his file of abbreviations)
-#
-#    Modifications to the original by Daniel M German and Y. Manabe,
-#    which are under the following license:
-#
-#    This patch is free software; you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as
-#    published by the Free Software Foundation, either version 3 of the
-#    License, or (at your option) any later version.
-#
-#    This patch is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-#
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this patch.  If not, see <http://www.gnu.org/licenses/>.
-#
-
-#
-# splitter.pl
-#
-# This script breaks comments into sentences.
-#
 
 use strict;
 use warnings;
@@ -283,3 +247,41 @@ sub load_abbreviations {
 }
 
 1;
+
+__END__
+
+=head1 NAME
+
+Ninka::SentenceExtractor
+
+=head1 DESCRIPTION
+
+Breaks comments into sentences.
+
+=head1 COPYRIGHT AND LICENSE
+
+This program is originally based on the sentence splitter program
+published by Paul Clough. Version 1.0, available from
+http://ir.shef.ac.uk/cloughie/software.html (splitter.zip)
+The original program is without a license.
+
+It was mostly rewritten.
+His ideas, however, linger in here (and his file of abbreviations)
+
+Modifications to the original by Daniel M German and Y. Manabe,
+which are under the following license:
+
+This patch is free software; you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as
+published by the Free Software Foundation, either version 3 of the
+License, or (at your option) any later version.
+
+This patch is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this patch.  If not, see <http://www.gnu.org/licenses/>.
+
+=cut
