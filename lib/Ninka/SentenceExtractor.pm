@@ -30,45 +30,43 @@ sub execute {
     # append a newline just in case
     $text .= "\n";
 
-    # - is used to create lines
-    # = is used to create lines
-    $text =~ s@\+?\-{3,1000}\+?@ @gmx;
-    $text =~ s@={3,1000}@ @gmx;
-    $text =~ s@:{3,1000}@ @gmx;
-    $text =~ s@\*{3,1000}@ @gmx;
+    # some characters are used to create lines
+    $text =~ s/\+?\-{3,1000}\+?/ /gmx;
+    $text =~ s/={3,1000}/ /gmx;
+    $text =~ s/:{3,1000}/ /gmx;
+    $text =~ s/\*{3,1000}/ /gmx;
 
     # some characters are used for pretty-printing but never appear in sentences
-    $text =~ s@\|+@ @gmx;
-    $text =~ s@\\+@ @gmx;
+    $text =~ s/\|+/ /gmx;
+    $text =~ s/\\+/ /gmx;
 
-    # let us deal with /* before we do anything
+    # deal with comments /*, */ and //
     $text =~ s@^[ \t]*/\*@@gmx;
-    $text =~ s/\*\/[ \t]*$//gmx;
+    $text =~ s@\*/[ \t]*$@@gmx;
     $text =~ s@([^:])// @$1@gmx;
 
-    # replace /\r\n/ with \n only
+    # normalize line separator
     $text =~ s/\r\n/\n/g;
 
-    # now, try to replace the leading/ending character of each line #/-, at most 3 heading characters
-    # and each repeated as many times as necessaary
+    # try to replace the leading/ending character of each line #/-,
+    # at most 3 heading characters and each repeated as many times as necessary
     $text =~ s/^[ \t]{0,3}[\*\#\/\;]+//gmx;
     $text =~ s/^[ \t]{0,3}[\-]+//gmx;
 
     $text =~ s/[\*\#\/]+[ \t]{0,3}$//gmx;
     $text =~ s/[\-]+[ \t]{0,3}$//gmx;
 
-    # now, try to replace the ending character of each line if it is * or #
+    # try to replace the ending character of each line if it is * or #
     $text =~ s/[\*\#]+//gmx;
 
-    # at this point we have lines with nothing but spaces, let us get rid of them
-    $text =~ s/^[ \t]+$/\n/gm;
+    # get rid of lines with nothing but spaces
+    $text =~ s/^[ \t]+$/\n/gmx;
 
     # let us try the following trick
     # we first get rid of \t and replace it with ' '
     # we then use \t as a "single line separator" and \n as multiple line
     # so we can match each with a single character
     $text =~ tr/\t/ /;
-
     $text =~ s/\n(?!\n)/\t/g;
     $text =~ s/\n\n+/\n/g;
     $text .= "\n";
@@ -139,20 +137,15 @@ sub clean_sentence {
 sub split_text {
     my ($self, $text) = @_;
 
-    my $length = 0;
-    my $next_word;
-    my $last_word;
-    my $stuff_after_period;
-    my $puctuation;
     my @result;
-    my $after;
     my $current_sentence = '';
+
     # this breaks the sentence into
     # 1. any text before a separator
-    # 2. the separator [.!?:\n]
-    # 3.
+    # 2. the separator
+    # 3. any text after a separator
     while ($text =~ /^
-                     ([^\.\!\?\:\n]*) #
+                     ([^\.\!\?\:\n]*)
                      ([\.\!\?\:\n])
                      (?=(.?))
                    /xsm) { #/(?:(?=([([{\"\'`)}\]<]*[ ]+)[([{\"\'`)}\] ]*([A-Z0-9][a-z]*))|(?=([()\"\'`)}\<\] ]+)\s))/sm) {
@@ -160,7 +153,7 @@ sub split_text {
         my $sentence_match = $1;
         my $sentence = $1 . $2;
         my $punctuation = $2;
-        $after = $3;
+        my $after = $3;
 
         # if next character is not a space, then we are not in a sentence"
         if ($after ne ' ' && $after ne "\t") {
@@ -183,12 +176,12 @@ sub split_text {
             # in our library
             # END TODO
 
-            # is the last word an abbreviation? For this the period has to follow the word
-            # this expression might have to be updated to take care of special characters  in names :(
+            # is the last word an abbreviation? for this the period has to follow the word.
+            # this expression might have to be updated to take care of special characters in names. :(
             if ($sentence_match =~ /(.?)([^[:punct:]\s]+)$/) {
                 my $before = $1;
                 my $last_word = $2;
-                #is it an abbreviation
+                # is it an abbreviation
 
                 if (length($last_word) == 1) {
                     # single character abbreviations are special...
