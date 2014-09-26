@@ -208,9 +208,9 @@ sub split_text {
                 } else {
                     $last_word = lc $last_word;
 
-                    # only accept abbreviations if the previous char to the abbrev is space or
-                    # is empty (beginning of line). This avoids things like .c
-                    if (length($before) > 0 && $before eq ' ' && $self->{abbreviations}{$last_word}) {
+                    # Only accept abbreviations if the previous char is empty (beginning of line) or a space.
+                    # This avoids things like .c
+                    if (($before eq '' || $before eq ' ') && $self->{abbreviations}{$last_word}) {
                         $current_sentence .= $sentence;
                         next;
                     } else {
