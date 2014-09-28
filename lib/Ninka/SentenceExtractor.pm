@@ -190,14 +190,14 @@ sub split_text {
                         $current_sentence .= $sentence;
                         next;
                     }
-                    print "last word an abbrev $sentence_match lastword [$last_word] before [$before]\n";
+                    print STDERR "1 last word an abbrev $sentence_match lastword [$last_word] before [$before]\n" if $self->{verbose};
 
                     # but some are lowercase!
                     if ($last_word eq 'e' || $last_word eq 'i') {
                         $current_sentence .= $sentence;
                         next;
                     }
-                    print "2 last word an abbrev $sentence_match lastword [$last_word] before [$before]\n";
+                    print STDERR "2 last word an abbrev $sentence_match lastword [$last_word] before [$before]\n" if $self->{verbose};
                 } else {
                     $last_word = lc $last_word;
 
