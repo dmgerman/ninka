@@ -1,0 +1,8 @@
+Makefile
+Makefile.old
+MYMETA.json
+MYMETA.yml
+blib/
+comments/*.o
+comments/comments
+pm_to_blib

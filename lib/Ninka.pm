@@ -46,7 +46,7 @@ __END__
 
 =head1 NAME
 
-Ninka
+Ninka - Find licenses in source files.
 
 =head1 SYNOPSIS
 
