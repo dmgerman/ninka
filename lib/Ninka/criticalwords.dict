@@ -8,7 +8,7 @@
 #
 #    This program is distributed in the hope that it will be useful,
 #    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 #    GNU Affero General Public License for more details.
 #
 #    You should have received a copy of the GNU Affero General Public License
@@ -44,7 +44,7 @@ redistributions in any form
 redistributions of any form
 this can be in the form of a textual message
 free software
-#free too many false positives
+#free #too many false positives
 furnished
 gpl
 gpl-2
@@ -76,11 +76,11 @@ license
 licensed
 licensee
 lgpl
-#limitation#not needed and creates false positives
+#limitation #not needed and creates false positives
 merchantability
 mit/x-derivative
 misrepresented
-#modification#not needed
+#modification #not needed
 #modify
 #modules
 mpl
@@ -95,7 +95,7 @@ redistribute
 redistribution
 reexported
 reproduce
-#required#too common also
+#required #too common
 use this software
 restriction
 all rights
@@ -109,7 +109,7 @@ sale
 sell
 subject to
 terms
-#under# too common to be useful
+#under #too common
 warranties
 warranty
 licensing
