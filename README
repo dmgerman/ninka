@@ -1,4 +1,4 @@
-* Contact information. 
+* Contact information.
 
 Any feedback will be appreciated. You can email us at Daniel M. German
 <dmg@uvic.ca> and Yuki Manabe <y-manabe@ist.osaka-u.ac.jp>
@@ -24,6 +24,11 @@ http://turingmachine.org/~dmg/papers/dmg2010ninka.pdf
 
 If you use Ninka for research purposes, we would appreciate you cite
 the above paper.
+
+* Contributors
+
+- Anthony Kohan for writing the excel and sqlite backends.
+- Armijn Hemel from Tjaldur Software Governance Solutions  for multiple bug reports and suggestions
 
 * License
 

@@ -1,3 +1,13 @@
+2015-01-10  dmg  <dmg@uvic.ca>
+
+	* Bumped to version 1.3 RC 1
+
+	* ninka-sqlite.pl, ninka-excel.pl: prepared them for release
+
+	* ninka.pl: fixed bug in finding the path of where ninka was being executed from (reported by Ryan Biesemeyer)
+
+	* Fixed quotes in perl (René bScheibe)
+
 2015-01-05  dmg  <dmg@uvic.ca>
 
 	* filter/criticalword.dict: MIT+no-false-attribs license missing one sentence

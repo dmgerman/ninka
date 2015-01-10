@@ -1,4 +1,20 @@
 #!/usr/bin/perl
+#
+#    Copyright (C) 2014,2015  Anthony Kohan and Daniel M. German
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of the GNU General Public License as
+#    published by the Free Software Foundation; either version 2 of
+#    the License, or (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#    General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
 
 use strict;
 use Switch;
@@ -8,9 +24,13 @@ use File::Find;
 use File::Basename;
 use Scalar::Util qw(looks_like_number);
 
+
+
 if(scalar(@ARGV) != 2){
+    print STDERR "Ninka 1.3. sqlite wrapper\n";
+    print STDERR "Processes package file (.tar.gz, zip, jar. etc) and outputs to sqlite file\n";
     print STDERR "Incorrect number of arguments\n";
-    print STDERR "Correct usage is: perl ninka-wrapper <path to package file> <database name>\n";
+    print STDERR "Correct usage is: $0 <path to package file> <database name>\n";
     exit 1;
 }
 

@@ -9,7 +9,7 @@ use Ninka::SentenceExtractor;
 use Ninka::SentenceFilter;
 use Ninka::SentenceTokenizer;
 
-our $VERSION = '1.2';
+our $VERSION = '1.3';
 
 sub process_file {
     my ($input_file, $verbose) = @_;
