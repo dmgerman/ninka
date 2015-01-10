@@ -1,3 +1,9 @@
+2015-01-05  dmg  <dmg@uvic.ca>
+
+	* filter/criticalword.dict: MIT+no-false-attribs license missing one sentence
+
+	* senttok/licensesentence.dict (MITpermissionExtrict): there was a space where no space should have been
+
 2014-06-09  dmg  <dmg@uvic.ca>
 
 	* Version 1.2
@@ -13,15 +19,15 @@
 2013-07-03  dmg  <dmg@uvic.ca>
 
 	* Version to 1.1 RC2
-	
-	* Added qt variants and fixed more GPL related unknowns. 
+
+	* Added qt variants and fixed more GPL related unknowns.
 
 	* When the license is unknown "UNKNOWN" is printed.
 
 2013-07-02  dmg  <dmg@uvic.ca>
 
 	* Added version to ninka.pl, set to 1.1 RC1
-	
+
 	* matcher/rules.dict: Added CDDLorGPLv2, CPLv1orGPLv2+orLGPLv2, QtorGPLv2orv3
 
 	* senttok/licensesentence.dict: the boost license sometimes contains just the URL refernece, fixed several regressions.
@@ -56,7 +62,7 @@
 
 	* matcher/rules.dict: Fixed a bug in the sunRPM license. It wasn't detected.
 
-	* filter/criticalword.dict: strenghten some rules to avoid some 
+	* filter/criticalword.dict: strenghten some rules to avoid some
 	false positives in good sentences.
 
 2011-01-28    <dmg@uvic.ca>
@@ -76,11 +82,11 @@
 2010-11-10  dmg  <dmg@uvic.ca>
 
 	* Released pre-release version 1.0-pre2
-	
+
 	* Added path to the files in the tar file.
-	
+
 	* README: Fixed errors (patch by Armijn Hemel)
- 
+
 	* extComments/extComments.pl (Determine_Comments_Extractor): Added
 	the option to not use the comments extractor.
 
@@ -91,6 +97,3 @@
 2010-08-07  dmg  <dmg@uvic.ca>
 
 	* Prepared the release to the public.
-	
-
-
