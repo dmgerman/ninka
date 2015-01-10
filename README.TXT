@@ -185,7 +185,7 @@ So Ninka detects all the sentences, including the MIT variant, it
 finds the GPL bsd intention. But the license is not really BSD.
 
 The disclaimers are not what you expect. Now, in all fairness, maybe
-this is another lience.
+this is another license.
 
 
 Let me translate the output for you:
