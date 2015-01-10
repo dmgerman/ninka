@@ -60,7 +60,11 @@ the above paper.
 
 * Requirements
 
-Perl version 5
+- Perl version 5 or above
+- for ninka-excel.pl: Perl module Spreadsheet::WriteExcel
+  https://metacpan.org/release/Spreadsheet-WriteExcel/
+- for ninka-sqlite.pl: Perl module DBD::SQLite
+  https://metacpan.org/release/DBD-SQLite
 
 * How to install
 
