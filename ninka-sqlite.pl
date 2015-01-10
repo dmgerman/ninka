@@ -28,9 +28,9 @@ use Scalar::Util qw(looks_like_number);
 
 if(scalar(@ARGV) != 2){
     print STDERR "Ninka 1.3. sqlite wrapper\n";
-    print STDERR "Processes package file (.tar.gz, zip, jar. etc) and outputs to sqlite file\n";
+    print STDERR "Processes package file (.tar.gz, .zip, .jar, etc) or dir and outputs to sqlite file\n";
     print STDERR "Incorrect number of arguments\n";
-    print STDERR "Correct usage is: $0 <path to package file> <database name>\n";
+    print STDERR "Correct usage is: $0 <path to package file or dir> <database name>\n";
     exit 1;
 }
 
@@ -69,14 +69,20 @@ $dbh->do("CREATE TABLE IF NOT EXISTS
 my $tempdir = File::Temp->newdir();
 my $dirname = $tempdir->dirname;
 
-print "***** Extracting file [$pack] to temporary directory [$dirname] *****\n";
-my $packext = getExtension($pack);
-if ($packext eq ".bz2" || $packext eq ".gz") {
-    execute("tar -xvf '$pack' --directory '$dirname'");
-} elsif ($packext eq ".jar" || $packext eq ".zip") {
-    execute("unzip -d $dirname $pack");
-} else {
-    print "ninka-wrapper does not support packages with extension [$packext]\n";
+print "***** Extracting package [$pack] to temporary directory [$dirname] *****\n";
+if (-d $pack) {  # if $pack is a dir, copy it to fresh temp dir
+    # some gymanstic to 1/ use $tempdir, 2/ ensure the directory structure is
+    # the same in the directory-vs-tarball cases, 3/ do not forget hidden files
+    execute("find '$pack' -mindepth 1 -maxdepth 1 -exec cp -a {} '$dirname' \\;");
+} else {  # if $pack is not a dir, extract it to fresh temp dir
+    my $packext = getExtension($pack);
+    if ($packext eq ".bz2" || $packext eq ".gz") {
+	execute("tar -xvf '$pack' --directory '$dirname'");
+    } elsif ($packext eq ".jar" || $packext eq ".zip") {
+	execute("unzip -d $dirname $pack");
+    } else {
+	print "ninka-wrapper does not support packages with extension [$packext]\n";
+    }
 }
 
 my @files;
