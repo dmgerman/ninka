@@ -35,10 +35,10 @@ use strict;
 # where are we running the program from
 my $path = $0;
 $path =~ s/[^\/]+$//;
-if ($path eq "") {
-    $path = "./";
+if ($path eq '') {
+    $path = './';
 }
-my $critWords = $path . "criticalword.dict";
+my $critWords = $path . 'criticalword.dict';
 
 die "Usagee $0 <filename>.sentences" unless $ARGV[0] =~ /\.sentences$/;
 
@@ -53,10 +53,10 @@ $badfilename =~ s/\.sentences$/\.badsent/;
 #print $badfilename;
 
 open (INPUTFILE, "<$ARGV[0]") or die ("Error: $ARGV[0] is not found.");
-open (DICTIONARY, "<$critWords") or die ("Error: criticalword.dict is not found.");
+open (DICTIONARY, "<$critWords") or die ('Error: criticalword.dict is not found.');
 
-open (GOODOUT, ">$goodfilename") || die ("Error");
-open (BADOUT, ">$badfilename") || die ("Error");
+open (GOODOUT, ">$goodfilename") || die ('Error');
+open (BADOUT, ">$badfilename") || die ('Error');
 
 my @cwordlist=();
 # read dictionary into list
