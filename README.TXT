@@ -1,4 +1,6 @@
-* Contact information. 
+-*-org-*-
+
+* Contact information.
 
 Any feedback will be appreciated. You can email us at Daniel M. German
 <dmg@uvic.ca> and Yuki Manabe <y-manabe@ist.osaka-u.ac.jp>
@@ -25,11 +27,16 @@ http://turingmachine.org/~dmg/papers/dmg2010ninka.pdf
 If you use Ninka for research purposes, we would appreciate you cite
 the above paper.
 
+* Contributors
+
+- Anthony Kohan for writing the excel and sqlite backends.
+- Armijn Hemel from Tjaldur Software Governance Solutions  for multiple bug reports and suggestions
+
 * License
- 
+
   Except for the directories comments and splitter, Ninka is licensed
   under the GPLv2+
- 
+
     Copyright (C) 2009-2010  Yuki Manabe and Daniel M. German
 
     This program is free software: you can redistribute it and/or modify
@@ -69,7 +76,7 @@ Perl version 5
 Ninka uses a pipe model (see below). Each step of the "pipe" creates a
 file, but
 
-ninka.pl [options] [filename] 
+ninka.pl [options] [filename]
 
 Available options
   -v verbose
@@ -107,26 +114,26 @@ It will create five files:
      - Licenses
      - Unmatched sentences in *.senttok that were not matched
 
-   
+
 
 
 * Ninka model
 
 Ninka uses a pipe-model. Each stage of the pipe does something very specific:
 
- 1. Comment extractor. 
+ 1. Comment extractor.
 
     - directory: extComments
 
     - command: extComments.pl, might use comments (included in distribution)
-    
+
     - Purpose: Extracts top comments of source code. If no
           comment extractor is known for the language, then extracts top lines from source (currently 700)
 
     - Creates <filename>.comments file
 
 2. Split sentences in comments
- 
+
      - directory: splitter
 
      - command: splitter.pl
@@ -151,7 +158,7 @@ Ninka uses a pipe-model. Each stage of the pipe does something very specific:
 4. Tokenizes sentences
 
      - Directory senttok
- 
+
      - command: senttok.pl
 
      - Purpose: It creates a file that corresponds to the recognized
@@ -168,7 +175,7 @@ Ninka uses a pipe-model. Each stage of the pipe does something very specific:
      - Purpose: looks at the sequence of sentence tokens and outputs the licenses found
 
      - Output: <filename>.license
-      
+
 The script ninka.pl takes care of all these steps, and optionally removes
 intermediary files, and writes to the stdout the licenses found.
 

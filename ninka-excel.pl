@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 #
-#    Copyright (C) 2014  Anthony Kohan and Daniel M. German
+#    Copyright (C) 2014,2015  Anthony Kohan and Daniel M. German
 #
 #    This program is free software; you can redistribute it and/or
 #    modify it under the terms of the GNU General Public License as
@@ -27,8 +27,10 @@ use Spreadsheet::WriteExcel;
 
 
 if(scalar(@ARGV) != 2){
+    print STDERR "Ninka 1.3. sqlite wrapper\n";
+    print STDERR "Processes package file (.tar.gz, zip, jar. etc) and outputs to excel file\n";
     print STDERR "Incorrect number of arguments\n";
-    print STDERR "Correct usage is: perl ninka-wrapper <path to package file> <database name>\n";
+    print STDERR "Correct usage is: $0 <path to package file> <excel-file>\n";
     exit 1;
 }
 

@@ -18,10 +18,11 @@
 
 use strict;
 use Getopt::Std;
+use File::Basename;
 
 my %opts = ();
 if (!getopts ("vfCcSsGgTtLd",\%opts) or scalar(@ARGV) == 0) {
-print STDERR "Ninka version 1.2
+print STDERR "Ninka version 1.3
 
 Usage $0 -fCtTvcgsGd <filename>
 
@@ -42,7 +43,7 @@ Usage $0 -fCtTvcgsGd <filename>
 
   -L force creation of matching
 
-  -d delete intermediate files  
+  -d delete intermediate files
 
 \n";
 
@@ -55,13 +56,11 @@ my $verbose = exists $opts{v};
 my $delete = exists $opts{d};
 #$delete = 1;
 
-my $path = $0;
+my $path = dirname($0);
 
-$path =~ s/\/+[^\/]+$//;
 if ($path eq "") {
     $path = "./";
 }
-
 
 my $force = exists $opts{f};
 my $forceGood = exists $opts{G};
@@ -97,23 +96,23 @@ if (not (-f $original)) {
 }
 
 
-Do_File_Process($original, $commentsFile, ($force or $forceComments), 
+Do_File_Process($original, $commentsFile, ($force or $forceComments),
                 "$path/extComments/extComments.pl -c1 ${f}",
                 "Creating comments file",
                 exists $opts{c});
 
 
-Do_File_Process($commentsFile, $sentencesFile, ($force or $forceSentences), 
+Do_File_Process($commentsFile, $sentencesFile, ($force or $forceSentences),
                 "$path/splitter/splitter.pl ${commentsFile}",
                 "Splitting sentences", exists $opts{s}
     );
 
-Do_File_Process( $sentencesFile, $goodsentFile, ($force or $forceGood), 
+Do_File_Process( $sentencesFile, $goodsentFile, ($force or $forceGood),
                  "$path/filter/filter.pl ${sentencesFile}",
                  "Filtering good sentences", exists $opts{s}
     );
 
-Do_File_Process($goodsentFile, $sentokFile, ($force or $forceSentok), 
+Do_File_Process($goodsentFile, $sentokFile, ($force or $forceSentok),
                 "$path/senttok/senttok.pl ${goodsentFile} > ${sentokFile}",
                 "Matching sentences against rules", exists $opts{t}
     );
@@ -147,7 +146,7 @@ sub Do_File_Process
         print "Running ${cmd}:" if ($verbose);
         execute($cmd);
     } else {
-        print "File [$output] newer than input [$input], not creating:" if ($verbose);    
+        print "File [$output] newer than input [$input], not creating:" if ($verbose);
     }
     if ($end) {
         print "Existing after $message" if $verbose;
@@ -180,4 +179,3 @@ sub newer
         return 1;
     }
 }
-
