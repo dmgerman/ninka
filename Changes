@@ -1,3 +1,9 @@
+2015-01-05  dmg  <dmg@uvic.ca>
+
+	* filter/criticalword.dict: MIT+no-false-attribs license missing one sentence
+
+	* senttok/licensesentence.dict (MITpermissionExtrict): there was a space where no space should have been
+
 2014-06-09  dmg  <dmg@uvic.ca>
 
 	* Version 1.2
