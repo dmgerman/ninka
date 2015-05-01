@@ -1,19 +1,13 @@
 #!/usr/bin/perl 
 # 
-#***************************************************************************************************
-# 		SENTENCE SPLITTER
-# Author:	Paul Clough 	{cloughie@dcs.shef.ac.uk}
+# Sentence Splitter
 #
 
-# This program is originally based on the sentence splitter program
-# published by Paul Clough. Version 1.0,  available form
-# http://ir.shef.ac.uk/cloughie/software.html (splitter.zip)
-# The original program without a license.
-
-#    Modifications to the original by Daniel M German and Y. Manabe,
-#    which are under the following license:
+#  Author: Paul Clough
+#  With modifications by Daniel M German and Y. Manabe,
 #
-#    This patch is free software; you can redistribute it and/or modify
+#
+#    This program is free software; you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as
 #    published by the Free Software Foundation; either version 2 of the
 #    License, or (at your option) any later version.
@@ -24,21 +18,13 @@
 #    GNU General Public License for more details.
 #
 #    You should have received a copy of the GNU General Public License
-#    along with this patch.  If not, see <http://www.gnu.org/licenses/>.
-
-
+#    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 use strict;
 
-# This program is originally based on the sentence splitter program
-# published by Paul Clough. Version 1.0, but then it was mostly rewritten
-# His ideas, however, linger in here (and his dictionary of abbreviations)
-
-
-my $dictionary = 'splitter.dict';
-my $abbrv_file = 'splitter.abv';
+my $abbrv_file = 'abbrev/abbrev.txt';
 my $len = 0;
-my %COMMON_TERMS = ();
+
 my %ABBREVIATIONS = ();
 my $output_file = $ARGV[0];
 
@@ -48,7 +34,7 @@ $path =~ s/[^\/]+$//;
 if ($path eq '') {
     $path = './';
 }
-$dictionary = $path . $dictionary;
+
 $abbrv_file = $path . $abbrv_file;
 
 die "Usage $0 <filename>.comments" unless $ARGV[0] =~ /\.comments$/;
@@ -64,8 +50,6 @@ open(OUT, ">$output_file") or die("Unable to create output file [$output_file]")
 # Load in the dictionary and find the common words.
 # Here, we assume the words in upper case are simply names and one
 # word per line - i.e. in same form as /usr/dict/words
-&loadDictionary;
-
 # Same assumptions as for dictionary
 &loadAbbreviations;
 
@@ -301,27 +285,6 @@ sub Split_Text
     #Print_Non_Sentence($text,"\n",'');
     return @result;
 
-}
-
-sub loadDictionary {
-
-	# Initialise var
-    my $common_term = '';	
-
-    if (open(DICT, $dictionary)) {
-
-        while (defined ($line = <DICT>)) {
-            chomp($line);
-            if ($line !~ /^[A-Z]/) {
-                $COMMON_TERMS{$line} = 1;
-            }
-            
-        }		
-		
-        close(DICT);
-    } else {
-        die "cannot open dictionary file $dictionary: $!";		
-    }
 }
 
 sub loadAbbreviations 

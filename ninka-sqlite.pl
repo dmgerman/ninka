@@ -117,11 +117,12 @@ foreach my $file (@ninkafiles) {
 
     my $sth;
     switch (getExtension($basefile)){
-	case ".comments" {
-	    print "Inserting [$basefile] into table comments\n";
-	    $sth = $dbh->prepare("INSERT INTO comments VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
-	}
+
+#	case ".comments" {
+#	    print "Inserting [$basefile] into table comments\n";
+#	    $sth = $dbh->prepare("INSERT INTO comments VALUES
+#                                  ('$rootfile', '$filepath', '$packname', ?)");
+#	}
 	case ".sentences" {
 	    print "Inserting [$basefile] into table sentences\n";
 	    $sth = $dbh->prepare("INSERT INTO sentences VALUES
