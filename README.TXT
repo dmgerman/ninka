@@ -29,6 +29,7 @@ the above paper.
 
 * Contributors
 
+- Paul Clough for his code to split sentences
 - Anthony Kohan for writing the excel and sqlite backends.
 - Armijn Hemel from Tjaldur Software Governance Solutions  for multiple bug reports and suggestions
 
@@ -71,9 +72,9 @@ the above paper.
 * How to install
 
   1. Unpack the distribution in a directory.
-  2. Build and install comments (make sure it is somwehere in the
+  2. Optional: Build and install comments (make sure it is somwehere in the
      path) (see directory comments)
-  3. Build splitter.pl (see splitter/README for instructions)
+
 
 * Usage:
 
