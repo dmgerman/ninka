@@ -27,6 +27,13 @@ http://turingmachine.org/~dmg/papers/dmg2010ninka.pdf
 If you use Ninka for research purposes, we would appreciate you cite
 the above paper.
 
+* Mailing list
+
+Ninka has a mailing list located at sourceforge:
+
+https://sourceforge.net/p/ninka/mailman/
+
+
 * Contributors
 
 - Paul Clough for his code to split sentences

@@ -62,8 +62,7 @@ $worksheet->write(0, 7, 'TokensUnmatched', $format);
 $worksheet->write(0, 8, 'TokensUnknown', $format);
 $worksheet->write(0, 9, 'Tokens', $format);
 
-my $tempdir = File::Temp->newdir();
-my $dirname = $tempdir->dirname;
+my $dirname = File::Temp->newdir()->dirname;
 
 print "***** Extracting file [$pack] to temporary directory [$dirname] *****\n";
 my $packext = getExtension($pack);
@@ -85,7 +84,7 @@ print "***** Beginning Execution of Ninka *****\n";
 foreach my $file (@files) {
     if (-T $file) {
 	print "Running ninka on file [$file]\n";
-	execute("perl ${path}/ninka.pl '$file'");
+	execute("perl ${path}/ninka.pl -h '$file' /");
     }
 }
 

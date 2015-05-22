@@ -66,8 +66,7 @@ $dbh->do("CREATE TABLE IF NOT EXISTS
           toks_unknown INT, tokens TEXT,
           PRIMARY KEY(filename, path, container))");
 
-my $tempdir = File::Temp->newdir();
-my $dirname = $tempdir->dirname;
+my $dirname = File::Temp->newdir()->dirname;
 
 print "***** Extracting file [$pack] to temporary directory [$dirname] *****\n";
 my $packext = getExtension($pack);
@@ -88,7 +87,7 @@ find(
 print "***** Beginning Execution of Ninka *****\n";
 foreach my $file (@files) {
     print "Running ninka on file [$file]\n";
-    execute("perl ${path}/ninka.pl '$file'");
+    execute("perl ${path}/ninka.pl -h '$file' /");
 }
 
 my @ninkafiles;
@@ -116,6 +115,7 @@ foreach my $file (@ninkafiles) {
     my $filedata = do { local $/; <$fh> };
 
     my $sth;
+    next if ($basefile =~ /comments$/);
     switch (getExtension($basefile)){
 
 #	case ".comments" {

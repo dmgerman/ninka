@@ -19,12 +19,14 @@
 use strict;
 use Getopt::Std;
 use File::Basename;
+use File::Path qw(make_path);
+
 
 my %opts = ();
-if (!getopts ("vfCcSsGgTtLd",\%opts) or scalar(@ARGV) == 0) {
+if (!getopts ("vfCcSsGgTtLdDh",\%opts) or scalar(@ARGV) != 2) {
 print STDERR "Ninka version 1.3
 
-Usage $0 -fCtTvcgsGd <filename>
+Usage $0 -fCtTvcgsGd <filename> <outputDir>
 
   -v verbose
   -f force all processing
@@ -44,6 +46,9 @@ Usage $0 -fCtTvcgsGd <filename>
   -L force creation of matching
 
   -d delete intermediate files
+  -D delete license output file
+
+  -h re-create directory structure of original filename in output files under output dir. For the sake of security, no .. directory is allowed in the path name. Starting /s are removed.
 
 \n";
 
@@ -54,6 +59,8 @@ Usage $0 -fCtTvcgsGd <filename>
 
 my $verbose = exists $opts{v};
 my $delete = exists $opts{d};
+my $deleteLic = exists $opts{D};
+my $createDirsHier = exists $opts{h};
 #$delete = 1;
 
 my $path = dirname($0);
@@ -71,35 +78,54 @@ my $forceLicense = exists $opts{L};
 
 #die "Usage $0 <filename>" unless $ARGV[0] =~ /\.(c|cpp|java|cc|cxx|h|jl|py|pm|el|pl)$/;
 
-my $f = $ARGV[0];
-
-
-my $original = $f;
-
-$f =~ s/'/\\'/g;
-$f =~ s/\$/\\\$/g;
-$f =~ s/;/\\;/g;
-$f =~ s/ /\\ /g;
+my $original = $ARGV[0];
+my $escapedOriginal = escape_filename($original);
+my $dirOriginal = $ARGV[1];
+my $f = basename($escapedOriginal);
 
 print "Starting: $original;\n" if ($verbose);
 
 print "$original;";
 
-my $commentsFile = "${f}.comments";
-my $sentencesFile = "${f}.sentences";
-my $goodsentFile = "${f}.goodsent";
-my $sentokFile = "${f}.senttok";
-
 if (not (-f $original)) {
     print "ERROR;[${original}] is not a file\n" ;
     exit 0;
 }
+if (not (-d $dirOriginal)) {
+    print "ERROR;[${dirOriginal}] is not a directory\n" ;
+    exit 0;
+} 
+$dirOriginal =~ s@/$@@;
+
+my $dir;
+my $hier = "";
+if ($createDirsHier) {
+    $hier = dirname($original);
+    # make sure it does not start with /
+    $hier =~ s@^/+@@;
+    # abort if relative... 
+    if ($hier =~ m@/\.\./@ or $hier =~ m@^\.\.@ or $hier =~ m@\.\.$@) {
+        die "directory name [$hier] of input file contains .. aborting\n";
+    }
+    $dir = "$dirOriginal/$hier";
+    make_path($dir) unless -d $dir;
+    $dir = escape_filename($dir);
+}
+
+my $commentsFile = "$dir/${f}.comments";
+my $sentencesFile = "$dir/${f}.sentences";
+my $goodsentFile = "$dir/${f}.goodsent";
+my $badsentFile = "$dir/${f}.badsent";
+my $sentokFile = "$dir/${f}.senttok";
+my $licenseFile = "$dir/${f}.license";
+my $codeFile = "$dir/${f}.code";
 
 
 Do_File_Process($original, $commentsFile, ($force or $forceComments),
-                "$path/extComments/extComments.pl -c1 ${f}",
+                "$path/extComments/extComments.pl -c1 ${escapedOriginal} > $commentsFile",
                 "Creating comments file",
-                exists $opts{c});
+                exists $opts{c}
+    );
 
 
 Do_File_Process($commentsFile, $sentencesFile, ($force or $forceSentences),
@@ -119,18 +145,21 @@ Do_File_Process($goodsentFile, $sentokFile, ($force or $forceSentok),
 
 
 print "Matching ${f}.senttok against rules" if ($verbose);
-execute("$path/matcher/matcher.pl ${f}.senttok > ${f}.license");
+execute("$path/matcher/matcher.pl ${sentokFile} > ${licenseFile}");
 
-print `cat ${f}.license`;
-
-unlink("${f}.code");
+print `cat ${licenseFile}`;
 
 if ($delete) {
-    unlink("${f}.badsent");
-    unlink("${f}.comments");
-    unlink("${f}.goodsent");
-    unlink("${f}.sentences");
-    unlink("${f}.senttok");
+    unlink($commentsFile);
+    unlink($sentencesFile);
+    unlink($goodsentFile);
+    unlink($badsentFile);
+    unlink($sentokFile);
+    unlink($codeFile) if -f $codeFile;
+}
+
+if ($deleteLic) {
+    unlink($licenseFile);
 }
 
 exit 0;
@@ -178,4 +207,14 @@ sub newer
     } else {
         return 1;
     }
+}
+
+sub escape_filename
+{
+    my ($f) = @_;
+    $f =~ s/'/\\'/g;
+    $f =~ s/\$/\\\$/g;
+    $f =~ s/;/\\;/g;
+    $f =~ s/ /\\ /g;
+    return $f;
 }

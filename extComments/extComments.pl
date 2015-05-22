@@ -30,8 +30,8 @@ if ($path eq '') {
 
 # set parameters
 my %opts = ();
-if (!getopts ('vc:p:',\%opts)) {
-print STDERR "Usage $0 -v
+if (!getopts ('vc:p:',\%opts) or scalar(@ARGV) != 1 ) {
+print STDERR "Usage $0 -v <filename>
 
   -v verbose
   -c count of comment blocks
@@ -49,7 +49,6 @@ $f =~ s/'/\\'/g;
 $f =~ s/\$/\\\$/g;
 $f =~ s/;/\\;/g;
 $f =~ s/ /\\ /g;
-
 
 #die "illegal file [$f]"  if $f =~ m@/\.@;
 
@@ -69,12 +68,7 @@ if (get_size($original) == 0) {
 
 my $commentsCmd = Determine_Comments_Extractor($f);
 
-execute("$commentsCmd");
-
-if ($commentsCmd =~ /^comments/ and
-    get_size("${f}.comments") == 0){
-    `cat $f | head -700  > ${f}.comments`;
-}
+print execute("$commentsCmd");
 
 exit 0;
 
@@ -91,33 +85,31 @@ sub Determine_Comments_Extractor
 ########################
 # for the time being, let us just extract the top 400 lines
 
-            return "cat '$f' | head -400  > '${f}.comments'";
+            return "cat $f | head -400";
 #            return "$path/hashComments.pl -p '#' '$f'";
         } elsif ($ext eq 'jl' or
                  $ext eq 'el'
             ) {
-            return "cat $f | head -400  > ${f}.comments";
+            return "cat $f | head -400";
 #            return "$path/hashComments.pl -p ';' $f";;
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/ ) {
             my $comm = `which comments`;
             if ($comm ne '') {
-                return "comments -c1 '$f' 2> /dev/null";
+                return "comments -o -c1 $f 2> /dev/null";
             } else {
-                return "cat $f | head -400  > ${f}.comments";
+                return "head -400 $f";
             }
         } else {
-            return "cat $f | head -700  > ${f}.comments";
+            return "head -700 $f";
         }
     } else {
-        print "\n>>>>>>>>>>>>>>>>>>>>>\n";
-        return "cat $f | head -700  > ${f}.comments";
+        return "head -700 $f";
     }
 }
 
 sub execute
 {
     my ($c) = @_;
-#    print "\nTo execute [$c]\n";
     my $r = `$c`;
     my $status = ($? >> 8);
     die "execution of program [$c] failed: status [$status]" if ($status != 0);
