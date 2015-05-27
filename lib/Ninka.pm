@@ -12,7 +12,7 @@ use Ninka::SentenceTokenizer;
 our $VERSION = '1.3';
 
 sub process_file {
-    my ($input_file, $verbose) = @_;
+    my ($input_file, $create_intermediary_files, $verbose) = @_;
 
     print STDERR "analysing file [$input_file]\n" if $verbose;
 
@@ -41,7 +41,25 @@ sub process_file {
     my %parameters_step5 = (%common_parameters, license_tokens => $license_tokens_ref);
     my $license_result = Ninka::LicenseMatcher->new(%parameters_step5)->execute();
 
+    if ($create_intermediary_files) {
+        create_intermediary_file($input_file, 'comments',  $comments);
+        create_intermediary_file($input_file, 'sentences', join("\n", @$sentences_ref));
+        create_intermediary_file($input_file, 'goodsent',  join("\n", @$good_sentences_ref));
+        create_intermediary_file($input_file, 'badsent',   join("\n", @$bad_sentences_ref));
+        create_intermediary_file($input_file, 'senttok',   join("\n", @$license_tokens_ref));
+        create_intermediary_file($input_file, 'license',   $license_result);
+    }
+
     return $license_result;
+}
+
+sub create_intermediary_file {
+    my ($input_file, $output_extension, $content) = @_;
+
+    my $output_file = "$input_file.$output_extension";
+    open my $output_fh, '>', $output_file or die "can't create output file [$output_file]: $!";
+    print $output_fh $content;
+    close $output_fh;
 }
 
 1;
@@ -57,9 +75,10 @@ Ninka - Find licenses in source files.
     use Ninka;
 
     my $input_file = 'some/path/file_of_interest';
+    my $create_intermediary_files = 0;
     my $verbose = 0;
 
-    my $license_result = Ninka::process_file($input_file, $verbose);
+    my $license_result = Ninka::process_file($input_file, $create_intermediary_files, $verbose);
 
 =head1 DESCRIPTION
 
