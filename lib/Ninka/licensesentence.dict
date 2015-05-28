@@ -286,8 +286,8 @@ ApachePre:52:0:Licensed to the Apache Software Foundation \(ASF\) under one or m
 ApacheSee:52:0:See the NOTICE file distributed with this work for additional information regarding copyright ownership:
 ApachesAsIs:52:0:Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <quotes>AS IS<quotes> BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied:
 ApachesPermLim:52:0:See the License for the specific language governing permissions and limitations under the License:
-Apachev2:52:0:Licensed under the Apache License, Version 2.0 \(the <quotes>License<quotes>\); You may not use this file except in compliance with the License:
-Apachev2:52:0:The ASF licenses this file to You under the Apache License, Version 2\.0 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
+Apache-2:52:0:Licensed under the Apache License, Version 2.0 \(the <quotes>License<quotes>\); You may not use this file except in compliance with the License:
+Apache-2:52:0:The ASF licenses this file to You under the Apache License, Version 2\.0 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
 
 apacheAndLGPLgen:10:0:^<LICENSED> under the terms of either the Apache License \(<VERSION>\) or the Lesser GPL, as specified in the COPYING file$
 

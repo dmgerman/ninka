@@ -7,20 +7,22 @@ use Ninka;
 
 my %opts = parse_cmdline_parameters();
 my $input_file = $ARGV[0];
+my $create_intermediary_files = exists $opts{i};
 my $verbose = exists $opts{v};
 
-my $license_result = Ninka::process_file($input_file, $verbose);
+my $license_result = Ninka::process_file($input_file, $create_intermediary_files, $verbose);
 print "$input_file;$license_result\n";
 exit 0;
 
 sub parse_cmdline_parameters {
     my %opts = ();
-    if (!getopts('v', \%opts) || scalar(@ARGV) == 0) {
+    if (!getopts('iv', \%opts) || scalar(@ARGV) == 0) {
         print STDERR "Ninka v${Ninka::VERSION}
 
 Usage: $0 [options] <filename>
 
 Options:
+  -i create intermediary files
   -v verbose\n";
 
         exit 1;

@@ -60,7 +60,7 @@ sub determine_comments_command {
 sub create_head_cmd {
     my ($input_file, $count_lines) = @_;
 
-    return "head -$count_lines '$input_file'";
+    return "head -$count_lines $input_file";
 }
 
 sub execute_command {
