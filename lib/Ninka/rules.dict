@@ -219,8 +219,8 @@ EPLv1:EPLv1
 CDDLic:CDDLic
 CDDLicV1:CDDLicV1Only
 
-Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2,ApachesAsIs,ApachesPermLim
-Apachev2:Apachev2,ApacheLicWherePart1,ApacheLicWherePart2v2
+Apache-2:Apache-2,ApacheLicWherePart1,ApacheLicWherePart2v2,ApachesAsIs,ApachesPermLim
+Apache-2:Apache-2,ApacheLicWherePart1,ApacheLicWherePart2v2
 
 # publid comain
 publicDomain:publicDomain
