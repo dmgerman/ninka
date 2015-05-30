@@ -1,4 +1,4 @@
-#!/usr/bin/perl
+#!/usr/bin/env perl
 
 #
 #    Copyright (C) 2009-2014  Yuki Manabe and Daniel M. German
