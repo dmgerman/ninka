@@ -68,7 +68,7 @@ __END__
 
 =head1 NAME
 
-Ninka - Find licenses in source files.
+Ninka - source file license identification tool
 
 =head1 SYNOPSIS
 
@@ -82,7 +82,7 @@ Ninka - Find licenses in source files.
 
 =head1 DESCRIPTION
 
-Scans a file and returns the found licenses.
+Scans a source file and returns the found licenses.
 
 =head1 COPYRIGHT AND LICENSE
 

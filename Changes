@@ -22,7 +22,7 @@
 
 	* ninka.pl: fixed bug in finding the path of where ninka was being executed from (reported by Ryan Biesemeyer)
 
-	* Fixed quotes in perl (René bScheibe)
+	* Fixed quotes in perl (René Scheibe)
 
 2015-01-05  dmg  <dmg@uvic.ca>
 

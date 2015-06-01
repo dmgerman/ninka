@@ -7,7 +7,7 @@ WriteMakefile(
     NAME => 'Ninka',
     VERSION_FROM => 'lib/Ninka.pm',
     ABSTRACT_FROM => 'lib/Ninka.pm',
-    LICENSE => 'agpl_3',
+    LICENSE => 'gpl_2',
     AUTHOR => [
         'Daniel M. German <dmg@uvic.ca>',
         'Yuki Manabe <y-manabe@ist.osaka-u.ac.jp>',
@@ -38,7 +38,7 @@ WriteMakefile(
         resources => {
             homepage => 'http://ninka.turingmachine.org/',
             repository => 'https://github.com/dmgerman/ninka',
-            license => 'http://www.gnu.org/licenses/agpl-3.0.html',
+            license => 'http://www.gnu.org/licenses/gpl-2.0.html',
        },
     },
 );
