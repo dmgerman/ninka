@@ -20,6 +20,10 @@ Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
+scripts/license_matcher_modified.pl
+scripts/parseLicense.pl
+scripts/sort_package_license_list.pl
+scripts/unify.pl
 t/data/expected_output/AAL
 t/data/expected_output/AFL-1.1
 t/data/expected_output/AFL-1.2
