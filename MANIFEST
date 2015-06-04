@@ -216,5 +216,6 @@ t/data/licenses/OSL-2.1
 t/data/licenses/OSL-3.0
 t/data/licenses/PRESERVE_COPYRIGHT_NOTICE
 t/data/licenses/Public-domain
+t/pod_ok.t
 t/reference_licenses.t
 t/syntax_ok_and_use_strict.t

@@ -30,6 +30,7 @@ WriteMakefile(
     TEST_REQUIRES => {
         'File::Temp' => '0',
         'Test::More' => '0.98',
+        'Test::Pod' => '1.00',
         'Test::Strict' => '0',
     },
     META_MERGE => {
