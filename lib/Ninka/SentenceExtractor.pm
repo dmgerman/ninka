@@ -251,6 +251,19 @@ Ninka::SentenceExtractor
 
 Breaks comments into sentences.
 
+=head1 NOTES
+
+This list of abbreviations was extracted from SCOWL (Spell Checker Oriented Word Lists)
+by Kevin Atkinson (kevina@gnu.org) version 2015.04.24.
+
+Specifically it was created from scowl-2015.04.24.tar.gz. by running:
+
+    cat *abbrev* | sort -u > abbreviations.dict
+
+It also contains some additions by D.M German.
+
+See Copyright.SCOWL for license.
+
 =head1 COPYRIGHT AND LICENSE
 
 Author: Paul Clough

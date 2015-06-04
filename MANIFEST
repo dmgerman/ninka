@@ -2,6 +2,7 @@ bin/ninka
 bin/ninka-excel
 bin/ninka-sqlite
 Changes
+Copyright.SCOWL
 lib/Ninka.pm
 lib/Ninka/abbreviations.dict
 lib/Ninka/CommentExtractor.pm
