@@ -93,7 +93,7 @@ sub execute {
                 $count2++ if ($c ge 'A' && $c le 'z');
             }
             my $clean_sentence = clean_sentence($sentence);
-            push @clean_sentences, $clean_sentence if $clean_sentence,
+            push @clean_sentences, $clean_sentence if $clean_sentence;
         }
 
         if ($count1 != $count2) {
