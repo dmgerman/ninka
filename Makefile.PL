@@ -17,10 +17,15 @@ WriteMakefile(
         'ExtUtils::MakeMaker' => '6.52',
     },
     PREREQ_PM => {
+        'DBI' => '0',
+        'DBD::SQLite' => '0',
         'File::Basename' => '0',
+        'File::Find' => '0',
         'File::Spec::Functions' => '0',
+        'File::Temp' => '0',
         'Getopt::Std' => '0',
         'IPC::Open3' => '0',
+        'Spreadsheet::WriteExcel' => '0',
     },
     TEST_REQUIRES => {
         'File::Temp' => '0',

@@ -1,4 +1,6 @@
 bin/ninka
+bin/ninka-excel
+bin/ninka-sqlite
 Changes
 lib/Ninka.pm
 lib/Ninka/abbreviations.dict

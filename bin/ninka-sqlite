@@ -17,20 +17,17 @@
 #
 
 use strict;
-use Switch;
 use DBI;
 use File::Temp;
 use File::Find;
 use File::Basename;
-use Scalar::Util qw(looks_like_number);
+use Ninka;
 
-
-
-if(scalar(@ARGV) != 2){
-    print STDERR "Ninka 1.3. sqlite wrapper\n";
+if (scalar(@ARGV) != 2) {
+    print STDERR "Ninka v${Ninka::VERSION}. sqlite wrapper\n";
     print STDERR "Processes package file (.tar.gz, zip, jar. etc) and outputs to sqlite file\n";
     print STDERR "Incorrect number of arguments\n";
-    print STDERR "Correct usage is: $0 <path to package file> <database name>\n";
+    print STDERR "Usage: $0 <path to package file> <database name>\n";
     exit 1;
 }
 
@@ -88,7 +85,7 @@ find(
 print "***** Beginning Execution of Ninka *****\n";
 foreach my $file (@files) {
     print "Running ninka on file [$file]\n";
-    execute("perl ${path}/ninka.pl '$file'");
+    execute("perl ${path}/ninka -i '$file'");
 }
 
 my @ninkafiles;
@@ -116,44 +113,46 @@ foreach my $file (@ninkafiles) {
     my $filedata = do { local $/; <$fh> };
 
     my $sth;
-    switch (getExtension($basefile)){
+    my $ext = getExtension($basefile);
 
-#	case ".comments" {
-#	    print "Inserting [$basefile] into table comments\n";
-#	    $sth = $dbh->prepare("INSERT INTO comments VALUES
-#                                  ('$rootfile', '$filepath', '$packname', ?)");
-#	}
-	case ".sentences" {
-	    print "Inserting [$basefile] into table sentences\n";
-	    $sth = $dbh->prepare("INSERT INTO sentences VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
-	}
-	case ".goodsent" {
-	    print "Inserting [$basefile] into table goodsents\n";
-	    $sth = $dbh->prepare("INSERT INTO goodsents VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
-	}
-	case ".badsent" {
-	    print "Inserting [$basefile] into table goodsents\n";
-	    $sth = $dbh->prepare("INSERT INTO badsents VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
-	}
-	case ".senttok" {
-	    print "Inserting [$basefile] into table senttoks\n";
-	    $sth = $dbh->prepare("INSERT INTO senttoks VALUES
-                                  ('$rootfile', '$filepath', '$packname', ?)");
-	}
-	case ".license" {
-	    print "Inserting [$basefile] into table licenses\n";
-	    my @columns = parseLicenseData($filedata);
-	    $sth = $dbh->prepare("INSERT INTO licenses VALUES
-                                  ('$rootfile', '$filepath', '$packname', '$columns[0]', '$columns[1]',
-                                   '$columns[2]', '$columns[3]', '$columns[4]', '$columns[5]', '$columns[6]')");
-	}
+    if ($ext eq ".comments") {
+        print "Inserting [$basefile] into table comments\n";
+        $sth = $dbh->prepare("INSERT INTO comments VALUES
+               ('$rootfile', '$filepath', '$packname', ?)");
+    }
+    if ($ext eq ".sentences") {
+        print "Inserting [$basefile] into table sentences\n";
+        $sth = $dbh->prepare("INSERT INTO sentences VALUES
+               ('$rootfile', '$filepath', '$packname', ?)");
+    }
+    if ($ext eq ".goodsent") {
+        print "Inserting [$basefile] into table goodsents\n";
+        $sth = $dbh->prepare("INSERT INTO goodsents VALUES
+               ('$rootfile', '$filepath', '$packname', ?)");
+    }
+    if ($ext eq ".badsent") {
+        print "Inserting [$basefile] into table badsents\n";
+        $sth = $dbh->prepare("INSERT INTO badsents VALUES
+               ('$rootfile', '$filepath', '$packname', ?)");
+    }
+    if ($ext eq ".senttok") {
+        print "Inserting [$basefile] into table senttoks\n";
+        $sth = $dbh->prepare("INSERT INTO senttoks VALUES
+               ('$rootfile', '$filepath', '$packname', ?)");
+    }
+    if ($ext eq ".license") {
+        print "Inserting [$basefile] into table licenses\n";
+        my @columns = parseLicenseData($filedata);
+        $sth = $dbh->prepare("INSERT INTO licenses VALUES
+               ('$rootfile', '$filepath', '$packname', '$columns[0]', '$columns[1]',
+                '$columns[2]', '$columns[3]', '$columns[4]', '$columns[5]', '$columns[6]')");
     }
 
-    $sth->bind_param(1, $filedata);
-    $sth->execute;
+    if (defined $sth) {
+        $sth->bind_param(1, $filedata);
+        $sth->execute;
+    }
+
     close($fh);
 }
 
