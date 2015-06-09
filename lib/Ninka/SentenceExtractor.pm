@@ -93,7 +93,7 @@ sub execute {
                 $count2++ if ($c ge 'A' && $c le 'z');
             }
             my $clean_sentence = clean_sentence($sentence);
-            push @clean_sentences, $clean_sentence if $clean_sentence,
+            push @clean_sentences, $clean_sentence if $clean_sentence;
         }
 
         if ($count1 != $count2) {
@@ -250,6 +250,19 @@ Ninka::SentenceExtractor
 =head1 DESCRIPTION
 
 Breaks comments into sentences.
+
+=head1 NOTES
+
+This list of abbreviations was extracted from SCOWL (Spell Checker Oriented Word Lists)
+by Kevin Atkinson (kevina@gnu.org) version 2015.04.24.
+
+Specifically it was created from scowl-2015.04.24.tar.gz. by running:
+
+    cat *abbrev* | sort -u > abbreviations.dict
+
+It also contains some additions by D.M German.
+
+See Copyright.SCOWL for license.
 
 =head1 COPYRIGHT AND LICENSE
 

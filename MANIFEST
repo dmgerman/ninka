@@ -1,9 +1,13 @@
 bin/ninka
+bin/ninka-excel
+bin/ninka-sqlite
 Changes
+Copyright.SCOWL
 lib/Ninka.pm
 lib/Ninka/abbreviations.dict
 lib/Ninka/CommentExtractor.pm
 lib/Ninka/criticalwords.dict
+lib/Ninka/FileCleaner.pm
 lib/Ninka/interrules.dict
 lib/Ninka/LicenseMatcher.pm
 lib/Ninka/LicenseRules.pm
@@ -17,6 +21,10 @@ Makefile.PL
 MANIFEST
 MANIFEST.SKIP
 README
+scripts/license_matcher_modified.pl
+scripts/parseLicense.pl
+scripts/sort_package_license_list.pl
+scripts/unify.pl
 t/data/expected_output/AAL
 t/data/expected_output/AFL-1.1
 t/data/expected_output/AFL-1.2
@@ -209,5 +217,6 @@ t/data/licenses/OSL-2.1
 t/data/licenses/OSL-3.0
 t/data/licenses/PRESERVE_COPYRIGHT_NOTICE
 t/data/licenses/Public-domain
+t/pod_ok.t
 t/reference_licenses.t
 t/syntax_ok_and_use_strict.t

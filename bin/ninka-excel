@@ -17,20 +17,17 @@
 #
 
 use strict;
-use Switch;
 use File::Temp;
 use File::Find;
 use File::Basename;
-use Scalar::Util qw(looks_like_number);
+use Ninka;
 use Spreadsheet::WriteExcel;
 
-
-
-if(scalar(@ARGV) != 2){
-    print STDERR "Ninka 1.3. sqlite wrapper\n";
+if (scalar(@ARGV) != 2) {
+    print STDERR "Ninka v${Ninka::VERSION}. sqlite wrapper\n";
     print STDERR "Processes package file (.tar.gz, zip, jar. etc) and outputs to excel file\n";
     print STDERR "Incorrect number of arguments\n";
-    print STDERR "Correct usage is: $0 <path to package file> <excel-file>\n";
+    print STDERR "Usage: $0 <path to package file> <excel-file>\n";
     exit 1;
 }
 
@@ -85,10 +82,9 @@ print "***** Beginning Execution of Ninka *****\n";
 foreach my $file (@files) {
     if (-T $file) {
 	print "Running ninka on file [$file]\n";
-	execute("perl ${path}/ninka.pl '$file'");
+	execute("perl ${path}/ninka -i '$file'");
     }
 }
-
 
 print "***** Entering Ninka Data into excell file [$excelFile] *****\n";
 my $row = 1;
@@ -115,7 +111,6 @@ foreach my $file (@files) {
 	my $filedata = do { local $/; <$fh> };
 
 	my @columns = parseLicenseData($filedata);
-
 
 	my $originalFile = $file;
 	$originalFile =~ s/\.license$//;
