@@ -32,7 +32,8 @@ Contributors
 - Armijn Hemel from Tjaldur Software Governance Solutions for multiple bug reports and suggestions
 - René Scheibe for modularizing the code
 
-* License
+License
+-------
 
   Ninka is licensed under the GPLv2+:
 
@@ -56,7 +57,8 @@ Contributors
 
   comments is based on a program to remove comments by Jon Newman.
 
-* Requirements
+Requirements
+------------
 
 - Perl version 5 or above
 - for ninka-excel: Perl module Spreadsheet::WriteExcel
@@ -69,14 +71,15 @@ Contributors
   1. Unpack the distribution in a directory.
   2. Optional: Build and install comments (make sure it is somwehere in the path) (see directory comments)
 
-* Usage
+Usage
+-----
 
-ninka [options] filename
+'''ninka [options] filename
 
 Available options:
 
   -i create intermediary files
-  -v verbose
+  -v verbose'''
 
 Example:
 
