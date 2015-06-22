@@ -74,7 +74,7 @@ Requirements
 Usage
 -----
 
-```ninka [options] filename
+   ```ninka [options] filename
 
 Available options:
 
