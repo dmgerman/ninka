@@ -74,12 +74,12 @@ Requirements
 Usage
 -----
 
-   ninka [options] filename
+    ninka [options] filename
 
 Available options:
 
-   -i create intermediary files
-   -v verbose
+    -i create intermediary files
+    -v verbose
 
 Example:
 
