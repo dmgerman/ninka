@@ -74,16 +74,16 @@ Requirements
 Usage
 -----
 
-| ninka [options] filename
+   ninka [options] filename
 
 Available options:
 
-|  -i create intermediary files
-|  -v verbose```
+   -i create intermediary files
+   -v verbose```
 
 Example:
 
-|  ninka -i foo.c
+   ninka -i foo.c
 
 It will create five files:
 
@@ -105,7 +105,8 @@ It will create five files:
 The files are not required for Ninka's functionality. But they can help
 to debug license detection issues.
 
-* Ninka model
+Ninka model
+-----------
 
 Ninka uses a pipe-model. Each stage of the pipe does something very specific:
 
