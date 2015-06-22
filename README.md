@@ -83,7 +83,7 @@ Available options:
 
 Example:
 
-   ninka -i foo.c
+    ninka -i foo.c
 
 It will create five files:
 
@@ -165,8 +165,7 @@ How to read the output:
 
 Assume, for example, this output:
 
-eq.c;MITX11noNotice;1;2;2;6;0;Copyright,-1,-1,DualLicenseIntention,GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary
-
+    eq.c;MITX11noNotice;1;2;2;6;0;Copyright,-1,-1,DualLicenseIntention,GPLorOpenBSDTypeVer2,BSDpre,BSDcondSource,BSDcondBinary
 
 So Ninka detects all the sentences, including the MIT variant, it
 finds the GPL bsd intention. But the license is not really BSD.
