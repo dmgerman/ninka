@@ -74,16 +74,16 @@ Requirements
 Usage
 -----
 
-   ```ninka [options] filename
+| ninka [options] filename
 
 Available options:
 
-  -i create intermediary files
-  -v verbose```
+|  -i create intermediary files
+|  -v verbose```
 
 Example:
 
-  ninka -i foo.c
+|  ninka -i foo.c
 
 It will create five files:
 
