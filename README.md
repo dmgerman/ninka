@@ -79,7 +79,7 @@ Usage
 Available options:
 
    -i create intermediary files
-   -v verbose```
+   -v verbose
 
 Example:
 
