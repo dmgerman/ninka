@@ -112,7 +112,7 @@ GPLcopy:54:2:^You should have received a copy of the GPL with ([^,;]+); see the 
 LibraryGPLcopy:55:1:^You should have received a copy of the Library GPL with ([^,;]+); see the file COPYING.LIB$:
 GPLcopy:20:0:^You should have received a copy of the (Lesser |Library )?GPL with this program; if not, write to<colon>$:
 GPLwrite:21:2:^(If not, write to )?the Free Software Foundation(.+) USA$:
-GPLcopy:30:0:The GPL <VERSION> license is available at http<colon>//opensource.org/licenses/gpl\-license.php$:
+GPLcopy:30:0:The GPL <VERSION> license is available at https?<colon>//opensource.org/licenses/gpl\-license.php$:
 LesserGPLcopy:12:1:^You should have received a copy of the Lesser GPL <VERSION> along with ([^,;]+)$
 
 GPLsee:57:0:^Please see the GPL for more details$:
@@ -123,7 +123,7 @@ GPLseeDetails:10:0:^See the GPL for more details$:
 AGPLsee:10:0:See the Affero GPL for more details$
 
 AGPLreceived:10:0:^You should have received a copy of the Affero GPL with this program$
-GNUurl:10:0:^If not, see <http://www.gnu.org/licenses/>$
+GNUurl:10:0:^If not, see <https?<colon>//www.gnu.org/licenses/>$
 
 # special cases GPL
 GPLv2orv3:10:1:^This file (can|may) be used under the terms of the GPL versions 2\.0 or 3\.0 as published by the Free Software Foundation and appearing in the files LICENSE\.GPL2 and LICENSE\.GPL3 included in the packaging of this file$
@@ -140,7 +140,7 @@ XXXGPLEntertainingNoWarranty:52:1:^This program is distributed in the hope that 
 ###XXXGPLNoVersion:70:0:^This program is made available under the GNU GPL:
 ###XXXGPLReceivedCopy:70:0:^You should have received a copy of the GPL along with this program$:
 ###XXXGPLcopypart2:24:1:^If not, write to (the )?Free Software Foundation([^,;]+) USA\.?:
-###XXXGPLifNotURL:70:0:^If not, see <http<colon>//www.gnu.org/licenses/>:
+###XXXGPLifNotURL:70:0:^If not, see <https?<colon>//www.gnu.org/licenses/>:
 ###XXXGPLnoVersion:52:0:^This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation:
 ###XXXGPLv2+01:70:0:This is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2 of the License, or \(at your option\) any later version:
 ###XXXGPLv2+05:70:0:This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; either version 2(,|;) or \(at your option\) any later version:
@@ -266,7 +266,7 @@ boostAsIs:70:0:THE SOFTWARE IS PROVIDED <quotes>AS IS<quotes>, WITHOUT WARRANTY 
 boostWarr:70:0:IN NO EVENT SHALL THE COPYRIGHT HOLDERS OR ANYONE DISTRIBUTING THE SOFTWARE BE LIABLE FOR ANY DAMAGES OR OTHER LIABILITY, WHETHER IN CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE:
 boostRefv1:70:0:Distributed under the Boost Software License, Version 1\.0:
 boostRefv1:70:0:Use, modification and distribution (is|are) subject to the Boost Software License, Version 1\.0:
-boostSeev1:70:1:See accompanying file LICENSE_1_0\.txt or (copy at )?http<colon>//www\.boost\.org/LICENSE_1_0\.txt:
+boostSeev1:70:1:See accompanying file LICENSE_1_0\.txt or (copy at )?https?<colon>//www\.boost\.org/LICENSE_1_0\.txt:
 intelBSDexport1:70:0:EXPORT LAWS: THIS LICENSE ADDS NO RESTRICTIONS TO THE EXPORT LAWS OF YOUR JURISDICTION\.
 intelBSDexport2:70:0:It is licensee<quotes>s responsibility to comply with any export regulations applicable in licensee<quotes>s jurisdiction:
 intelBSDexport3:70:0:Under CURRENT \(May 2000\) U.S. export regulations this software is eligible for export from the U\.S\. and can be downloaded by or otherwise exported or reexported worldwide EXCEPT to U\.S\. embargoed destinations which include Cuba, Iraq, Libya, North Korea, Iran, Syria, Sudan, Afghanistan and any other country to which the U\.S\. has embargoed goods and services:
@@ -281,7 +281,7 @@ SSLeayCantChangeLic:70:0:The license and distribution terms for any publically a
 
 ApacheLic1_1:10:0:^The Apache Software License, Version 1\.1$
 ApacheLicWherePart1:52:0:You may obtain a copy of the License at:
-ApacheLicWherePart2v2:52:0:http<colon>//www\.apache\.org/licenses/LICENSE\-2\.0:
+ApacheLicWherePart2v2:52:0:https?<colon>//www\.apache\.org/licenses/LICENSE\-2\.0:
 ApachePre:52:0:Licensed to the Apache Software Foundation \(ASF\) under one or more contributor license agreements:
 ApacheSee:52:0:See the NOTICE file distributed with this work for additional information regarding copyright ownership:
 ApachesAsIs:52:0:Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an <quotes>AS IS<quotes> BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied:
@@ -313,7 +313,7 @@ CDDLorGPLv2Portions:5:0:^<quotes>Portions Copyrighted \[year\] \[name of copyrig
 CDDLic:52:0:The contents of this file are subject to the terms of the Common Development and Distribution License \(the <quotes>License<quotes>\):
 CDDLic:53:0:The contents of this file are subject to the terms of the Common Development and Distribution License \(the License\):
 CDDLicV1Only:52:0:^The contents of this file are subject to the terms of the Common Development and Distribution License, Version 1\.0 only \(the <quotes>License<quotes>\):
-CDDLicWhere:10:0:^You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE or http<colon>//www.opensolaris.org/os/licensing$
+CDDLicWhere:10:0:^You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE or https?<colon>//www.opensolaris.org/os/licensing$
 CDDLicIncludeFile:10:0:^When distributing Covered Code, include this CDDL HEADER in each file and include the License file at usr/src/OPENSOLARIS.LICENSE$
 X11CMUAsIs:52:0: ALLOWS FREE USE OF THIS SOFTWARE IN ITS <quotes>AS IS<quotes> CONDITION:
 X11CMULiability:52:0: DISCLAIMS ANY LIABILITY OF ANY KIND FOR ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS SOFTWARE:
@@ -322,15 +322,15 @@ X11CMUlicPerm:10:1:^Permission to use, copy, modify and distribute this software
 X11CMUlicReturn:10:1:^(.+) encourages users of this software to return any improvements or extensions that they make, and to grant Carnegie Mellon the rights to redistribute these changes without encumbrance$
 X11CMUlicLiability:10:1:^(.+) DISCLAIMS ANY LIABILITY OF ANY KIND FOR ANY DAMAGES WHATSOEVER RESULTING DIRECTLY OR INDIRECTLY FROM THE USE OF THIS SOFTWARE OR OF ANY DERIVATIVE WORK$
 X11CMUlicIntention:10:0:^The CMU software License Agreement specifies the terms and conditions for use and redistribution$
-CPLv0.5:10:0:This program and the accompanying materials are made available under the terms of the Common Public License v0\.5 which accompanies this distribution, and is available at http<colon>//www\.eclipse\.org/legal/cpl\-v05\.html:
-CPLv1:52:0:This program and the accompanying materials are made available under the terms of the Common Public License v1\.0 which accompanies this distribution, and is available at http<colon>//www\.eclipse\.org/legal/cpl\-v10\.html:
-EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution and is available at http<colon>//www\.eclipse\.org/legal/epl\-v10\.html:
-EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution, and is available at http<colon>//www\.eclipse\.org/legal/epl\-v10\.html:
-EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution, and is available at http<colon>//eclipse\.org/legal/epl\-v10\.html:
+CPLv0.5:10:0:This program and the accompanying materials are made available under the terms of the Common Public License v0\.5 which accompanies this distribution, and is available at https?<colon>//www\.eclipse\.org/legal/cpl\-v05\.html:
+CPLv1:52:0:This program and the accompanying materials are made available under the terms of the Common Public License v1\.0 which accompanies this distribution, and is available at https?<colon>//www\.eclipse\.org/legal/cpl\-v10\.html:
+EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution and is available at https?<colon>//www\.eclipse\.org/legal/epl\-v10\.html:
+EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution, and is available at https?<colon>//www\.eclipse\.org/legal/epl\-v10\.html:
+EPLv1:10:0:This program and the accompanying materials are made available under the terms of the Eclipse Public License v1\.0 which accompanies this distribution, and is available at https?<colon>//eclipse\.org/legal/epl\-v10\.html:
 CecillEn1:52:0:CeCILL License \(ENGLISH VERSION\):
 CecillEn2:52:0:This software is a computer program whose purpose is to enhance Human-Computer Interfaces written in Java with the Swing framework, providing them a set of functions related to component docking:
 CecillEn3:52:0:This software is governed by the CeCILL license under French law and abiding by the rules of distribution of free software:
-CecillEn4:52:0:You can use, modify and/ or redistribute the software under the terms of the CeCILL license as circulated by CEA, CNRS and INRIA at the following URL <quotes>http<colon>//www\.cecill\.info<quotes>:
+CecillEn4:52:0:You can use, modify and/ or redistribute the software under the terms of the CeCILL license as circulated by CEA, CNRS and INRIA at the following URL <quotes>https?<colon>//www\.cecill\.info<quotes>:
 CecillEn5:52:0:As a counterpart to the access to the source code and rights to copy, modify and redistribute granted by the license, users are provided only with a limited warranty and the software<quotes>s author, the holder of the economic rights, and the successive licensors have only limited liability:
 CecillEn6:52:0:In this respect, the user<quotes>s attention is drawn to the risks associated with loading, using, modifying and/or developing or reproducing the software by the user in light of its specific status of free software, that may mean that it is complicated to manipulate, and that also therefore means that it is reserved for developers and experienced professionals having in-depth computer knowledge:
 CecillEn7:52:0:Users are therefore encouraged to load and test the software<quotes>s suitability as regards their requirements in conditions enabling the security of their systems and/or data to be ensured and, more generally, to use and operate it in the same conditions as regards security:
@@ -380,11 +380,11 @@ MPLGPL2orLGPLv2_1:52:0:Alternatively, the contents of this file can be used unde
 MPL_LGPLsee:52:0:See the LGPL or the MPL for the specific language governing rights and limitations:
 MPLandGPLnoDelete:52:0:If you do not delete the provisions above, a recipient can use your version of this file under either the MPL or the GPL:
 MPLandGPLv2:52:0:Alternatively, the contents of this file can be used under the terms of the GNU General Public License version 2 \(the <quotes>GPL<quotes>\), in which case the provisions of the GPL are applicable instead of the above:
-MPLcopy:52:0:You may obtain a copy of the License at http<color>//www.mozilla.org/MPL/:
+MPLcopy:52:0:You may obtain a copy of the License at https?<color>//www.mozilla.org/MPL/:
 MPLv2part1:10:0:^This Source Code Form is subject to the terms of the Mozilla Public License, v<dot> 2<dot>0$:
 # rather than trying to fight the splitter, then just just do as it wants
 MPLv2part1a:10:0:^2.0$:
-MPLv2part2:10:0:If a copy of the MPL was not distributed with this file, You can obtain one at http<colon>//mozilla.org/MPL/2.0/:
+MPLv2part2:10:0:If a copy of the MPL was not distributed with this file, You can obtain one at https?<colon>//mozilla.org/MPL/2.0/:
 MPLoptionIfNotDelete2lics:52:0:If you do not alter this notice, a recipient can use your version of this file under either the MPL or the LGPL:
 MPLoptionIfNotDelete3lics:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the MPL, the GPL or the LGPL:
 
@@ -406,7 +406,7 @@ MaintainRightsOthers:52:0:All intellectual property rights of others is maintain
 MitmodernAsIs:52:0:THE SOFTWARE PROVIDED HEREUNDER IS ON AN <quotes>AS IS<quotes> BASIS, AND THE COPYRIGHT HOLDER HAS NO OBLIGATION TO PROVIDE MAINTENANCE, SUPPORT, UPDATES, ENHANCEMENTS, OR MODIFICATIONS:
 NPLandGPLandLGPLnoDelete:52:0:If you do not delete the provisions above, a recipient can use your version of this file under the terms of any one of the NPL, the GPL or the LGPL:
 NPLv1_1:52:0:The contents of this file are subject to the Netscape Public License Version 1\.1 \(the <quotes>License<quotes>\); you may not use this file except in compliance with the License:
-NPLwhere:52:0:You may obtain a copy of the License at http<colon>//www\.mozilla\.org/NPL/:
+NPLwhere:52:0:You may obtain a copy of the License at https?<colon>//www\.mozilla\.org/NPL/:
 NoEndorsement:52:1:([^,;]+) name may not be used to endorse or promote products derived from this software without specific prior written permission$:
 NoEndorsement:31:0:^the copyright holder<quotes>s name is not used to endorse products built using this software without specific written permission$:
 NoWarranty:52:0:^DISCLAIMS ALL EXPRESS OR IMPLIED WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE:
@@ -497,7 +497,7 @@ publicDomain:05:0:^This code is hereby placed in the public domain$:
 publicDomain:06:0:^This code is placed in the public domain$:
 publicDomain:07:1:^This ([^ ]+) lives in the public domain$:
 publicDomain:08:0:^This implementation placed in the public domain$:
-publicDomain:09:0:^(.+) released to the public domain, as explained at http<colon>//creativecommons.org/licenses/publicdomain$
+publicDomain:09:0:^(.+) released to the public domain, as explained at https?<colon>//creativecommons.org/licenses/publicdomain$
 publicDomain:10:0:^This code is explicitly placed into the public domain$
 publicDomain:11:0:^The author disclaims copyright to this source code$
 publicDomain:12:0:^The author of this program disclaims copyright$
@@ -507,20 +507,20 @@ publicDomain:53:1:and placed in the public domain:
 
 qtCommercialuse:52:1:Commercial Usage Licensees holding valid Qt Commercial licenses may use this file in accordance with the Qt Commercial License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Nokia:
 qtCommercialuse:10:2:Commercial License Usage Licensees holding valid commercial Qt licenses can use this file in accordance with the commercial license agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and (.+):
-qtDiaTems:10:0:For licensing terms and conditions see http<colon>//qt\.digia\.com/licensing:
+qtDiaTems:10:0:For licensing terms and conditions see https?<colon>//qt\.digia\.com/licensing:
 qtGPL:10:0:^GPL Usage Alternatively, this file can be used under the terms of the GPL <VERSION> and appearing in the file LICENSE.GPL included in the packaging of this file$:
 qtLGPL:10:0:^Lesser GPL Usage Alternatively, this file can be used under the terms of the Lesser GPL <VERSION> and appearing in the file LICENSE.LGPL included in the packaging of this file$:
 qtGPLv2or3:52:0:GPL Usage Alternatively, this file (can|may) be used under the terms of the GPL versions 2\.0 or 3\.0 as published by the Free Software Foundation and appearing in the file LICENSE\.GPL included in the packaging of this file:
 qtLGPL:10:0:^This file can be used under the terms of the Lesser GPL <VERSION> and appearing in the file LICENSE\.LGPL included in the packaging of this file$
-qtGPLwhere:52:0:http<colon>//www\.fsf\.org/licensing/licenses/info/GPLv2\.html and http<colon>//www\.gnu\.org/copyleft/gpl\.html:
-qtGPLwhere:10:0:http<colon>//www\.gnu\.org/copyleft/gpl\.html:
-qtLGPLv2.1where:10:0:http<colon>//www.gnu.org/licenses/old-licenses/lgpl-2.1.html
+qtGPLwhere:52:0:https?<colon>//www\.fsf\.org/licensing/licenses/info/GPLv2\.html and https?<colon>//www\.gnu\.org/copyleft/gpl\.html:
+qtGPLwhere:10:0:https?<colon>//www\.gnu\.org/copyleft/gpl\.html:
+qtLGPLv2.1where:10:0:https?<colon>//www.gnu.org/licenses/old-licenses/lgpl-2.1.html
 qtNokiaExtra:52:0:In addition, as a special exception, Nokia gives you certain additional rights:
 qtDigiaExtra:10:0:^In addition, as a special exception, Digia gives you certain additional rights$
 qtReviewGPL:52:0:Please review the following information to ensure General Public Licensing requirements will be met:
 qtReviewGPL:52:0:Please review the following information to ensure the GPL <VERSION> requirements will be met:
 qtReviewLGPL:52:0:Please review the following information to ensure the Lesser GPL <VERSION> requirements will be met<colon>:
-qtLegalNotice:10:0:^(Contact<colon> )?http<colon>//www.qt-project.org/legal$:
+qtLegalNotice:10:0:^(Contact<colon> )?https?<colon>//www.qt-project.org/legal$:
 qtBSDNotice:10:0:\$QT_BEGIN_LICENSE<colon>BSD\$ You may use this file under the terms of the BSD license as follows<colon>:
 qtRemovalNotice:10:0:^This header file may change from version to version without notice, or even be removed$:
 
@@ -629,17 +629,17 @@ FreeTypeNotice:10:0:^By continuing to use, modify, or distribute this file you i
 
 Postfix:10:0:^LICENSE \.ad \.fi The Secure Mailer license must be distributed with this software$
 
-subversion:10:0:^The terms are also available at http<colon>//subversion\.tigris\.org/license-1\.html$
-subversionError:20:0:^The terms are also available at http<colon>//subversion\.tigris\.org/license\.html$
+subversion:10:0:^The terms are also available at https?<colon>//subversion\.tigris\.org/license-1\.html$
+subversionError:20:0:^The terms are also available at https?<colon>//subversion\.tigris\.org/license\.html$
 subversionPlus:10:0:^If newer versions of this license are posted there, you may use a newer version instead, at your option$
-subversionHistory:10:0:^For exact contribution history, see the revision history and logs, available at http<colon>//subversion\.tigris\.org/$
+subversionHistory:10:0:^For exact contribution history, see the revision history and logs, available at https?<colon>//subversion\.tigris\.org/$
 
-svnkitPlus:10:0:^The terms are also available at http<colon>//svnkit.com/license.html If newer versions of this license are posted there, you may use a newer version instead, at your option$
-svnkit:10:0:^The terms are also available at http<colon>//svnkit.com/license.html$
+svnkitPlus:10:0:^The terms are also available at https?<colon>//svnkit.com/license.html If newer versions of this license are posted there, you may use a newer version instead, at your option$
+svnkit:10:0:^The terms are also available at https?<colon>//svnkit.com/license.html$
 sequenceLic:10:0:^This software is licensed as described in the file SEQUENCE\-LICENSE, which you should have received as part of this distribution$
 
 SeeFileSVN:76:0:^This software is licensed as described in the file COPYING, which you should have received as part of this distribution$
-tmatePlus:10:0:^The terms are also available at http<colon>//svnkit\.com/license\.html If newer versions of this license are posted there, you may use a newer version instead, at your option$
+tmatePlus:10:0:^The terms are also available at https?<colon>//svnkit\.com/license\.html If newer versions of this license are posted there, you may use a newer version instead, at your option$
 
 # wxException
 wxLinkExceptionPart1:10:0:^As a special exception, the copyright holders of this library give permission for additional uses of the text contained in this release of the library as licensed under the wxWindows Library License, applying either version 3 of the License, or \(at your option\) any later version of the License as published by the copyright holders of version 3 of the License document$
@@ -668,7 +668,7 @@ digiaQTExceptionNotice:10:0:^These rights are described in the Digia Qt LGPL Exc
 qtExceptionNoticeGenetic:10:1:^These rights are described in the (.+) Qt LGPL Exception <VERSION>, included in the file LGPL_EXCEPTION.txt in this package$:
 
 # Ghosscript license
-artifex:10:0:^Refer to licensing information at http<colon>//www.artifex.com or contact Artifex Software.*$
+artifex:10:0:^Refer to licensing information at https?<colon>//www.artifex.com or contact Artifex Software.*$
 
 X11FestivalPerm:10:0:^Permission is hereby granted, free of charge, to use and distribute this software and its documentation without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and[/ ]or sell copies of this work, and to permit persons to whom this work is furnished to do so, subject to the following conditions<colon>$
 X11FestivalNotice:10:0:^The code must retain the above copyright notice, this list of conditions and the following disclaimer$
