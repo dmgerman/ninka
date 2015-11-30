@@ -504,6 +504,7 @@ publicDomain:12:0:^The author of this program disclaims copyright$
 publicDomain:13:0:^This file has been put into the public domain$
 publicDomain:52:1:This ([^ ]+)is public domain software:
 publicDomain:53:1:and placed in the public domain:
+publicDomain:54:1:and is placed in the public domain:
 
 qtCommercialuse:52:1:Commercial Usage Licensees holding valid Qt Commercial licenses may use this file in accordance with the Qt Commercial License Agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and Nokia:
 qtCommercialuse:10:2:Commercial License Usage Licensees holding valid commercial Qt licenses can use this file in accordance with the commercial license agreement provided with the Software or, alternatively, in accordance with the terms contained in a written agreement between you and (.+):
