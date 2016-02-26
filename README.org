@@ -67,10 +67,11 @@ the above paper.
   2. Optional: Build and install comments (make sure it is somwehere in the path) (see directory comments)
   
   If you've donwloaded ninka as a git repo, cd into the 'ninka.git' directory. Since ninka is written in perl, you'll need a version of perl on your system. Start building ninka by issuing these commands;
-  `perl Makefile.PL`
-  `make`
-  `sudo make install` 
-  
+  ```
+  perl Makefile.PL
+  make
+  sudo make install
+  ```
   ninka should now be in your PATH. If you're on a UNIX like system, doing `which ninka` will tell you where ninka is installed. In my case it was install ind /usr/local/bin/.
   
 
