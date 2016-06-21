@@ -45,7 +45,7 @@ sub determine_comments_command {
             return create_head_cmd($input_file, 400);
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/) {
             my $comments_binary = 'comments';
-            if (`which $comments_binary` ne '') {
+            if (!system("which $comments_binary > /dev/null 2>&1")) {
                 return ($comments_binary, "-c1", $input_file);
             } else {
                 return create_head_cmd($input_file, 400);
