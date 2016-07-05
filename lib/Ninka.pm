@@ -16,8 +16,7 @@ sub process_file {
     print STDERR "analysing file [$input_file]\n" if $verbose;
 
     if (not (-f $input_file)) {
-        print STDERR "file [$input_file] is not a file\n";
-        return;
+        die "file [$input_file] is not a file\n";
     }
 
     my %common_parameters = (verbose => $verbose);
