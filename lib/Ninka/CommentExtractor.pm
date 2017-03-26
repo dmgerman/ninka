@@ -21,11 +21,11 @@ sub new {
 sub execute {
     my ($self) = @_;
 
-    my $command = $self->determine_comments_command();
-    my $comments = execute_command($command);
-    if ($command =~ /^comments/ && length($comments) == 0) {
-        $command = create_head_cmd($self->{input_file}, 700);
-        $comments = execute_command($command);
+    my @command = $self->determine_comments_command();
+    my $comments = execute_command(@command);
+    if ($command[0] =~ /^comments/ && length($comments) == 0) {
+        @command = create_head_cmd($self->{input_file}, 700);
+        $comments = execute_command(@command);
     }
 
     return $comments;
@@ -45,7 +45,7 @@ sub determine_comments_command {
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/) {
             my $comments_binary = 'comments';
             if (`which $comments_binary` ne '') {
-                return "$comments_binary -c1 '$input_file' 2> /dev/null";
+                return ("$comments_binary", "-c1", $input_file);
             } else {
                 return create_head_cmd($input_file, 400);
             }
@@ -60,11 +60,11 @@ sub determine_comments_command {
 sub create_head_cmd {
     my ($input_file, $count_lines) = @_;
 
-    return "head -$count_lines $input_file";
+    return ("head", "-$count_lines", $input_file);
 }
 
 sub execute_command {
-    my ($command) = @_;
+    my @command = @_;
 
     if ($command =~ /&/) {
         die "illegal file name in command to be executed [$command]";
@@ -72,12 +72,15 @@ sub execute_command {
 
     my ($child_in, $child_out, $child_err);
     $child_err = gensym();
-    my $pid = open3($child_in, $child_out, $child_err, $command);
+    my $pid = open3($child_in, $child_out, $child_err, @command);
     my $comments = do { local $/; <$child_out> };
     chomp(my $error = join('; ', <$child_err>));
     waitpid $pid, 0;
     my $status = ($? >> 8);
-    die "execution of program [$command] failed: status [$status], error [$error]" if ($status != 0);
+    if ($status != 0) {
+        local $" = ' ';
+        die "execution of program [@command] failed: status [$status], error [$error]";
+    }
 
     return $comments;
 }

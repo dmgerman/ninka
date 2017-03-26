@@ -7,7 +7,6 @@ lib/Ninka.pm
 lib/Ninka/abbreviations.dict
 lib/Ninka/CommentExtractor.pm
 lib/Ninka/criticalwords.dict
-lib/Ninka/FileCleaner.pm
 lib/Ninka/interrules.dict
 lib/Ninka/LicenseMatcher.pm
 lib/Ninka/LicenseRules.pm
