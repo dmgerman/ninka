@@ -1,3 +1,10 @@
+2017-03-26  Daniel M. German  <dmg@uvic.ca>
+
+	* lib/Ninka/CommentExtractor.pm (execute_command): 
+          Added check to make sure no spurious command is executed
+
+        * Changed version to 1.3.1
+
 2015-05-11  dmg  <dmg@uvic.ca>
 	
 	* Released version 1.3

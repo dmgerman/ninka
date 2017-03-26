@@ -66,6 +66,10 @@ sub create_head_cmd {
 sub execute_command {
     my ($command) = @_;
 
+    if ($command =~ /&/) {
+        die "illegal file name in command to be executed [$command]";
+    }
+
     my ($child_in, $child_out, $child_err);
     $child_err = gensym();
     my $pid = open3($child_in, $child_out, $child_err, $command);

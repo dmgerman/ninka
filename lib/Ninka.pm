@@ -9,7 +9,7 @@ use Ninka::SentenceExtractor;
 use Ninka::SentenceFilter;
 use Ninka::SentenceTokenizer;
 
-our $VERSION = '1.3';
+our $VERSION = '1.3.1';
 
 sub process_file {
     my ($input_file, $create_intermediary_files, $verbose) = @_;
@@ -86,7 +86,7 @@ Scans a source file and returns the found licenses.
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2009-2014  Yuki Manabe and Daniel M. German
+Copyright (C) 2009-2014,2017  Yuki Manabe and Daniel M. German
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as
