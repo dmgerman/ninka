@@ -1,3 +1,17 @@
+2017-04-02  Daniel M. German  <dmg@uvic.ca>
+
+        These changes address CVE-2017-7239
+
+	* lib/Ninka.pm: upgraded to version to 1.3.2
+
+	* Makefile.PL: Added IO::CaptureOutput to dependencies
+
+	* CommentExtractor.pm:
+
+	- replaced call to system with a single argument with a list of arguments.
+
+	- replaced the use of open3 with captureoutput to simplify the code
+
 2017-03-26  Daniel M. German  <dmg@uvic.ca>
 
 	* lib/Ninka/CommentExtractor.pm (execute_command): 

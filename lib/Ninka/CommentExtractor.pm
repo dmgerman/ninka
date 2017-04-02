@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use IPC::Open3 'open3';
 use Symbol 'gensym';
+use IO::CaptureOutput qw/capture_exec/;
 
 sub new {
     my ($class, %args) = @_;
@@ -21,11 +22,11 @@ sub new {
 sub execute {
     my ($self) = @_;
 
-    my $command = $self->determine_comments_command();
-    my $comments = execute_command($command);
-    if ($command =~ /^comments/ && length($comments) == 0) {
-        $command = create_head_cmd($self->{input_file}, 700);
-        $comments = execute_command($command);
+    my @command = $self->determine_comments_command();
+    my $comments = execute_command(@command);
+    if ($command[0] =~ /^comments/ && length($comments) == 0) {
+        @command = create_head_cmd($self->{input_file}, 700);
+        $comments = execute_command(@command);
     }
 
     return $comments;
@@ -45,7 +46,7 @@ sub determine_comments_command {
         } elsif ($ext =~ /^(java|c|cpp|h|cxx|c\+\+|cc)$/) {
             my $comments_binary = 'comments';
             if (`which $comments_binary` ne '') {
-                return "$comments_binary -c1 '$input_file' 2> /dev/null";
+                return ($comments_binary, "-c1", $input_file);
             } else {
                 return create_head_cmd($input_file, 400);
             }
@@ -60,10 +61,27 @@ sub determine_comments_command {
 sub create_head_cmd {
     my ($input_file, $count_lines) = @_;
 
-    return "head -$count_lines $input_file";
+    return ("head",  "-$count_lines",  $input_file);
 }
 
 sub execute_command {
+    my (@command) = @_;
+    # make sure we have more than one element in the array
+    #    otherwise system will use the shell to do the execution
+    die "command (@command) seems to be missing parameters" unless (scalar(@command) > 1);
+
+    my ($stdout, $error, $success, $status) = capture_exec( @command );
+
+    my $commandSt = join(' ', @command);
+    die "execution of program [$commandSt] failed: status [$status], error [$error]" if ($status != 0);
+
+    return $stdout;
+}
+
+
+# insecure execute command. Leave here for the time being
+# it is dead code
+sub execute_command_old {
     my ($command) = @_;
 
     if ($command =~ /&/) {
