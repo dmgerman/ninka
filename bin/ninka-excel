@@ -24,7 +24,7 @@ use Ninka;
 use Spreadsheet::WriteExcel;
 
 if (scalar(@ARGV) != 2) {
-    print STDERR "Ninka v${Ninka::VERSION}. sqlite wrapper\n";
+    print STDERR "Ninka v${Ninka::VERSION}. Excel wrapper\n";
     print STDERR "Processes package file (.tar.gz, zip, jar. etc) and outputs to excel file\n";
     print STDERR "Incorrect number of arguments\n";
     print STDERR "Usage: $0 <path to package file> <excel-file>\n";
