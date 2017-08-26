@@ -253,7 +253,7 @@ __END__
 
 =head1 NAME
 
-Ninka::LicenseMatcher
+Ninka::LicenseMatcher - Match license sentences
 
 =head1 DESCRIPTION
 

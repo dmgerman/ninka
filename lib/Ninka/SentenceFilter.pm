@@ -75,7 +75,7 @@ __END__
 
 =head1 NAME
 
-Ninka::SentenceFilter
+Ninka::SentenceFilter - Classify input sentences
 
 =head1 DESCRIPTION
 

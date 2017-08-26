@@ -88,7 +88,7 @@ __END__
 
 =head1 NAME
 
-Ninka::LicenseRules
+Ninka::LicenseRules - Rules for LicenseMatcher
 
 =head1 DESCRIPTION
 

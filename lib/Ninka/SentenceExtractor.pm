@@ -245,7 +245,7 @@ __END__
 
 =head1 NAME
 
-Ninka::SentenceExtractor
+Ninka::SentenceExtractor - Break comments into sentences
 
 =head1 DESCRIPTION
 
