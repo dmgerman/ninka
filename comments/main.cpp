@@ -30,7 +30,7 @@ int main(int argc, char** argv)
   Limit.rlim_cur = 10;
   Limit.rlim_max = 10;
   if (setrlimit(RLIMIT_CPU, &Limit) == -1) {
-    perror("eror");
+    perror("error");
     exit(1);
   }
   /*
@@ -54,7 +54,7 @@ int main(int argc, char** argv)
 
   if(!dformat.ok())
   {
-    cerr << MSG_PRE << " Errors occured while trying to complete requests."
+    cerr << MSG_PRE << " Errors occurred while trying to complete requests."
 	 << endl;
   }
 
