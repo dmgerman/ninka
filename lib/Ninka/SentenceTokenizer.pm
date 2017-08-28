@@ -219,7 +219,7 @@ __END__
 
 =head1 NAME
 
-Ninka::SentenceTokenizer
+Ninka::SentenceTokenizer - Display recognized sentence token
 
 =head1 DESCRIPTION
 

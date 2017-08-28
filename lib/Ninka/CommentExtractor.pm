@@ -106,7 +106,7 @@ __END__
 
 =head1 NAME
 
-Ninka::CommentExtractor
+Ninka::CommentExtractor - Extract comments from source code
 
 =head1 DESCRIPTION
 

@@ -41,7 +41,7 @@ __END__
 
 =head1 NAME
 
-Ninka::FileCleaner
+Ninka::FileCleaner - Escape disturbing characters
 
 =head1 DESCRIPTION
 
