@@ -4,7 +4,7 @@ use strict;
 use warnings;
 use IPC::Open3 'open3';
 use Symbol 'gensym';
-use IO::CaptureOutput qw/capture_exec/;
+use Capture::Tiny qw/capture/;
 
 sub new {
     my ($class, %args) = @_;
@@ -70,7 +70,7 @@ sub execute_command {
     #    otherwise system will use the shell to do the execution
     die "command (@command) seems to be missing parameters" unless (scalar(@command) > 1);
 
-    my ($stdout, $error, $success, $status) = capture_exec( @command );
+    my ($stdout, $error, $status) = capture { system( @command ) };
 
     my $commandSt = join(' ', @command);
     die "execution of program [$commandSt] failed: status [$status], error [$error]" if ($status != 0);
