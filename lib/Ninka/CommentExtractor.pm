@@ -2,7 +2,6 @@ package Ninka::CommentExtractor;
 
 use strict;
 use warnings;
-use IPC::Open3 'open3';
 use Symbol 'gensym';
 use Capture::Tiny qw/capture/;
 
@@ -81,24 +80,24 @@ sub execute_command {
 
 # insecure execute command. Leave here for the time being
 # it is dead code
-sub execute_command_old {
-    my ($command) = @_;
-
-    if ($command =~ /&/) {
-        die "illegal file name in command to be executed [$command]";
-    }
-
-    my ($child_in, $child_out, $child_err);
-    $child_err = gensym();
-    my $pid = open3($child_in, $child_out, $child_err, $command);
-    my $comments = do { local $/; <$child_out> };
-    chomp(my $error = join('; ', <$child_err>));
-    waitpid $pid, 0;
-    my $status = ($? >> 8);
-    die "execution of program [$command] failed: status [$status], error [$error]" if ($status != 0);
-
-    return $comments;
-}
+#sub execute_command_old {
+#    my ($command) = @_;
+#
+#    if ($command =~ /&/) {
+#        die "illegal file name in command to be executed [$command]";
+#    }
+#
+#    my ($child_in, $child_out, $child_err);
+#    $child_err = gensym();
+#    my $pid = open3($child_in, $child_out, $child_err, $command);
+#    my $comments = do { local $/; <$child_out> };
+#    chomp(my $error = join('; ', <$child_err>));
+#    waitpid $pid, 0;
+#    my $status = ($? >> 8);
+#    die "execution of program [$command] failed: status [$status], error [$error]" if ($status != 0);
+#
+#    return $comments;
+#}
 
 1;
 
