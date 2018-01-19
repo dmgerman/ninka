@@ -2,7 +2,6 @@ package Ninka::FileCleaner;
 
 use strict;
 use warnings;
-use IPC::Open3 'open3';
 use Symbol 'gensym';
 
 sub new {
