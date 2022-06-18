@@ -6,12 +6,13 @@ use Getopt::Std;
 use Ninka;
 
 my %opts = parse_cmdline_parameters();
-my $input_file = $ARGV[0];
 my $create_intermediary_files = exists $opts{i};
 my $verbose = exists $opts{v};
 
-my $license_result = Ninka::process_file($input_file, $create_intermediary_files, $verbose);
-print "$input_file;$license_result\n";
+foreach my $input_file (@ARGV) {
+    my $license_result = Ninka::process_file($input_file, $create_intermediary_files, $verbose);
+    print "$input_file;$license_result\n";
+}
 exit 0;
 
 sub parse_cmdline_parameters {
@@ -19,7 +20,7 @@ sub parse_cmdline_parameters {
     if (!getopts('iv', \%opts) || scalar(@ARGV) == 0) {
         print STDERR "Ninka v${Ninka::VERSION}
 
-Usage: ninka [options] <filename>
+Usage: ninka [options] <filename>...
 
 Options:
   -i create intermediary files
@@ -40,7 +41,7 @@ ninka - source file license identification tool
 
 =head1 SYNOPSYS
 
-B<ninka> [options] F<filename>
+B<ninka> [options] F<filename>...
 
 =head1 DESCRIPTION
 
@@ -72,7 +73,7 @@ Determine the licenses in file F<foo.c>.
 
 Determine the licenses in file F<foo.c> and create intermediary files (for debugging).
 
-=item find * | xargs -n1 -I@ B<ninka> '@'
+=item find * -type f -print | xargs -I@ B<ninka> '@'
 
 Determine the licenses of files in a directory.
 
