@@ -25,10 +25,8 @@ WriteMakefile(
         'File::Spec::Functions' => '0',
         'File::Temp' => '0',
         'Getopt::Std' => '0',
-        'IPC::Open3' => '0',
         'Spreadsheet::WriteExcel' => '0',
-        'IO::CaptureOutput' => '0',
-                  
+        'Capture::Tiny' => '0',
     },
     TEST_REQUIRES => {
         'File::Temp' => '0',

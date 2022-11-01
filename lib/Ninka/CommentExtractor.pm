@@ -2,9 +2,8 @@ package Ninka::CommentExtractor;
 
 use strict;
 use warnings;
-use IPC::Open3 'open3';
 use Symbol 'gensym';
-use IO::CaptureOutput qw/capture_exec/;
+use Capture::Tiny qw/capture/;
 
 sub new {
     my ($class, %args) = @_;
@@ -70,7 +69,7 @@ sub execute_command {
     #    otherwise system will use the shell to do the execution
     die "command (@command) seems to be missing parameters" unless (scalar(@command) > 1);
 
-    my ($stdout, $error, $success, $status) = capture_exec( @command );
+    my ($stdout, $error, $status) = capture { system( @command ) };
 
     my $commandSt = join(' ', @command);
     die "execution of program [$commandSt] failed: status [$status], error [$error]" if ($status != 0);
@@ -81,24 +80,24 @@ sub execute_command {
 
 # insecure execute command. Leave here for the time being
 # it is dead code
-sub execute_command_old {
-    my ($command) = @_;
-
-    if ($command =~ /&/) {
-        die "illegal file name in command to be executed [$command]";
-    }
-
-    my ($child_in, $child_out, $child_err);
-    $child_err = gensym();
-    my $pid = open3($child_in, $child_out, $child_err, $command);
-    my $comments = do { local $/; <$child_out> };
-    chomp(my $error = join('; ', <$child_err>));
-    waitpid $pid, 0;
-    my $status = ($? >> 8);
-    die "execution of program [$command] failed: status [$status], error [$error]" if ($status != 0);
-
-    return $comments;
-}
+#sub execute_command_old {
+#    my ($command) = @_;
+#
+#    if ($command =~ /&/) {
+#        die "illegal file name in command to be executed [$command]";
+#    }
+#
+#    my ($child_in, $child_out, $child_err);
+#    $child_err = gensym();
+#    my $pid = open3($child_in, $child_out, $child_err, $command);
+#    my $comments = do { local $/; <$child_out> };
+#    chomp(my $error = join('; ', <$child_err>));
+#    waitpid $pid, 0;
+#    my $status = ($? >> 8);
+#    die "execution of program [$command] failed: status [$status], error [$error]" if ($status != 0);
+#
+#    return $comments;
+#}
 
 1;
 
