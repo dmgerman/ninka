@@ -13,7 +13,7 @@ WriteMakefile(
         'Yuki Manabe <y-manabe@ist.osaka-u.ac.jp>',
         'René Scheibe <rene.scheibe@gmail.com>',
     ],
-    EXE_FILES => ['bin/ninka'],
+    EXE_FILES => ['bin/ninka','bin/ninka-excel','bin/ninka-sqlite'],
     CONFIGURE_REQUIRES => {
         'ExtUtils::MakeMaker' => '6.52',
     },
